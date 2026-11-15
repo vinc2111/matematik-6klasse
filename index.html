@@ -19,23 +19,25 @@ img{max-width:100%}
   --bg:#ffffff; --panel:#f2f4f7; --surface:#ffffff; --fg:#1a1c20; --muted:#5b6170; --line:#d5d9e0;
   --ink:#1d4ed0; --on-ink:#ffffff; --soft:#e1e9fb; --m2:#0b7f63; --m3:#c8431b;
   --ok:#157a47; --ok-soft:#e2f3e8; --bad-soft:#fde9e4; --hint-soft:#fff3d6;
+  --ch:#1d4ed0; --on-ch:#ffffff; --chl:.5; --chc:.17;
   --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#15171c; --panel:#1e2129; --surface:#15171c; --fg:#e9eaed; --muted:#a2a7b3; --line:#343945;
   --ink:#8fb0ff; --on-ink:#10131a; --soft:#27304a; --m2:#6fd6b5; --m3:#ff9d7a;
-  --ok:#74d69d; --ok-soft:#1c3327; --bad-soft:#3d2420; --hint-soft:#3a3320; color-scheme:dark } }
+  --ok:#74d69d; --ok-soft:#1c3327; --bad-soft:#3d2420; --hint-soft:#3a3320; --ch:#8fb0ff; --on-ch:#10131a; --chl:.8; --chc:.12; color-scheme:dark } }
 :root[data-theme="dark"]{
   --bg:#15171c; --panel:#1e2129; --surface:#15171c; --fg:#e9eaed; --muted:#a2a7b3; --line:#343945;
   --ink:#8fb0ff; --on-ink:#10131a; --soft:#27304a; --m2:#6fd6b5; --m3:#ff9d7a;
-  --ok:#74d69d; --ok-soft:#1c3327; --bad-soft:#3d2420; --hint-soft:#3a3320; color-scheme:dark }
+  --ok:#74d69d; --ok-soft:#1c3327; --bad-soft:#3d2420; --hint-soft:#3a3320; --ch:#8fb0ff; --on-ch:#10131a; --chl:.8; --chc:.12; color-scheme:dark }
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.55;padding-block:18px 72px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));font-variant-numeric:tabular-nums}
 .wrap{max-width:760px;margin:0 auto}
 h1,h2,h3{line-height:1.2;margin:0;text-wrap:balance}
 h1{font-size:clamp(2rem,7vw,2.7rem);margin-top:30px}
-h1 .num{color:var(--muted);font-weight:400;margin-right:.4em}
+h1{display:flex;align-items:center;gap:.45em}
+h1 .badge{font-size:.62em;flex:none}
 h2{font-size:1.3rem;margin-bottom:12px}
 h3{font-size:1rem;margin:20px 0 6px}
 p{margin:0 0 12px;max-width:62ch;text-wrap:pretty}
@@ -55,12 +57,22 @@ section>:last-child{margin-bottom:0}
 .toc{list-style:none;padding:0;margin:28px 0 0;max-width:none}
 .toc li{margin:0;border-top:1px solid var(--line)}
 .toc li:last-child{border-bottom:1px solid var(--line)}
-.toc a{display:grid;grid-template-columns:1.6ch minmax(0,1fr) auto;gap:4px 14px;align-items:baseline;padding:13px 2px;color:var(--fg);text-decoration:none}
-.toc a:hover b{color:var(--ink);text-decoration:underline}
-.toc .num{color:var(--muted)}
+.toc a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:14px 2px;color:var(--fg);text-decoration:none}
+.toc a:hover b{color:var(--ch);text-decoration:underline}
 .toc b{display:block;font-size:1.15rem}
 .toc .d{color:var(--muted);font-size:.95rem}
-.toc .done{color:var(--ok);font-size:.9rem;white-space:nowrap}
+.toc .prog{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.toc .cnt{color:var(--muted);font-size:.85rem;white-space:nowrap}
+.toc .cnt.all{color:var(--ok);font-weight:700}
+@media (max-width:600px){.toc a{grid-template-columns:auto minmax(0,1fr)}.toc .prog{grid-column:2;flex-direction:row;align-items:center;gap:10px}}
+@supports (color:oklch(0 0 0)){.hue{--ch:oklch(var(--chl) var(--chc) var(--h))}}
+.badge{display:inline-grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;background:var(--ch);color:var(--on-ch);font-weight:700;line-height:1}
+.pips{display:inline-flex;gap:7px;vertical-align:middle}
+.pips span{display:inline-flex;gap:2px}
+.pips i{width:9px;height:9px;border-radius:2px;background:var(--line)}
+.pips i.on{background:var(--ch)}
+.chprog{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;color:var(--muted);font-size:.95rem;margin-top:14px}
+.chprog .pips i{width:11px;height:11px}
 
 dl.ord{display:grid;grid-template-columns:minmax(7.5em,auto) minmax(0,1fr);gap:9px 20px;margin:0}
 dl.ord dt{font-weight:700}
@@ -99,14 +111,14 @@ svg .mu{fill:var(--muted)}
 .cube.c2{fill:color-mix(in srgb,var(--ink) 60%,var(--panel))}
 .cube.c3{fill:color-mix(in srgb,var(--ink) 90%,var(--panel))}
 
-.btn{font:inherit;font-weight:700;padding:7px 14px;border-radius:3px;border:1.5px solid var(--ink);background:var(--ink);color:var(--on-ink);cursor:pointer}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn[aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
+.btn{font:inherit;font-weight:700;padding:7px 14px;border-radius:3px;border:1.5px solid var(--ch);background:var(--ch);color:var(--on-ch);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ch)}
+.btn[aria-pressed="true"]{background:var(--ch);color:var(--on-ch)}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 .link{font:inherit;background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer}
 .tabs{display:flex;flex-wrap:wrap;gap:2px 24px;border-bottom:1px solid var(--line);margin-bottom:20px}
-.tabs button{font:inherit;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:6px 0;color:var(--muted);cursor:pointer}
-.tabs button[aria-pressed="true"]{color:var(--fg);font-weight:700;border-bottom-color:var(--ink)}
+.tabs button{font:inherit;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:6px 0 8px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.tabs button[aria-pressed="true"]{color:var(--fg);font-weight:700;border-bottom-color:var(--ch)}
 .q{font-size:1.25rem;font-weight:700}
 .ans{font:inherit;font-size:1.15rem;padding:6px 9px;width:8rem;border:1.5px solid var(--muted);border-radius:3px;background:var(--bg);color:var(--fg)}
 form.row{margin-bottom:12px}
@@ -114,7 +126,6 @@ form.row{margin-bottom:12px}
 .fb[data-s="ok"]{background:var(--ok-soft)}
 .fb[data-s="no"]{background:var(--bad-soft)}
 .fb[data-s="hint"]{background:var(--hint-soft)}
-.ticks{color:var(--ok);font-weight:700;letter-spacing:.1em}
 .eks{background:var(--panel);padding:18px 20px}
 .eks>:last-child{margin-bottom:0}
 .fejl{font-size:1.1rem}
@@ -467,31 +478,43 @@ const INTRO={
  rum:'Hvor meget kan der være i en kasse? Byg den af centicubes, og tæl lagene.',
  monstre:'Figurer, der vokser efter en regel. Finder du reglen, slipper du for at tælle.'};
 const LV=['Niveau 1','Niveau 2','Niveau 3','Problemer'];
-function practice(ch){let lv=0,task,tries,done;
+const HUE={tal:262,cirkler:20,handel:150,figurer:305,data:55,algebra:195,rum:345,monstre:95};
+const pip=(id,ls)=>ls.map(l=>`<span>${[0,1,2,3,4].map(i=>`<i${i<got(id,l)?' class="on"':''}></i>`).join('')}</span>`).join('');
+const chprog=id=>{const t=total(id);return `<span class="pips">${pip(id,[0,1,2,3])}</span><span>${t==20?'Hele kapitlet er klaret.':t+' af 20 opgaver klaret'}</span>`};
+function practice(ch){let lv=0,task,tries,done,streak=0;
   const fb=(s,h)=>{const e=$('fb');e.hidden=false;e.dataset.s=s;e.innerHTML=h};
-  const dots=()=>{const n=got(ch.id,lv);$('dots').innerHTML=`${n?`<span class="ticks">${'✓'.repeat(n)}</span> `:''}${n} af 5 rigtige ${lv<3?'på niveau '+(lv+1):'i problemerne'}.${n==5?' Klaret!':''}`};
+  const navn=l=>l<3?'niveau '+(l+1):'problemerne';
+  const dots=()=>{const n=got(ch.id,lv);
+    $('lvs').querySelectorAll('button').forEach((b,i)=>{b.setAttribute('aria-pressed',i==lv);b.querySelector('.pips').innerHTML=pip(ch.id,[i])});
+    $('chprog').innerHTML=chprog(ch.id);
+    const up=[0,1,2,3].find(l=>l>lv&&got(ch.id,l)<5);
+    $('dots').innerHTML=n<5?`${n} af 5 rigtige ${lv<3?'på':'i'} ${navn(lv)}. Fem rigtige klarer ${lv<3?'niveauet':'problemerne'}.`:`<b>Så er ${navn(lv)} klaret.</b> ${total(ch.id)==20?'Du har klaret hele kapitlet!':up!=null?`<button type="button" class="link" id="up">Gå videre til ${navn(up)}</button>`:''}`;
+    const u=$('up');if(u)u.onclick=()=>{lv=up;task=null;ny();$('ans').focus()}};
   const ny=()=>{let t;do{t=pick(ch.tasks[lv])()}while(task&&t.q==task.q);task=t;tries=0;done=false;$('q').textContent=task.q;$('tip').hidden=lv!=3;$('ans').value='';$('unit').textContent=task.unit;$('fb').hidden=true;$('chk').disabled=false;dots()};
-  $('lvs').innerHTML=LV.map((t,i)=>`<button type="button" data-l="${i}" aria-pressed="${i==0}">${t}</button>`).join('');
-  $('lvs').querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=+b.dataset.l;$('lvs').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x==b));task=null;ny()});
+  $('lvs').innerHTML=LV.map((t,i)=>`<button type="button" data-l="${i}">${t}<span class="pips"></span></button>`).join('');
+  $('lvs').querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=+b.dataset.l;task=null;ny()});
   $('pf').addEventListener('submit',e=>{e.preventDefault();if(done)return;const v=parse($('ans').value);
     if(isNaN(v))return fb('hint','Skriv svaret som et tal, fx 12 eller 3,5.');
-    if(Math.abs(v-task.a)<=(task.tol||0)+0.011){done=true;$('chk').disabled=true;const p=prog[ch.id]=prog[ch.id]||[0,0,0,0];p[lv]=Math.min(5,(p[lv]||0)+1);save();dots();fb('ok',`<b>Rigtigt.</b> ${task.sol}`);$('nxt').focus()}
-    else{tries++;if(tries==1)fb('no','Det passer ikke helt. Kig din udregning igennem, og prøv igen.');else if(tries==2)fb('hint',`<b>Hint:</b> ${task.hint}`);else{done=true;$('chk').disabled=true;fb('no',`<b>Svaret er ${(f(task.a)+' '+task.unit).trim()}.</b> ${task.sol} Tag en ny opgave af samme slags.`)}}});
+    if(Math.abs(v-task.a)<=(task.tol||0)+0.011){done=true;$('chk').disabled=true;streak++;const p=prog[ch.id]=prog[ch.id]||[0,0,0,0];p[lv]=Math.min(5,(p[lv]||0)+1);save();dots();fb('ok',`<b>Rigtigt.${streak>=3?` ${streak} i træk!`:''}</b> ${task.sol}`);$('nxt').focus()}
+    else{tries++;streak=0;if(tries==1)fb('no','Ikke helt endnu. Kig din udregning igennem, og prøv igen.');else if(tries==2)fb('hint',`<b>Hint:</b> ${task.hint}`);else{done=true;$('chk').disabled=true;fb('no',`<b>Svaret er ${(f(task.a)+' '+task.unit).trim()}.</b> ${task.sol} Tag en ny af samme slags, så sidder den.`)}}});
   $('hnt').onclick=()=>fb('hint',`<b>Hint:</b> ${task.hint}`);$('nxt').onclick=()=>{ny();$('ans').focus()};ny()}
 
 /* ---------- Sider ---------- */
 function nav(c){$('nav').innerHTML=c?'<a href="#hjem">Alle kapitler</a>':'6. klasse'}
-function home(){nav();$('app').innerHTML=`
+function home(){nav();const A=$('app');A.className='';const all=CH.reduce((a,c)=>a+total(c.id),0);let last;try{last=CH.find(c=>c.id==localStorage.getItem('mv6last'))}catch(e){}
+A.innerHTML=`
 <h1>Matematikværksted</h1>
-<p class="lead">Her ligger det, vi arbejder med i matematik i 6. klasse. Kapitlerne følger bogen, KonteXt+ 6.</p>
-<ol class="toc">${CH.map(c=>{const t=total(c.id);return `<li><a href="#${c.id}"><span class="num">${c.n}</span><span><b>${c.t}</b><span class="d">${c.d}</span></span><span class="done">${t?(t==20?'✓ klaret':t+' af 20'):''}</span></a></li>`}).join('')}</ol>
+<p class="lead">${all?`Du har klaret <b>${all}</b> af 160 opgaver${all==160?'. Det er dem alle sammen!':'.'}${last&&total(last.id)<20?` Fortsæt med <a href="#${last.id}">${last.t}</a>.`:''}`:'Her ligger det, vi arbejder med i matematik i 6. klasse. Vælg et kapitel, og kom i gang.'}</p>
+<ol class="toc">${CH.map(c=>{const t=total(c.id);return `<li><a class="hue" style="--h:${HUE[c.id]}" href="#${c.id}"><span class="badge">${c.n}</span><span><b>${c.t}</b><span class="d">${c.d}</span></span><span class="prog"><span class="pips">${pip(c.id,[0,1,2,3])}</span><span class="cnt${t==20?' all':''}">${t==20?'✓ klaret':t+' af 20'}</span></span></a></li>`}).join('')}</ol>
 <section><h2>Sådan bruger du siden</h2>
-<p>Start med figuren øverst i kapitlet. Træk i skyderne, til du kan se, hvad der sker. Læs så eksemplet, og find fejlen sammen med din makker.</p>
+<p>Kapitlerne følger bogen, KonteXt+ 6. Start med figuren øverst i kapitlet, og træk i skyderne, til du kan se, hvad der sker. Læs så eksemplet, og find fejlen sammen med din makker.</p>
 <p>Opgaverne regner du i hæftet. Skriv svaret her for at tjekke det, og tryk på Hint, hvis du sidder fast. Problemerne er tekstopgaver, hvor du selv skal finde ud af, hvad der skal regnes.</p>
-<p>Der kommer nye tal, hver gang du trykker på Ny opgave, så du kan øve så meget, du vil. Siden husker, hvad du har klaret, men kun på den computer, du sidder ved.</p></section>`}
-function chapter(c){nav(c);const i=c.n-1,pv=CH[i-1],nx=CH[i+1];$('app').innerHTML=`
-<h1><span class="num">${c.n}</span>${c.t}</h1>
+<p>De små firkanter viser, hvor langt du er. Hvert kapitel har tre niveauer og en række problemer. Fem rigtige svar fylder en række, og fire fyldte rækker klarer kapitlet. Der kommer nye tal i hver opgave, så du kan altid prøve igen.</p>
+<p class="small">Siden husker, hvad du har klaret, men kun på den computer, du sidder ved.</p></section>`}
+function chapter(c){nav(c);try{localStorage.setItem('mv6last',c.id)}catch(e){}const i=c.n-1,pv=CH[i-1],nx=CH[i+1],A=$('app');A.className='hue';A.style.setProperty('--h',HUE[c.id]);A.innerHTML=`
+<h1><span class="badge">${c.n}</span>${c.t}</h1>
 <p class="lead">${INTRO[c.id]}</p>
+<p class="chprog" id="chprog"></p>
 <section><h2>Det skal du kunne</h2><ul>${c.maal.map(m=>`<li>${m}</li>`).join('')}</ul></section>
 <section><h2>Ord, du skal kende</h2><dl class="ord">${c.ord.map(o=>`<dt>${o[0]}</dt><dd>${o[1]}</dd>`).join('')}</dl></section>
 <section><h2>${c.model}</h2><div id="tool"></div><h3>Læg mærke til</h3><ul>${c.se.map(s=>`<li>${s}</li>`).join('')}</ul></section>
