@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Interaktivt matematikværksted til 6. klasse: modeller, eksempler, opgaver og problemløsning.">
+<title>Matematikværksted 6. klasse</title>
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<style>
+/* Layout: ternet kladdehæfte i lyst tema, kridttavle i mørkt. Hvert afsnit er et ark; model og aflæsning står side om side. */
+:root{
+  --bg:#f4f7fb; --grid:#dde6f1; --surface:#ffffff; --fg:#152033; --muted:#55637a; --line:#c9d4e2;
+  --ink:#2146c7; --on-ink:#ffffff; --soft:#e4ebfc; --m2:#0b7f63; --m3:#c8431b;
+  --ok:#157a47; --ok-soft:#e0f3e8; --bad-soft:#fde9e4; --hint-soft:#fff3d6;
+  --display:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#13201c; --grid:#1c2e28; --surface:#1a2a25; --fg:#edf3ef; --muted:#a3b6ad; --line:#30463e;
+  --ink:#ffd75e; --on-ink:#13201c; --soft:#2a3a2c; --m2:#7fe0c0; --m3:#ff9d7a;
+  --ok:#74d69d; --ok-soft:#1f3a2c; --bad-soft:#40261f; --hint-soft:#3a3320; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#13201c; --grid:#1c2e28; --surface:#1a2a25; --fg:#edf3ef; --muted:#a3b6ad; --line:#30463e;
+  --ink:#ffd75e; --on-ink:#13201c; --soft:#2a3a2c; --m2:#7fe0c0; --m3:#ff9d7a;
+  --ok:#74d69d; --ok-soft:#1f3a2c; --bad-soft:#40261f; --hint-soft:#3a3320; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;padding-block:20px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-variant-numeric:tabular-nums}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+#app{width:100%}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,6vw,3rem)}
+h2{font-size:1.35rem}
+p{margin:0}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--m3);outline-offset:2px}
+
+.top{display:flex;flex-direction:column;gap:10px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--fg);text-decoration:none;align-self:flex-start;background:var(--surface);padding:2px 8px;border-radius:4px}
+.brand span{color:var(--ink)}
+.nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.chip{flex:none;padding:6px 13px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);text-decoration:none;white-space:nowrap;font-size:.95rem}
+.chip[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--on-ink);font-weight:700}
+
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.eyebrow{font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.lead{font-size:1.1rem;max-width:62ch}
+.text{max-width:66ch}
+ul.plain,ol.plain{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;max-width:66ch}
+.maal li::marker{color:var(--ok)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.card{display:flex;flex-direction:column;gap:6px;padding:16px;background:var(--surface);border:1.5px solid var(--line);border-radius:6px;text-decoration:none;color:var(--fg)}
+.card:hover{border-color:var(--ink)}
+.card h3{font-size:1.2rem}
+.card p{color:var(--muted);font-size:.93rem;flex:1}
+.bar{display:block;height:8px;border-radius:4px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok)}
+.small{font-size:.85rem;color:var(--muted)}
+
+dl.ord{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px 24px;margin:0}
+dl.ord dt{font-weight:700;color:var(--ink)}
+dl.ord dd{margin:0}
+
+.tool{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:720px){.tool{grid-template-columns:minmax(0,1fr)}}
+.fig svg{display:block;width:100%;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:4px}
+.ctl{display:flex;flex-direction:column;gap:14px;min-width:0}
+.ctls{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.sl{display:grid;gap:2px}
+.sl input{width:100%;accent-color:var(--ink)}
+select{font:inherit;padding:7px 10px;border:1.5px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);max-width:100%}
+.read{display:flex;flex-direction:column;gap:6px}
+.eq{font-size:1.3rem;font-weight:700}
+.c2{color:var(--m2)} .c3{color:var(--m3)} .ci{color:var(--ink)}
+table.tb{border-collapse:collapse}
+table.tb th,table.tb td{border:1px solid var(--line);padding:4px 9px;text-align:center}
+table.tb .now{background:var(--soft);font-weight:700}
+.scroll{overflow-x:auto}
+
+svg text{fill:var(--fg);font-family:var(--body)}
+svg .mu{fill:var(--muted)}
+.ax{stroke:var(--fg);stroke-width:1.5;fill:none}
+.gl{stroke:var(--line);stroke-width:1;fill:none}
+.s-ink{stroke:var(--ink);stroke-width:3;fill:none}
+.s-m2{stroke:var(--m2);stroke-width:3;fill:none}
+.s-m3{stroke:var(--m3);stroke-width:2.5;fill:none}
+.dash{stroke-dasharray:6 5}
+.f-ink{fill:var(--ink)} .f-m2{fill:var(--m2)} .f-m3{fill:var(--m3)} .f-soft{fill:var(--soft)} .f-sur{fill:var(--surface)}
+.t-ink{fill:var(--ink)!important} .t-m2{fill:var(--m2)!important} .t-m3{fill:var(--m3)!important}
+.cube{stroke:var(--surface);stroke-width:1;fill:var(--ink)}
+.cube.c1{fill:color-mix(in srgb,var(--ink) 30%,var(--surface))}
+.cube.c2{fill:color-mix(in srgb,var(--ink) 60%,var(--surface))}
+.cube.c3{fill:color-mix(in srgb,var(--ink) 90%,var(--surface))}
+
+.btn{font:inherit;font-weight:700;padding:9px 15px;border-radius:6px;border:1.5px solid var(--ink);background:var(--ink);color:var(--on-ink);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.q{font-size:1.3rem;font-weight:700;max-width:60ch}
+.ans{font:inherit;font-size:1.2rem;padding:8px 10px;width:8.5rem;border:2px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg)}
+form.row{align-items:center}
+.fb{padding:11px 14px;border-radius:6px;max-width:66ch}
+.fb[data-s="ok"]{background:var(--ok-soft)}
+.fb[data-s="no"]{background:var(--bad-soft)}
+.fb[data-s="hint"]{background:var(--hint-soft)}
+.dots{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dots i{width:13px;height:13px;border-radius:50%;border:2px solid var(--ok)}
+.dots i.on{background:var(--ok)}
+details{max-width:66ch}
+summary{cursor:pointer;font-weight:700;color:var(--ink)}
+details>*:not(summary){margin-top:8px}
+.fejl{background:var(--bad-soft);padding:11px 14px;border-radius:6px;max-width:66ch}
+.pn{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#hjem">Matematik<span>værksted</span> · 6. klasse</a>
+    <nav class="nav" id="nav" aria-label="Kapitler"></nav>
+  </header>
+  <main id="app" class="wrap"></main>
+</div>
+
+<script>
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[R(0,a.length-1)];
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const f=n=>{n=Math.round(n*100)/100;return (n<0?'−':'')+Math.abs(n).toLocaleString('da-DK',{maximumFractionDigits:2,useGrouping:false})};
+const gcd=(a,b)=>b?gcd(b,a%b):a;
+const T=(q,a,unit,hint,sol,tol)=>({q,a,unit,hint,sol,tol});
+function parse(s){s=s.trim().replace(/\s/g,'').replace(/[−–]/g,'-').replace(/^[a-zæøå]=/i,'').replace(/[^\d]+$/,'');if(s.includes(',')||/^-?\d{1,3}(\.\d{3})+$/.test(s))s=s.replace(/\./g,'').replace(',','.');return /^-?\d+(\.\d+)?$/.test(s)?parseFloat(s):NaN}
+const PI='Brug π ≈ 3,14.';
+
+/* ---------- Opgaver: tre niveauer pr. kapitel ---------- */
+const K={};
+K.tal=[[
+ ()=>{const a=R(2,9),b=R(2,6),c=R(2,6);return T(`Udregn ${a} + ${b} · ${c}`,a+b*c,'','Gange kommer før plus.',`${b} · ${c} = ${b*c}. Derefter ${a} + ${b*c} = ${a+b*c}.`)},
+ ()=>{const a=R(1,8),b=a+R(1,9);return T(`Udregn ${a} − ${b}`,a-b,'',`Tegn en tallinje. Start på ${a}, og hop ${b} til venstre.`,`Fra ${a} er der ${a} hop ned til 0. Så mangler der ${b-a} hop. Du lander på ${f(a-b)}.`)},
+ ()=>{const a=R(26,40),b=R(2,5),c=R(2,5);return T(`Udregn ${a} − ${b} · ${c}`,a-b*c,'','Gange kommer før minus.',`${b} · ${c} = ${b*c}. Derefter ${a} − ${b*c} = ${a-b*c}.`)}
+],[
+ ()=>{const a=R(2,8),b=R(2,8),c=R(2,5),d=R(1,9);return T(`Udregn (${a} + ${b}) · ${c} − ${d}`,(a+b)*c-d,'','Start med parentesen.',`Parentesen først: ${a} + ${b} = ${a+b}. Så gange: ${a+b} · ${c} = ${(a+b)*c}. Til sidst: ${(a+b)*c} − ${d} = ${(a+b)*c-d}.`)},
+ ()=>{const a=R(3,12),b=R(1,15);return T(`Udregn −${a} + ${b}`,b-a,'',`Start på −${a} på tallinjen, og hop ${b} til højre.`,`Du starter på −${a} og hopper ${b} til højre. Du lander på ${f(b-a)}.`)},
+ ()=>{const a=R(2,12),b=R(2,12);return T(`Udregn −${a} − ${b}`,-a-b,'',`Start på −${a} på tallinjen, og hop ${b} til venstre.`,`Du starter på −${a} og hopper ${b} til venstre. Du lander på ${f(-a-b)}.`)},
+ ()=>{const a=R(2,5);return T(`Udregn ${a}³`,a**3,'',`${a}³ betyder ${a} · ${a} · ${a}.`,`${a} · ${a} = ${a*a}, og ${a*a} · ${a} = ${a**3}.`)}
+],[
+ ()=>{const n=R(3,6),k=R(2,8);return T(`Saft blandes i forholdet 1:${n} (saft til vand). Du bruger ${k} dL saft. Hvor mange dL vand skal du bruge?`,k*n,'dL',`For hver 1 dL saft skal der ${n} dL vand til.`,`${k} · ${n} = ${k*n} dL vand.`)},
+ ()=>{const [p,d]=pick([[2,3],[3,4],[1,2],[3,5],[4,5]]),m=R(2,4);return T(`I en klasse er forholdet mellem piger og drenge ${p}:${d}. Der er ${(p+d)*m} elever. Hvor mange piger er der?`,p*m,'piger','Find først, hvor mange dele der er i alt.',`Der er ${p} + ${d} = ${p+d} dele. Hver del er ${(p+d)*m} : ${p+d} = ${m} elever. Pigerne er ${p} dele: ${p} · ${m} = ${p*m}.`)},
+ ()=>{const a=R(5,20),b=R(2,5),c=R(3,6),d=R(2,5);return T(`Udregn ${a} − ${b} · ${c} + ${d}²`,a-b*c+d*d,'','Potens først, så gange, til sidst plus og minus fra venstre mod højre.',`${d}² = ${d*d}, og ${b} · ${c} = ${b*c}. Derefter ${a} − ${b*c} + ${d*d} = ${f(a-b*c+d*d)}.`)}
+]];
+K.cirkler=[[
+ ()=>{const r=R(2,15);return T(`En cirkel har radius ${r} cm. Hvad er diameteren?`,2*r,'cm','Diameteren er dobbelt så lang som radius.',`d = 2 · ${r} = ${2*r} cm.`)},
+ ()=>{const r=R(2,15);return T(`En cirkel har diameter ${2*r} cm. Hvad er radius?`,r,'cm','Radius er halvdelen af diameteren.',`r = ${2*r} : 2 = ${r} cm.`)},
+ ()=>{const d=R(2,20);return T(`En cirkel har diameter ${d} cm. Hvad er omkredsen? ${PI}`,3.14*d,'cm','O = π · d.',`O ≈ 3,14 · ${d} = ${f(3.14*d)} cm.`,3.14*d*.01)}
+],[
+ ()=>{const r=R(2,12);return T(`En cirkel har radius ${r} cm. Hvad er omkredsen? ${PI}`,6.28*r,'cm','Find diameteren først.',`d = 2 · ${r} = ${2*r} cm. O ≈ 3,14 · ${2*r} = ${f(6.28*r)} cm.`,6.28*r*.01)},
+ ()=>{const r=R(2,10);return T(`En cirkel har radius ${r} cm. Hvad er arealet? ${PI}`,3.14*r*r,'cm²','A = π · r · r.',`A ≈ 3,14 · ${r} · ${r} = 3,14 · ${r*r} = ${f(3.14*r*r)} cm².`,3.14*r*r*.01)}
+],[
+ ()=>{const d=R(5,30);return T(`En cirkel har omkredsen ${f(3.14*d)} cm. Hvad er diameteren? ${PI}`,d,'cm','O = π · d. Hvad skal du gøre for at finde d?',`d = O : π ≈ ${f(3.14*d)} : 3,14 = ${d} cm.`,d*.01)},
+ ()=>{const d=pick([50,60,70]),n=pick([10,20,100]);return T(`Et hjul har diameteren ${d} cm. Hvor mange meter ruller det på ${n} omgange? ${PI}`,3.14*d*n/100,'m','Én omgang er lige så lang som hjulets omkreds. Husk at lave cm om til m.',`Omkreds: 3,14 · ${d} = ${f(3.14*d)} cm. ${n} omgange: ${f(3.14*d*n)} cm = ${f(3.14*d*n/100)} m.`,3.14*d*n/100*.01)},
+ ()=>{const r=2*R(1,5);return T(`En halvcirkel har radius ${r} cm. Hvad er arealet? ${PI}`,3.14*r*r/2,'cm²','Find arealet af hele cirklen, og halver det.',`Hel cirkel: 3,14 · ${r} · ${r} = ${f(3.14*r*r)} cm². Halvdelen er ${f(3.14*r*r/2)} cm².`,3.14*r*r/2*.01)}
+]];
+K.handel=[[
+ ()=>{const p=pick([10,25,50]),N=40*R(2,20);return T(`Hvad er ${p} % af ${N} kr.?`,N*p/100,'kr.',{10:'10 % er en tiendedel. Divider med 10.',25:'25 % er en fjerdedel. Divider med 4.',50:'50 % er halvdelen.'}[p],`${N} : ${100/p} = ${f(N*p/100)} kr.`)},
+ ()=>{const [a,b,p]=pick([[1,2,50],[1,4,25],[3,4,75],[1,5,20],[2,5,40],[1,10,10],[3,10,30]]);return T(`Hvor mange procent er ${a}/${b}?`,p,'%','Forlæng brøken, så nævneren bliver 100.',`${a}/${b} = ${p}/100 = ${p} %.`)}
+],[
+ ()=>{const p=pick([10,20,25,30,40]),N=20*R(5,40);return T(`En trøje koster ${N} kr. Der er ${p} % rabat. Hvad koster trøjen nu?`,N-N*p/100,'kr.','Find først rabatten i kroner. Start med 10 % eller 25 %.',`Rabatten er ${p} % af ${N} kr. = ${f(N*p/100)} kr. Ny pris: ${N} − ${f(N*p/100)} = ${f(N-N*p/100)} kr.`)},
+ ()=>{const p=pick([15,35,60,75]),N=20*R(2,30);return T(`Hvad er ${p} % af ${N} kr.?`,N*p/100,'kr.','Del procenten op, fx i 10 % og 5 %, eller i 50 % og 25 %.',`1 % af ${N} kr. er ${f(N/100)} kr. ${p} · ${f(N/100)} = ${f(N*p/100)} kr.`)}
+],[
+ ()=>{const N=20*R(2,40);return T(`En vare koster ${N} kr. uden moms. Momsen er 25 %. Hvad er prisen med moms?`,1.25*N,'kr.','Find 25 % af prisen, og læg den til.',`Moms: ${N} : 4 = ${f(N/4)} kr. Pris med moms: ${N} + ${f(N/4)} = ${f(1.25*N)} kr.`)},
+ ()=>{const p=pick([20,25,50]),N=100*R(2,12),S=N*(100-p)/100;return T(`En jakke koster ${S} kr. efter ${p} % rabat. Hvad kostede den før rabatten?`,N,'kr.',`Efter ${p} % rabat betaler du ${100-p} % af prisen.`,`${S} kr. er ${100-p} % af prisen. 1 % er ${S} : ${100-p} = ${f(S/(100-p))} kr. Hele prisen er 100 · ${f(S/(100-p))} = ${N} kr.`)},
+ ()=>{const [a,b,p]=pick([[12,48,25],[15,60,25],[9,45,20],[18,24,75],[14,35,40],[27,90,30],[33,55,60]]);return T(`${a} ud af ${b} elever cykler i skole. Hvor mange procent er det?`,p,'%','Skriv det som en brøk, og forkort den.',`${a}/${b} = ${a/gcd(a,b)}/${b/gcd(a,b)} = ${p}/100 = ${p} %.`)}
+]];
+K.figurer=[[
+ ()=>{const l=R(3,12),b=R(2,9);return T(`Et rektangel er ${l} cm langt og ${b} cm bredt. Hvad er arealet?`,l*b,'cm²','Areal af et rektangel er længde gange bredde.',`${l} · ${b} = ${l*b} cm².`)},
+ ()=>{const g=2*R(2,8),h=R(3,10);return T(`En trekant har grundlinje ${g} cm og højde ${h} cm. Hvad er arealet?`,g*h/2,'cm²','A = ½ · g · h.',`½ · ${g} · ${h} = ½ · ${g*h} = ${g*h/2} cm².`)},
+ ()=>{const a=R(30,80),b=R(30,80);return T(`To vinkler i en trekant er ${a}° og ${b}°. Hvor stor er den tredje vinkel?`,180-a-b,'°','Vinkelsummen i en trekant er 180°.',`${a} + ${b} = ${a+b}. Den tredje vinkel er 180 − ${a+b} = ${180-a-b}°.`)}
+],[
+ ()=>{const g=R(4,14),h=R(3,9);return T(`Et parallelogram har grundlinje ${g} cm og højde ${h} cm. Hvad er arealet?`,g*h,'cm²','Et parallelogram kan klippes om til et rektangel med samme grundlinje og højde.',`A = g · h = ${g} · ${h} = ${g*h} cm².`)},
+ ()=>{const a=R(70,110),b=R(70,110),c=R(60,100);return T(`Tre vinkler i en firkant er ${a}°, ${b}° og ${c}°. Hvor stor er den fjerde vinkel?`,360-a-b-c,'°','En firkant kan deles i to trekanter. Hvad er vinkelsummen så?',`Vinkelsummen er 2 · 180 = 360°. ${a} + ${b} + ${c} = ${a+b+c}. Den fjerde vinkel er 360 − ${a+b+c} = ${360-a-b-c}°.`)},
+ ()=>{const t=2*R(10,60);return T(`En ligebenet trekant har en topvinkel på ${t}°. Hvor stor er hver af de to andre vinkler?`,(180-t)/2,'°','De to vinkler ved grundlinjen er lige store.',`180 − ${t} = ${180-t}. De to vinkler deler resten: ${180-t} : 2 = ${(180-t)/2}°.`)}
+],[
+ ()=>{const a=R(3,9),b=a+2*R(1,4),h=R(2,8);return T(`Et trapez har de parallelle sider ${a} cm og ${b} cm. Højden er ${h} cm. Hvad er arealet?`,(a+b)/2*h,'cm²','A = ½ · (a + b) · h.',`${a} + ${b} = ${a+b}. Halvdelen er ${(a+b)/2}. ${(a+b)/2} · ${h} = ${(a+b)/2*h} cm².`)},
+ ()=>{const n=pick([5,6,8,10]);return T(`Hvad er vinkelsummen i en ${n}-kant?`,(n-2)*180,'°',`En ${n}-kant kan deles i ${n-2} trekanter fra ét hjørne.`,`${n-2} trekanter med 180° i hver: ${n-2} · 180 = ${(n-2)*180}°.`)},
+ ()=>{const g=R(4,12),h=R(3,10);return T(`En trekant har arealet ${f(g*h/2)} cm² og grundlinjen ${g} cm. Hvad er højden?`,h,'cm','Gang arealet med 2. Så har du g · h.',`2 · ${f(g*h/2)} = ${g*h}. h = ${g*h} : ${g} = ${h} cm.`)}
+]];
+K.data=[[
+ ()=>{const a=[R(2,12),R(2,12),R(2,12)];let x=R(2,9);const s=a[0]+a[1]+a[2];x+=(4-(s+x)%4)%4;a.push(x);const l=shuf(a);return T(`Find middeltallet af tallene ${l.join(', ')}.`,(s+x)/4,'','Læg tallene sammen, og divider med antallet af tal.',`${l.join(' + ')} = ${s+x}. ${s+x} : 4 = ${(s+x)/4}.`)},
+ ()=>{const p=shuf([1,2,3,4,5,6,7,8,9]),l=shuf([p[0],p[0],p[0],p[1],p[2],p[3],p[4]]);return T(`Find typetallet: ${l.join(', ')}.`,p[0],'','Typetallet er det tal, der er flest af.',`${p[0]} forekommer 3 gange. Det er flere end de andre tal.`)},
+ ()=>{const l=Array.from({length:6},()=>R(1,30)),mx=Math.max(...l),mn=Math.min(...l);return T(`Find variationsbredden: ${l.join(', ')}.`,mx-mn,'','Find det største og det mindste tal.',`Største tal er ${mx}, mindste tal er ${mn}. ${mx} − ${mn} = ${mx-mn}.`)}
+],[
+ ()=>{const l=shuf(Array.from({length:30},(_, i)=>i+1)).slice(0,pick([5,7])),s=[...l].sort((a,b)=>a-b);return T(`Find medianen: ${l.join(', ')}.`,s[(s.length-1)/2],'','Stil tallene i rækkefølge først.',`I rækkefølge: ${s.join(', ')}. Det midterste tal er ${s[(s.length-1)/2]}.`)},
+ ()=>{const l=shuf(Array.from({length:20},(_, i)=>i+1)).slice(0,6),s=[...l].sort((a,b)=>a-b);return T(`Find medianen: ${l.join(', ')}.`,(s[2]+s[3])/2,'','Der er to tal i midten. Medianen ligger midt mellem dem.',`I rækkefølge: ${s.join(', ')}. De to midterste er ${s[2]} og ${s[3]}. Midt imellem ligger ${f((s[2]+s[3])/2)}.`)},
+ ()=>{const t=pick([4,5,10,20,25]),r=R(1,t-1);return T(`I en pose er der ${r} røde og ${t-r} blå kugler. Du trækker én kugle uden at kigge. Hvad er sandsynligheden for rød? Svar i procent.`,r/t*100,'%','Gunstige udfald divideret med mulige udfald.',`${r} røde ud af ${t} kugler: ${r}/${t} = ${f(r/t*100)}/100 = ${f(r/t*100)} %.`)}
+],[
+ ()=>{const a=Array.from({length:4},()=>R(3,15));let x=R(3,11);const s=a.reduce((p,c)=>p+c,0);x+=(5-(s+x)%5)%5;const m=(s+x)/5;return T(`Middeltallet af fem tal er ${m}. Fire af tallene er ${a.join(', ')}. Hvad er det femte tal?`,x,'','Hvad skal summen af alle fem tal være?',`Summen skal være 5 · ${m} = ${5*m}. De fire tal giver ${s}. Det femte tal er ${5*m} − ${s} = ${x}.`)},
+ ()=>{const s=R(2,12),w=6-Math.abs(s-7);return T(`Du slår med to terninger. Hvor mange af de 36 mulige udfald giver summen ${s}?`,w,'udfald','Skriv alle par op, fx 1 + 6 og 6 + 1. De tæller som to forskellige udfald.',`Der er ${w} udfald med summen ${s}. Sandsynligheden er ${w}/36.`)}
+]];
+K.algebra=[[
+ ()=>{const k=R(2,6),c=R(1,9),v=R(2,8);return T(`Hvad er ${k} · a + ${c}, når a = ${v}?`,k*v+c,'','Sæt tallet ind i stedet for a.',`${k} · ${v} + ${c} = ${k*v} + ${c} = ${k*v+c}.`)},
+ ()=>{const x=R(2,20),a=R(2,15);return T(`Løs ligningen x + ${a} = ${x+a}`,x,'',`Træk ${a} fra på begge sider.`,`x = ${x+a} − ${a} = ${x}. Tjek: ${x} + ${a} = ${x+a}.`)},
+ ()=>{const x=R(5,25),a=R(2,x-1);return T(`Løs ligningen x − ${a} = ${x-a}`,x,'',`Læg ${a} til på begge sider.`,`x = ${x-a} + ${a} = ${x}. Tjek: ${x} − ${a} = ${x-a}.`)}
+],[
+ ()=>{const a=R(2,6),x=R(2,9),b=R(1,12);return T(`Løs ligningen ${a}x + ${b} = ${a*x+b}`,x,'',`Træk først ${b} fra på begge sider.`,`${a}x = ${a*x+b} − ${b} = ${a*x}. x = ${a*x} : ${a} = ${x}. Tjek: ${a} · ${x} + ${b} = ${a*x+b}.`)},
+ ()=>{const p=R(2,6),q=R(2,6);return T(`Reducer ${p}a + ${q}a + a. Hvilket tal står foran a?`,p+q+1,'','a alene er det samme som 1a.',`${p} + ${q} + 1 = ${p+q+1}. Udtrykket bliver ${p+q+1}a.`)}
+],[
+ ()=>{const c=R(1,3),a=c+R(1,4),x=R(1,9),b=R(1,10),d=(a-c)*x+b,cx=c>1?c+'x':'x';return T(`Løs ligningen ${a}x + ${b} = ${cx} + ${d}`,x,'',`Træk ${cx} fra på begge sider, så x kun står på den ene side.`,`${a-c>1?a-c:''}x + ${b} = ${d}. ${a-c>1?a-c:''}x = ${d-b}. x = ${x}. Tjek: ${a} · ${x} + ${b} = ${a*x+b}, og ${c} · ${x} + ${d} = ${c*x+d}.`)},
+ ()=>{const a=R(2,6),x=R(2,12),b=R(1,15);return T(`Jeg tænker på et tal. Jeg ganger det med ${a} og lægger ${b} til. Resultatet er ${a*x+b}. Hvilket tal tænker jeg på?`,x,'',`Skriv det som en ligning: ${a}x + ${b} = ${a*x+b}.`,`${a}x = ${a*x+b} − ${b} = ${a*x}. x = ${a*x} : ${a} = ${x}.`)},
+ ()=>{const x=R(2,10),k=R(1,6);return T(`Et rektangel har længden x + ${k} og bredden x. Omkredsen er ${4*x+2*k}. Hvad er x?`,x,'','Omkredsen er to længder og to bredder. Skriv et udtryk.',`Omkreds: 2 · (x + ${k}) + 2 · x = 4x + ${2*k}. 4x + ${2*k} = ${4*x+2*k}, så 4x = ${4*x} og x = ${x}.`)}
+]];
+K.rum=[[
+ ()=>{const l=R(2,8),b=R(2,6),h=R(2,6);return T(`En kasse er ${l} cm lang, ${b} cm bred og ${h} cm høj. Hvad er rumfanget?`,l*b*h,'cm³','V = l · b · h.',`${l} · ${b} = ${l*b}, og ${l*b} · ${h} = ${l*b*h} cm³.`)},
+ ()=>{const s=R(2,6);return T(`En terning har sidelængden ${s} cm. Hvad er rumfanget?`,s**3,'cm³','Alle tre mål er lige lange.',`${s} · ${s} · ${s} = ${s**3} cm³.`)}
+],[
+ ()=>{const l=R(2,8),b=R(2,6),h=R(2,6);return T(`En kasse er ${l} cm lang, ${b} cm bred og ${h} cm høj. Hvad er overfladearealet?`,2*(l*b+l*h+b*h),'cm²','Kassen har 6 flader. De er ens to og to.',`Flader: ${l} · ${b} = ${l*b}, ${l} · ${h} = ${l*h} og ${b} · ${h} = ${b*h}. Sum: ${l*b+l*h+b*h}. Der er to af hver: 2 · ${l*b+l*h+b*h} = ${2*(l*b+l*h+b*h)} cm².`)},
+ ()=>{const l=R(2,8),b=R(2,6),h=R(2,9);return T(`En kasse har rumfanget ${l*b*h} cm³. Den er ${l} cm lang og ${b} cm bred. Hvor høj er den?`,h,'cm','Find grundfladen først.',`Grundflade: ${l} · ${b} = ${l*b} cm². Højde: ${l*b*h} : ${l*b} = ${h} cm.`)}
+],[
+ ()=>{const l=10*R(3,8),b=10*R(2,5),h=10*R(2,5);return T(`Et akvarium er ${l} cm langt, ${b} cm bredt og ${h} cm højt. Hvor mange liter kan det rumme?`,l*b*h/1000,'liter','1 liter er 1000 cm³.',`${l} · ${b} · ${h} = ${l*b*h} cm³. ${l*b*h} : 1000 = ${f(l*b*h/1000)} liter.`)},
+ ()=>{const s=pick([50,100,200]),c=R(2,12);return T(`En tegning er i målestok 1:${s}. En væg er ${c} cm lang på tegningen. Hvor mange meter er væggen i virkeligheden?`,c*s/100,'m',`1 cm på tegningen er ${s} cm i virkeligheden.`,`${c} · ${s} = ${c*s} cm = ${f(c*s/100)} m.`)},
+ ()=>{const l=2*R(2,5),b=2*R(2,4),h=2*R(1,4);return T(`Hvor mange terninger med sidelængden 2 cm kan der være i en kasse på ${l} cm · ${b} cm · ${h} cm?`,l*b*h/8,'terninger','Find ud af, hvor mange terninger der kan ligge på hver led.',`${l/2} på langs, ${b/2} på tværs og ${h/2} i højden: ${l/2} · ${b/2} · ${h/2} = ${l*b*h/8}.`)}
+]];
+K.monstre=[[
+ ()=>{const s=R(1,9),d=R(2,7);return T(`Hvad er det næste tal i følgen ${[0,1,2,3].map(i=>s+i*d).join(', ')}?`,s+4*d,'','Hvor meget vokser følgen med hver gang?',`Følgen vokser med ${d}. ${s+3*d} + ${d} = ${s+4*d}.`)},
+ ()=>{const a=R(2,5),b=R(1,4);return T(`Figur 1 har ${a+b} brikker, figur 2 har ${2*a+b}, og figur 3 har ${3*a+b}. Hvor mange brikker har figur 4?`,4*a+b,'brikker','Find tilvæksten fra figur til figur.',`Der kommer ${a} brikker til hver gang. ${3*a+b} + ${a} = ${4*a+b}.`)}
+],[
+ ()=>{const s=R(2,9),d=R(2,6),n=pick([10,12,20]);return T(`En talfølge starter ${[0,1,2,3].map(i=>s+i*d).join(', ')}. Hvad er tal nummer ${n}?`,s+(n-1)*d,'',`Fra tal nummer 1 til tal nummer ${n} er der ${n-1} hop.`,`Hvert hop er ${d}. ${n-1} · ${d} = ${(n-1)*d}. ${s} + ${(n-1)*d} = ${s+(n-1)*d}.`)},
+ ()=>{const k=R(2,6),c=R(1,5),n=R(8,20);return T(`Antallet af brikker i figur n er ${k} · n + ${c}. Hvor mange brikker er der i figur ${n}?`,k*n+c,'brikker','Sæt figurnummeret ind i stedet for n.',`${k} · ${n} + ${c} = ${k*n} + ${c} = ${k*n+c}.`)}
+],[
+ ()=>{const k=R(2,6),c=R(1,5),n=R(8,25);return T(`Antallet af brikker i figur n er ${k} · n + ${c}. Hvilket figurnummer har ${k*n+c} brikker?`,n,'','Skriv det som en ligning, og løs den.',`${k} · n + ${c} = ${k*n+c}. ${k} · n = ${k*n}. n = ${k*n} : ${k} = ${n}.`)},
+ ()=>{const n=R(6,12),c=R(1,5);return T(`Figur n har n · n + ${c} brikker. Hvor mange brikker har figur ${n}?`,n*n+c,'brikker','n · n er et kvadrattal.',`${n} · ${n} = ${n*n}. ${n*n} + ${c} = ${n*n+c}.`)},
+ ()=>{const n=R(6,10);return T(`Følgen 2, 6, 12, 20 følger reglen n · (n + 1). Hvad er tal nummer ${n}?`,n*(n+1),'','Tjek reglen på tal nummer 3: 3 · 4 = 12.',`${n} · ${n+1} = ${n*(n+1)}.`)}
+]];
+
+
+/* ---------- Flere opgaver og problemløsning ---------- */
+const add=(id,l,...g)=>K[id][l].push(...g);
+add('tal',0,()=>{const a=R(2,6),b=R(2,6),c=R(2,6),d=R(2,6);return T(`Udregn ${a} · ${b} + ${c} · ${d}`,a*b+c*d,'','Regn de to gangestykker hver for sig først.',`${a} · ${b} = ${a*b}, og ${c} · ${d} = ${c*d}. ${a*b} + ${c*d} = ${a*b+c*d}.`)});
+add('cirkler',1,()=>{const r=R(3,12);return T(`En rund tallerken har diameteren ${2*r} cm. Hvad er arealet? ${PI}`,3.14*r*r,'cm²','Find radius først.',`r = ${2*r} : 2 = ${r} cm. A ≈ 3,14 · ${r} · ${r} = ${f(3.14*r*r)} cm².`,3.14*r*r*.01)});
+add('handel',0,()=>{const v=R(5,95);return T(`Skriv ${f(v/100)} som procent.`,v,'%','Gang decimaltallet med 100.',`${f(v/100)} = ${v}/100 = ${v} %.`)});
+add('figurer',1,()=>{const k=R(3,12);return T(`Et kvadrat har omkredsen ${4*k} cm. Hvad er arealet?`,k*k,'cm²','Find sidelængden først. Et kvadrat har fire lige lange sider.',`Sidelængde: ${4*k} : 4 = ${k} cm. Areal: ${k} · ${k} = ${k*k} cm².`)});
+add('data',2,()=>{const n=pick([4,5,8,10]),k=R(1,n-1),N=n*R(5,30);return T(`Et lykkehjul har ${n} lige store felter. ${k} af felterne giver gevinst. Du drejer hjulet ${N} gange. Hvor mange gevinster kan du forvente?`,k*N/n,'gevinster','Find sandsynligheden for gevinst som en brøk. Hvor stor en del af drejene er det?',`Sandsynligheden er ${k}/${n}. ${N} : ${n} = ${N/n}, og ${k} · ${N/n} = ${k*N/n}.`)});
+add('algebra',1,()=>{const a=R(2,6),x=R(2,9),b=R(1,Math.min(12,a*x-1));return T(`Løs ligningen ${a}x − ${b} = ${a*x-b}`,x,'',`Læg først ${b} til på begge sider.`,`${a}x = ${a*x-b} + ${b} = ${a*x}. x = ${a*x} : ${a} = ${x}. Tjek: ${a} · ${x} − ${b} = ${a*x-b}.`)},
+ ()=>{const a=R(2,9),b=R(2,9);return T(`Løs ligningen x : ${a} = ${b}`,a*b,'',`Gang med ${a} på begge sider.`,`x = ${b} · ${a} = ${a*b}. Tjek: ${a*b} : ${a} = ${b}.`)});
+add('rum',0,()=>{const G=R(6,40),h=R(2,9);return T(`En kasse har en grundflade på ${G} cm². Højden er ${h} cm. Hvad er rumfanget?`,G*h,'cm³','Rumfang er grundflade gange højde.',`${G} · ${h} = ${G*h} cm³.`)});
+add('rum',1,()=>{const v=R(1,9)/2;return T(`Hvor mange cm³ er ${f(v)} liter?`,v*1000,'cm³','1 liter er 1000 cm³.',`${f(v)} · 1000 = ${v*1000} cm³.`)});
+add('monstre',0,()=>{const s=R(30,60),d=R(2,6);return T(`Hvad er det næste tal i følgen ${[0,1,2,3].map(i=>s-i*d).join(', ')}?`,s-4*d,'','Følgen bliver mindre. Hvor meget falder den med hver gang?',`Følgen falder med ${d}. ${s-3*d} − ${d} = ${s-4*d}.`)});
+add('monstre',1,()=>{const n=R(6,12);return T(`Følgen 1, 4, 9, 16 er kvadrattallene. Hvad er tal nummer ${n}?`,n*n,'','Tal nummer 3 er 3 · 3 = 9.',`${n} · ${n} = ${n*n}.`)});
+
+K.tal[3]=[
+ ()=>{const a=R(2,9),b=R(4,12),c=R(3,10);return T(`Om morgenen er temperaturen −${a} °C. I løbet af dagen stiger den ${b} grader. Om aftenen falder den ${c} grader. Hvad er temperaturen om aftenen?`,-a+b-c,'°C','Brug en tallinje. Stiger betyder hop til højre, falder betyder hop til venstre.',`−${a} + ${b} = ${f(b-a)}. Derefter ${f(b-a)} − ${c} = ${f(b-a-c)} °C.`)},
+ ()=>{const n=R(18,26),p=pick([60,70,80]),q=pick([25,30,35]),r=pick([100,150,200]);return T(`${n} elever skal i biografen. En billet koster ${p} kr., og hver elev køber popcorn til ${q} kr. Klassen har en rabatkupon på ${r} kr. Hvad skal klassen betale i alt?`,n*(p+q)-r,'kr.','Find først, hvad én elev skal betale. Skriv gerne ét regnestykke med parentes.',`${n} · (${p} + ${q}) − ${r} = ${n} · ${p+q} − ${r} = ${n*(p+q)} − ${r} = ${n*(p+q)-r} kr.`)},
+ ()=>{const m=pick([4,5,6,8]),k=pick([6,10,12,14]);return T(`En opskrift på pandekager til 4 personer bruger ${m} dL mælk. Hvor mange dL mælk skal du bruge til ${k} personer?`,m*k/4,'dL','Find først, hvor meget mælk der skal bruges til 1 person eller til 2 personer.',`Til 2 personer: ${m} : 2 = ${f(m/2)} dL. ${k} personer er ${k/2} gange så mange: ${k/2} · ${f(m/2)} = ${f(m*k/4)} dL.`)}
+];
+K.cirkler[3]=[
+ ()=>{const d=pick([3,4,5]),k=pick([50,100,200]);return T(`En rund trampolin har diameteren ${d} m. Der skal sættes et sikkerhedsnet hele vejen rundt. Nettet koster ${k} kr. pr. meter. Hvad koster nettet? ${PI}`,3.14*d*k,'kr.','Hvor langt er der hele vejen rundt om trampolinen?',`Omkreds: 3,14 · ${d} = ${f(3.14*d)} m. Pris: ${f(3.14*d)} · ${k} = ${f(3.14*d*k)} kr.`,3.14*d*k*.01)},
+ ()=>{const r=pick([10,12,14,16,20]);return T(`En pizza har diameteren ${2*r} cm. Den deles i 8 lige store stykker. Hvor stort er arealet af ét stykke? ${PI}`,3.14*r*r/8,'cm²','Find arealet af hele pizzaen først.',`r = ${r} cm. Hele pizzaen: 3,14 · ${r} · ${r} = ${f(3.14*r*r)} cm². Ét stykke: ${f(3.14*r*r)} : 8 = ${f(3.14*r*r/8)} cm².`,3.14*r*r/8*.01)},
+ ()=>{const d=pick([4,6,8,10,20]);return T(`Et rundt bed har omkredsen ${f(3.14*d)} m. Hvad er arealet af bedet? ${PI}`,3.14*d*d/4,'m²','Du skal bruge radius. Find diameteren ud fra omkredsen først.',`d = ${f(3.14*d)} : 3,14 = ${d} m, så r = ${d/2} m. A ≈ 3,14 · ${d/2} · ${d/2} = ${f(3.14*d*d/4)} m².`,3.14*d*d/4*.01)}
+];
+K.handel[3]=[
+ ()=>{const N=100*R(3,9),p=pick([10,20,25,30]),A=N*(100-p)/100,df=pick([10,20,30,50]),M=A+pick([-1,1])*df;return T(`Butik A sælger et par sko til ${N} kr. med ${p} % rabat. Butik B sælger de samme sko til ${M} kr. uden rabat. Hvor mange kroner sparer du ved at vælge den billigste butik?`,df,'kr.','Find først prisen i butik A efter rabatten.',`Rabat i butik A: ${p} % af ${N} kr. = ${N*p/100} kr. Pris i A: ${N} − ${N*p/100} = ${A} kr. Forskellen mellem ${A} kr. og ${M} kr. er ${df} kr. Butik ${M<A?'B':'A'} er billigst.`)},
+ ()=>{const N=100*R(8,30),p=pick([20,25,40,60,75]);return T(`Du vil købe en cykel til ${N} kr. Du har sparet ${p} % af prisen op. Hvor mange kroner mangler du?`,N*(100-p)/100,'kr.','Hvor mange procent mangler du? Eller find først, hvor mange kroner du har.',`Du har ${p} % af ${N} kr. = ${N*p/100} kr. Du mangler ${N} − ${N*p/100} = ${N*(100-p)/100} kr.`)},
+ ()=>{const a=R(2,5),x=pick([10,20,30]),y=pick([40,50,80,100]),t=a*x+y;return T(`På et loppemarked køber du ${a} bøger til ${x} kr. stykket og et spil til ${y} kr. Du får 10 % rabat på det hele. Hvad skal du betale?`,t*.9,'kr.','Find den samlede pris uden rabat først.',`Uden rabat: ${a} · ${x} + ${y} = ${t} kr. Rabat: 10 % af ${t} kr. = ${t/10} kr. Du betaler ${t} − ${t/10} = ${f(t*.9)} kr.`)}
+];
+K.figurer[3]=[
+ ()=>{const l=R(3,6),b=R(2,5),k=pick([100,150,200]);return T(`Et værelse er ${l} m langt og ${b} m bredt. Gulvet skal have nyt tæppe, som koster ${k} kr. pr. m². Hvad koster tæppet?`,l*b*k,'kr.','Find gulvets areal først.',`Areal: ${l} · ${b} = ${l*b} m². Pris: ${l*b} · ${k} = ${l*b*k} kr.`)},
+ ()=>{const g=2*R(2,5),h=R(2,5),t=R(1,4);return T(`Forsiden af et hus består af et rektangel, der er ${g} m bredt og ${h} m højt, og en trekant ovenpå. Trekanten har samme bredde som huset og er ${t} m høj. Hvad er arealet af hele forsiden?`,g*h+g*t/2,'m²','Lav en tegning. Find arealet af rektanglet og trekanten hver for sig.',`Rektangel: ${g} · ${h} = ${g*h} m². Trekant: ½ · ${g} · ${t} = ${g*t/2} m². I alt: ${g*h} + ${g*t/2} = ${g*h+g*t/2} m².`)},
+ ()=>{const l=R(2,6),b=R(2,5);return T(`En terrasse er ${l} m lang og ${b} m bred. Den skal dækkes med kvadratiske fliser, der er 50 cm på hver led. Hvor mange fliser skal der bruges?`,4*l*b,'fliser','Hvor mange fliser kan der ligge på 1 m²? Lav en tegning.',`Der kan ligge 2 fliser på hver meter. På langs: ${2*l} fliser. På tværs: ${2*b} fliser. ${2*l} · ${2*b} = ${4*l*b} fliser.`)}
+];
+K.data[3]=[
+ ()=>{const a=Array.from({length:5},()=>R(4,15)),s=a.reduce((p,c)=>p+c,0);let x=R(4,10);x+=(6-(s+x)%6)%6;const m=(s+x)/6;return T(`Mia har fået disse point i fem quizzer: ${a.join(', ')}. Hvor mange point skal hun have i den sjette quiz, for at middeltallet bliver ${m}?`,x,'point','Hvad skal summen af alle seks quizzer være?',`Summen skal være 6 · ${m} = ${6*m}. De fem quizzer giver ${s} point. Hun mangler ${6*m} − ${s} = ${x} point.`)},
+ ()=>{const r=R(2,6),b=R(2,6),g=R(1,r+b-1);return T(`I en pose er der ${r} røde, ${b} blå og ${g} grønne kugler. Hvor mange grønne kugler skal du lægge i posen, for at sandsynligheden for at trække en grøn bliver 50 %?`,r+b-g,'kugler','50 % betyder, at halvdelen af kuglerne skal være grønne.',`Der er ${r} + ${b} = ${r+b} kugler, som ikke er grønne. Derfor skal der også være ${r+b} grønne. Der mangler ${r+b} − ${g} = ${r+b-g}.`)},
+ ()=>{const v=Array.from({length:4},()=>10*R(4,9)).sort((a,b)=>a-b),o=250+10*R(0,10),s=v.reduce((p,c)=>p+c,0)+o,l=shuf([...v,o]);return T(`Fem venner får disse beløb i lommepenge om måneden: ${l.join(', ')} kr. Hvor mange kroner er middeltallet større end medianen?`,s/5-v[2],'kr.','Find medianen og middeltallet hver for sig. Husk at sortere tallene først.',`Sorteret: ${[...v,o].join(', ')}. Medianen er ${v[2]} kr. Summen er ${s} kr., så middeltallet er ${s} : 5 = ${s/5} kr. Forskellen er ${s/5} − ${v[2]} = ${s/5-v[2]} kr. Ét meget stort tal trækker middeltallet op.`)}
+];
+K.algebra[3]=[
+ ()=>{const x=R(6,14),k=R(2,6);return T(`Ali er ${k} år ældre end sin søster. Tilsammen er de ${2*x+k} år. Hvor gammel er søsteren?`,x,'år',`Kald søsterens alder x. Så er Ali x + ${k} år. Skriv en ligning.`,`x + x + ${k} = ${2*x+k}. Det giver 2x = ${2*x}, så x = ${x}. Søsteren er ${x} år, og Ali er ${x+k} år.`)},
+ ()=>{const s=pick([30,40,50]),p=pick([10,12,15]),x=R(3,15);return T(`En taxatur koster ${s} kr. i startgebyr og ${p} kr. pr. km. En tur kostede ${s+p*x} kr. Hvor mange km var turen?`,x,'km',`Kald antallet af km for x. Prisen er ${p} · x + ${s}.`,`${p}x + ${s} = ${s+p*x}. ${p}x = ${p*x}. x = ${p*x} : ${p} = ${x} km.`)},
+ ()=>{const x=R(4,12),k=R(1,6);return T(`Tre søskende deler en pose bolsjer. Emma får dobbelt så mange som Noah. Liv får ${k} flere end Noah. Der er ${4*x+k} bolsjer i alt. Hvor mange får Noah?`,x,'bolsjer',`Kald Noahs bolsjer for x. Så får Emma 2x, og Liv får x + ${k}.`,`x + 2x + x + ${k} = ${4*x+k}. Det giver 4x = ${4*x}, så x = ${x}. Noah får ${x}, Emma ${2*x} og Liv ${x+k}.`)}
+];
+K.rum[3]=[
+ ()=>{const l=R(2,4),b=R(1,3),h=pick([20,50]);return T(`En sandkasse er ${l} m lang og ${b} m bred. Den skal fyldes med et lag sand, der er ${h} cm højt. Hvor mange m³ sand skal der bruges?`,l*b*h/100,'m³','Lav højden om til meter, før du regner.',`${h} cm = ${f(h/100)} m. Rumfang: ${l} · ${b} · ${f(h/100)} = ${f(l*b*h/100)} m³.`)},
+ ()=>{const l=10*R(3,6),b=10*R(2,4),h=10*R(1,3);return T(`Et akvarium er ${l} cm langt og ${b} cm bredt. Du hælder ${l*b*h/1000} liter vand i. Hvor højt står vandet?`,h,'cm','Lav liter om til cm³. Find derefter grundfladen.',`${l*b*h/1000} liter = ${l*b*h} cm³. Grundflade: ${l} · ${b} = ${l*b} cm². Højde: ${l*b*h} : ${l*b} = ${h} cm.`)},
+ ()=>{const c=2*R(1,6);return T(`På et kort i målestok 1:25 000 er der ${c} cm mellem skolen og svømmehallen. Hvor mange km er der i virkeligheden?`,c/4,'km','1 cm på kortet er 25 000 cm i virkeligheden. Hvor mange meter er det?',`1 cm på kortet er 25 000 cm = 250 m. ${c} · 250 = ${c*250} m = ${f(c/4)} km.`)}
+];
+K.monstre[3]=[
+ ()=>{const k=pick([1,2,3]),n=R(8,20);return T(`Til en fest stilles bordene i én lang række. Der kan sidde ${k==1?'1 person':k+' personer'} på hver langside af et bord og 1 person for hver ende af rækken. Hvor mange personer er der plads til ved ${n} borde?`,2*k*n+2,'personer','Tegn 1, 2 og 3 borde. Hvor mange pladser kommer der til for hvert nyt bord?',`Hvert bord giver ${2*k} pladser på langsiderne. De 2 endepladser er der altid. Reglen er ${2*k} · n + 2. ${2*k} · ${n} + 2 = ${2*k*n+2}.`)},
+ ()=>{const n=R(10,30);return T(`Du lægger kvadrater på række med tændstikker. 1 kvadrat bruger 4 tændstikker, 2 kvadrater bruger 7, og 3 kvadrater bruger 10. Hvor mange kvadrater kan du lægge med ${3*n+1} tændstikker?`,n,'kvadrater','Find en regel for antallet af tændstikker i n kvadrater.',`Hvert nyt kvadrat bruger 3 tændstikker, og det første bruger 1 ekstra. Reglen er 3 · n + 1. 3 · n + 1 = ${3*n+1} giver 3 · n = ${3*n}, så n = ${n}.`)},
+ ()=>{const s=pick([50,80,120]),d=pick([15,20,25]),w=R(6,20);return T(`Du har ${s} kr. i din sparebøsse og lægger ${d} kr. i hver uge. Efter hvor mange uger har du ${s+d*w} kr.?`,w,'uger','Beløbet efter n uger er en talfølge. Find reglen.',`Efter n uger har du ${d} · n + ${s} kr. ${d} · n + ${s} = ${s+d*w} giver ${d} · n = ${d*w}, så n = ${w} uger.`)}
+];
+
+/* ---------- Kapitler ---------- */
+const CH=[
+{id:'tal',t:'Tal på tal',d:'Regnehierarki, negative tal, potenser og forhold.',
+ maal:['Jeg kan bruge regnehierarkiet, når der er flere regnearter i samme regnestykke.','Jeg kan regne med negative tal og vise det på en tallinje.','Jeg kan bruge potenser og forhold til at beskrive tal.'],
+ ord:[['Regnehierarki','Rækkefølgen i et regnestykke: parenteser, potenser, gange og dividere, plus og minus.'],['Negativt tal','Et tal, der er mindre end 0. Det står til venstre for 0 på tallinjen.'],['Potens','En kort måde at skrive gentagen gange på. 2³ betyder 2 · 2 · 2.'],['Forhold','En sammenligning af to størrelser, fx 1:4. Det læses 1 til 4.'],['Overslag','En hurtig udregning med afrundede tal, så du kan tjekke, om svaret er rimeligt.']],
+ model:'Tallinjen',se:['Vælg et starttal og et hop. Hvornår lander du på et negativt tal?','Hvad er forskellen på at lægge −4 til og at trække 4 fra?','Find to forskellige regnestykker, der giver −3.'],
+ eks:['Udregn 20 − 2 · (3 + 4)',['Parentesen først: 3 + 4 = 7.','Så gange: 2 · 7 = 14.','Til sidst minus: 20 − 14 = 6.','Tjek med et overslag: 2 · 7 er cirka 15, og 20 − 15 = 5. Svaret 6 er rimeligt.']],
+ fejl:['Sofie regner 4 + 6 · 2 og får 20.','Sofie har lagt 4 og 6 sammen først. Gange kommer før plus: 6 · 2 = 12, og 4 + 12 = 16.'],
+ forklar:['Forklar, hvorfor 3 − 7 giver et negativt tal. Brug ordene tallinje og venstre.','Forklar forskellen på 2 · 3 og 2³.']},
+{id:'cirkler',t:'Cirkler',d:'Radius, diameter, omkreds, areal og tallet π.',
+ maal:['Jeg kan bruge fagordene centrum, radius, diameter og omkreds.','Jeg kan beregne omkredsen af en cirkel.','Jeg kan beregne arealet af en cirkel.'],
+ ord:[['Centrum','Punktet midt i cirklen.'],['Radius','Afstanden fra centrum ud til cirklens kant. Skrives r.'],['Diameter','Afstanden tværs over cirklen gennem centrum. d = 2 · r.'],['Omkreds','Længden hele vejen rundt om cirklen. O = π · d.'],['Pi (π)','Tallet, du får, når du dividerer en cirkels omkreds med dens diameter. π er cirka 3,14.'],['Areal','Hvor meget cirklen fylder. A = π · r · r.']],
+ model:'Cirklen og den udrullede omkreds',se:['Hvor mange diametre kan der ligge langs den udrullede omkreds?','Gør radius dobbelt så stor. Hvad sker der med omkredsen? Hvad sker der med arealet?','Hvorfor ændrer tallet O : d sig ikke?'],
+ eks:['Find omkreds og areal af en cirkel med radius 5 cm',['Find diameteren: d = 2 · 5 = 10 cm.','Omkreds: O = π · d ≈ 3,14 · 10 = 31,4 cm.','Areal: A = π · r · r ≈ 3,14 · 5 · 5 = 78,5 cm².','Husk enhederne: cm for længder og cm² for arealer.']],
+ fejl:['Noah skal finde omkredsen af en cirkel med radius 5 cm. Han regner 3,14 · 5 = 15,7 cm.','Noah har brugt radius i stedet for diameter. Diameteren er 10 cm, så omkredsen er 3,14 · 10 = 31,4 cm.'],
+ forklar:['Forklar med dine egne ord, hvad π fortæller om en cirkel.','Forklar, hvordan du finder radius, når du kender omkredsen.']},
+{id:'handel',t:'Tal og handel',d:'Procent, rabat, moms, brøk og decimaltal.',
+ maal:['Jeg kan finde en procentdel af et beløb.','Jeg kan beregne en ny pris, når der er rabat eller moms.','Jeg kan skifte mellem brøk, decimaltal og procent.'],
+ ord:[['Procent','Betyder hundrededele. 25 % er 25 ud af 100.'],['Rabat','Det beløb, prisen bliver sat ned med.'],['Moms','En afgift, der lægges oven i prisen. I Danmark er momsen 25 %.'],['Decimaltal','Et tal med komma, fx 0,25.'],['Det hele','Det beløb, der svarer til 100 %.']],
+ model:'Procentstangen',se:['Find 10 % af prisen. Hvordan kan du bruge det til at finde 30 %?','Hvilken brøk svarer til 25 %? Og til 75 %?','Hvis rabatten er 20 %, hvor mange procent skal du så betale?'],
+ eks:['En cykelhjelm koster 360 kr. Der er 25 % rabat. Hvad koster den nu?',['Hele prisen er 100 %. Det er 360 kr.','Find 25 %: det er en fjerdedel, og 360 : 4 = 90 kr.','Træk rabatten fra: 360 − 90 = 270 kr.','Tjek: du betaler 75 %, og 3 · 90 = 270 kr.']],
+ fejl:['En jakke til 400 kr. er sat 25 % ned. Ali siger, at den nu koster 375 kr.','Ali har trukket 25 kr. fra i stedet for 25 %. 25 % af 400 kr. er 100 kr., så jakken koster 300 kr.'],
+ forklar:['Forklar, hvorfor 50 % af et beløb er det samme som at dividere med 2.','Forklar, hvordan du finder 15 % af 200 kr. på to forskellige måder.']},
+{id:'figurer',t:'Kantede figurer',d:'Polygoner, vinkelsum og areal af trekanter og firkanter.',
+ maal:['Jeg kan beregne arealet af trekanter, parallelogrammer og trapezer.','Jeg kan bruge, at vinkelsummen i en trekant er 180°.','Jeg kan beskrive polygoner med fagord.'],
+ ord:[['Polygon','En lukket figur med rette sider, fx en trekant eller en sekskant.'],['Grundlinje','Den side, du måler højden fra. Skrives g.'],['Højde','Den vinkelrette afstand fra grundlinjen til det modsatte hjørne. Skrives h.'],['Vinkelsum','Alle figurens vinkler lagt sammen. I en trekant er den 180°.'],['Parallelogram','En firkant, hvor de modstående sider er parallelle.'],['Trapez','En firkant med netop to parallelle sider.']],
+ model:'Trekanten',se:['Flyt toppunktet til siden uden at ændre højden. Hvad sker der med arealet?','Kan du lave en trekant med to stumpe vinkler? Hvorfor ikke?','Lav en retvinklet trekant. Hvordan kan du se, at den er et halvt rektangel?'],
+ eks:['Find arealet af en trekant med grundlinje 8 cm og højde 5 cm',['Skriv formlen: A = ½ · g · h.','Sæt tallene ind: A = ½ · 8 · 5.','Regn ud: 8 · 5 = 40, og halvdelen er 20 cm².','Tænk efter: trekanten er halvdelen af et rektangel på 8 cm gange 5 cm.']],
+ fejl:['Freja finder arealet af en trekant med grundlinje 8 cm og højde 5 cm. Hun regner 8 · 5 = 40 cm².','Freja har glemt at halvere. 8 · 5 er arealet af rektanglet uden om trekanten. Trekanten er halvdelen: 20 cm².'],
+ forklar:['Forklar, hvorfor man skal halvere, når man finder arealet af en trekant.','Forklar, hvordan du finder den sidste vinkel i en trekant, når du kender de to andre.']},
+{id:'data',t:'Data og chance',d:'Middeltal, median, typetal og sandsynlighed.',
+ maal:['Jeg kan finde middeltal, median, typetal og variationsbredde.','Jeg kan beregne en sandsynlighed og skrive den som brøk og procent.','Jeg kan sammenligne et eksperiment med den beregnede sandsynlighed.'],
+ ord:[['Middeltal','Summen af alle tal divideret med antallet af tal. Kaldes også gennemsnit.'],['Median','Det midterste tal, når tallene står i rækkefølge. Er der to tal i midten, ligger medianen midt imellem dem.'],['Typetal','Det tal, der forekommer flest gange.'],['Variationsbredde','Forskellen mellem det største og det mindste tal.'],['Sandsynlighed','Hvor stor chancen er for, at noget sker. Gunstige udfald divideret med mulige udfald.'],['Udfald',"Et muligt resultat, fx at slå en 4'er."]],
+ model:'Terningerne',se:['Slå 10 gange. Passer søjlerne med de stiplede linjer? Prøv så 1000 slag.','Skift til to terninger. Hvorfor er summen 7 mere almindelig end summen 2?','Hvad viser de stiplede linjer?'],
+ eks:['Tallene er 4, 9, 2, 7, 3. Find median og middeltal',['Stil tallene i rækkefølge: 2, 3, 4, 7, 9.','Medianen er det midterste tal: 4.','Læg tallene sammen: 2 + 3 + 4 + 7 + 9 = 25.','Divider med antallet: 25 : 5 = 5. Middeltallet er 5.']],
+ fejl:['Tallene er 7, 2, 9, 4, 3. Emil siger, at medianen er 9, fordi 9 står i midten.','Emil har glemt at stille tallene i rækkefølge. Sorteret er de 2, 3, 4, 7, 9. Medianen er 4.'],
+ forklar:['Forklar forskellen på median og middeltal.',"Forklar, hvorfor sandsynligheden for at slå en 6'er er 1/6."]},
+{id:'algebra',t:'Tal og bogstaver',d:'Variable, udtryk og ligninger.',
+ maal:['Jeg kan regne med variable og sætte tal ind i et udtryk.','Jeg kan reducere enkle udtryk.','Jeg kan løse en ligning og tjekke min løsning.'],
+ ord:[['Variabel','Et bogstav, der står i stedet for et tal.'],['Udtryk','Tal og variable sat sammen med regnetegn, fx 3 · a + 2.'],['Ligning','To udtryk med lighedstegn imellem, fx 2x + 3 = 11.'],['Løsning','Det tal, der gør ligningen sand.'],['Reducere','At skrive et udtryk kortere, fx 2a + 3a = 5a.'],['Led','De dele af et udtryk, der er adskilt af plus eller minus.']],
+ model:'Vægten',se:['Hvorfor skal du gøre det samme på begge sider af vægten?',"Hvad skal du fjerne først: de løse 1'ere eller x-kasserne?",'Sæt din løsning ind i den første ligning. Passer det?'],
+ eks:['Løs ligningen 3x + 4 = 19',['Træk 4 fra på begge sider: 3x = 15.','Divider begge sider med 3: x = 5.','Tjek løsningen: 3 · 5 + 4 = 19. Det passer.']],
+ fejl:['Clara reducerer 3a + 4 til 7a.','3a og 4 er ikke samme slags led, så de kan ikke lægges sammen. Prøv med a = 2: 3 · 2 + 4 = 10, men 7 · 2 = 14.'],
+ forklar:['Forklar, hvorfor en ligning er ligesom en vægt i balance.','Forklar, hvorfor 2a + 3 ikke kan reduceres til 5a.']},
+{id:'rum',t:'Rum og tegning',d:'Rumfang, overfladeareal, liter og målestok.',
+ maal:['Jeg kan beregne rumfanget af en kasse.','Jeg kan beregne overfladearealet af en kasse.','Jeg kan bruge målestok og skifte mellem cm³ og liter.'],
+ ord:[['Rumfang','Hvor meget en figur kan rumme. Måles fx i cm³.'],['Overfladeareal','Arealet af alle figurens flader lagt sammen.'],['Grundflade','Den flade, figuren står på.'],['Udfoldning','En rumlig figur, der er foldet ud, så alle flader ligger fladt.'],['Målestok','Forholdet mellem en tegning og virkeligheden. 1:100 betyder, at 1 cm på tegningen er 100 cm i virkeligheden.'],['Liter','1 liter er 1000 cm³. Det svarer til en terning på 10 cm på hver led.']],
+ model:'Kassen af centicubes',se:['Byg kassen op lag for lag. Hvor mange terninger er der i ét lag?','Find to forskellige kasser med rumfanget 24 cm³. Har de samme overfladeareal?','Hvad sker der med rumfanget, når højden bliver dobbelt så stor?'],
+ eks:['En kasse er 5 cm lang, 3 cm bred og 4 cm høj. Find rumfanget',['Find grundfladen: 5 · 3 = 15 cm². Der er plads til 15 terninger i ét lag.','Der er 4 lag: 15 · 4 = 60.','Rumfanget er 60 cm³.','Som formel: V = l · b · h.']],
+ fejl:['En kasse er 4 cm lang, 3 cm bred og 2 cm høj. Oscar finder rumfanget sådan: 4 + 3 + 2 = 9 cm³.','Oscar har lagt målene sammen. Man skal gange: 4 · 3 = 12 terninger i ét lag, og 2 lag giver 24 cm³.'],
+ forklar:['Forklar, hvorfor man ganger længde, bredde og højde for at finde rumfanget.','Forklar forskellen på rumfang og overfladeareal.']},
+{id:'monstre',t:'Mønstre og figurer',d:'Talfølger, figurfølger og regler med n.',
+ maal:['Jeg kan fortsætte en talfølge og en figurfølge.','Jeg kan beskrive, hvordan et mønster vokser.','Jeg kan finde en regel for figur nummer n.'],
+ ord:[['Talfølge','En række tal, der følger en regel, fx 3, 7, 11, 15.'],['Figurfølge','En række figurer, der vokser efter et mønster.'],['Figurnummer','Figurens plads i følgen. Skrives ofte n.'],['Regel','En beskrivelse af, hvordan du kommer fra et tal til det næste, eller direkte til figur n.'],['Kvadrattal','Et tal, der kan lægges som et kvadrat: 1, 4, 9, 16, 25.']],
+ model:'Figurfølgen',se:['Hvilke brikker er der i alle figurerne? Hvilke kommer til, når n vokser?','Hvor mange brikker er der i figur 10? Find det uden at tegne.','Prøv at skrive en regel med n, før du åbner reglen.'],
+ eks:['Figur 1 har 5 brikker, figur 2 har 8, og figur 3 har 11. Hvor mange har figur 20?',['Find tilvæksten: der kommer 3 brikker til hver gang.','Reglen indeholder derfor 3 · n.','Tjek med figur 1: 3 · 1 = 3, men der er 5 brikker. Der mangler 2. Reglen er 3 · n + 2.','Figur 20: 3 · 20 + 2 = 62 brikker.']],
+ fejl:['Følgen er 5, 8, 11, 14. Ida siger, at tal nummer 10 er 3 · 10 = 30, fordi følgen vokser med 3.','Ida har glemt starten. Reglen er 3 · n + 2, fordi det første tal er 5 og ikke 3. Tal nummer 10 er 3 · 10 + 2 = 32.'],
+ forklar:['Forklar, hvordan du kan se tilvæksten i selve figuren.','Forklar, hvorfor en regel med n er smartere end at tælle sig frem.']}
+];
+CH.forEach((c,i)=>{c.n=i+1;c.tasks=K[c.id]});
+
+/* ---------- Side ---------- */
+if(typeof document!=='undefined'){
+const $=id=>document.getElementById(id);
+const val=id=>+$(id).value;
+let prog={};try{prog=JSON.parse(localStorage.getItem('mv6')||'{}')||{}}catch(e){}
+const save=()=>{try{localStorage.setItem('mv6',JSON.stringify(prog))}catch(e){}};
+const got=(id,l)=>Math.min(5,(prog[id]||[])[l]||0);
+const total=id=>got(id,0)+got(id,1)+got(id,2)+got(id,3);
+const sl=(id,lab,min,max,v,step=1)=>`<label class="sl" for="${id}"><span>${lab}: <b id="${id}-o"></b></span><input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${v}"></label>`;
+const pts=a=>a.map(p=>p.map(v=>Math.round(v*10)/10).join(',')).join(' ');
+
+function mount(root,vb,ctl,draw){
+  root.innerHTML=`<div class="tool"><div class="fig"><svg id="fig" viewBox="${vb}" role="img" aria-label="Interaktiv model. Tallene står i teksten ved siden af."></svg></div><div class="ctl"><div class="ctls" id="ctls">${ctl}</div><div class="read" id="read"></div></div></div>`;
+  const go=()=>{root.querySelectorAll('input[type=range]').forEach(i=>{const o=$(i.id+'-o');if(o)o.textContent=f(+i.value)});const r=draw();$('fig').innerHTML=r[0];$('read').innerHTML=r[1]};
+  $('ctls').addEventListener('input',go);go();return go;
+}
+
+const TOOLS={
+tal(root){mount(root,'0 0 460 150',sl('t1','Starttal',-8,8,3)+sl('t2','Hop',-7,7,-5),()=>{
+  const s=val('t1'),h=val('t2'),r=s+h,x=v=>20+(v+15)*14;
+  let g=`<line class="ax" x1="10" x2="450" y1="100" y2="100"/>`;
+  for(let v=-15;v<=15;v++){g+=`<line class="ax" x1="${x(v)}" x2="${x(v)}" y1="${v%5?96:91}" y2="${v%5?104:109}"/>`;if(v%5==0)g+=`<text x="${x(v)}" y="130" text-anchor="middle" font-size="18"${v?' class="mu"':' font-weight="700"'}>${f(v)}</text>`}
+  if(h){const m=(x(s)+x(r))/2,cy=72-Math.abs(h)*8,dx=x(r)-m,dy=90-cy,L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L,ex=x(r),ey=90;
+    g+=`<path class="s-ink" d="M${x(s)} 90 Q${m} ${cy} ${ex} ${ey}"/><polygon class="f-ink" points="${pts([[ex,ey],[ex-11*ux-5*uy,ey-11*uy+5*ux],[ex-11*ux+5*uy,ey-11*uy-5*ux]])}"/>`}
+  g+=`<circle class="f-m2" cx="${x(s)}" cy="100" r="6"/><circle class="f-m3" cx="${x(r)}" cy="100" r="6"/>`;
+  return [g,`<p class="eq">${f(s)} ${h<0?'−':'+'} ${Math.abs(h)} = ${f(r)}</p><p>Du starter på <b class="c2">${f(s)}</b> og hopper ${Math.abs(h)} ${h<0?'til venstre':'til højre'}. Du lander på <b class="c3">${f(r)}</b>.</p>${h<0?`<p>At lægge ${f(h)} til er det samme som at trække ${-h} fra.</p>`:''}`]})},
+
+cirkler(root){mount(root,'0 0 460 390',sl('c1','Radius i cm',1,10,6),()=>{
+  const r=val('c1'),d=2*r,Rp=r*12,cx=230,cy=140,w=380/3.14;
+  let g=`<circle cx="${cx}" cy="${cy}" r="${Rp}" class="f-soft" stroke="none"/><circle cx="${cx}" cy="${cy}" r="${Rp}" class="s-ink"/>`;
+  g+=`<line class="s-m2" x1="${cx-Rp}" x2="${cx+Rp}" y1="${cy}" y2="${cy}"/><line class="s-m3" x1="${cx}" y1="${cy}" x2="${cx+Rp*.5}" y2="${cy-Rp*.866}"/><circle class="f-ink" cx="${cx}" cy="${cy}" r="4"/>`;
+  g+=`<text class="t-m2" x="${cx-Rp/2}" y="${cy+20}" text-anchor="middle" font-size="19" font-weight="700">d</text><text class="t-m3" x="${cx+Rp*.25+10}" y="${cy-Rp*.433+4}" font-size="19" font-weight="700">r</text>`;
+  g+=`<text class="mu" x="40" y="302" font-size="16">Omkredsen rullet ud</text>`;
+  for(let i=0;i<3;i++)g+=`<rect class="f-m2" fill-opacity="${i%2?.2:.35}" x="${40+i*w}" y="312" width="${w}" height="30"/><text x="${40+(i+.5)*w}" y="332" text-anchor="middle" font-size="17" font-weight="700">d</text>`;
+  g+=`<rect class="f-m3" x="${40+3*w}" y="312" width="${380-3*w}" height="30"/><rect x="40" y="312" width="380" height="30" class="ax"/><text class="mu" x="420" y="364" text-anchor="end" font-size="16">3 diametre og lidt mere</text>`;
+  return [g,`<p>Radius: <b class="c3">r = ${r} cm</b></p><p>Diameter: <b class="c2">d = 2 · ${r} = ${d} cm</b></p><p class="eq">O ≈ 3,14 · ${d} = ${f(3.14*d)} cm</p><p class="eq">A ≈ 3,14 · ${r} · ${r} = ${f(3.14*r*r)} cm²</p><p>O : d ≈ ${f(3.14*d)} : ${d} = 3,14. Det tal kalder vi π.</p>`]})},
+
+handel(root){mount(root,'0 0 460 170',sl('h1','Pris i kr.',100,1000,400,50)+sl('h2','Procent',0,100,25,5),()=>{
+  const N=val('h1'),p=val('h2'),x0=30,w=400,part=N*p/100,xc=x0+w*p/100,xl=Math.max(52,Math.min(408,xc));
+  let g=`<rect class="f-sur" x="${x0}" y="62" width="${w}" height="40"/><rect class="f-ink" x="${x0}" y="62" width="${w*p/100}" height="40"/>`;
+  for(let i=1;i<10;i++)g+=`<line class="gl" x1="${x0+i*40}" x2="${x0+i*40}" y1="62" y2="102"/>`;
+  g+=`<rect class="ax" x="${x0}" y="62" width="${w}" height="40"/><line class="ax" x1="${xc}" x2="${xc}" y1="30" y2="134"/>`;
+  g+=`<text class="t-ink" x="${xl}" y="24" text-anchor="middle" font-size="20" font-weight="700">${p} %</text><text class="t-ink" x="${xl}" y="154" text-anchor="middle" font-size="20" font-weight="700">${f(part)} kr.</text>`;
+  [[0,'start'],[.5,'middle'],[1,'end']].forEach(([t,a])=>{if(Math.abs(t*100-p)<16)return;g+=`<text class="mu" x="${x0+w*t}" y="54" text-anchor="${a}" font-size="16">${t*100} %</text><text class="mu" x="${x0+w*t}" y="122" text-anchor="${a}" font-size="16">${f(N*t)} kr.</text>`});
+  const k=gcd(p,100);
+  return [g,`<p class="eq">${p} % af ${N} kr. = ${f(part)} kr.</p><p>Resten: ${100-p} % = ${f(N-part)} kr.</p><p>Ét felt er 10 % = ${f(N/10)} kr.</p><p>Som brøk og decimaltal: ${p} % = ${p}/100${p>0&&p<100&&k>1?` = ${p/k}/${100/k}`:''} = ${f(p/100)}</p>`]})},
+
+figurer(root){mount(root,'0 0 460 300',sl('f1','Grundlinje g',2,12,8)+sl('f2','Højde h',1,8,5)+sl('f3','Toppunktets plads',-3,12,3),()=>{
+  const gl=val('f1'),h=val('f2'),t=val('f3'),u=22,ax=110,by=250,bx=ax+gl*u,cx=ax+t*u,cy=by-h*u;
+  let g='';for(let i=0;i<20;i++)g+=`<line class="gl" x1="${22+i*u}" x2="${22+i*u}" y1="30" y2="250"/>`;for(let i=0;i<=10;i++)g+=`<line class="gl" x1="22" x2="440" y1="${250-i*u}" y2="${250-i*u}"/>`;
+  if(t<0||t>gl)g+=`<line class="ax dash" x1="${Math.min(ax,cx)}" x2="${Math.max(bx,cx)}" y1="${by}" y2="${by}"/>`;
+  g+=`<polygon class="f-soft" points="${ax},${by} ${bx},${by} ${cx},${cy}"/><polygon class="s-ink" points="${ax},${by} ${bx},${by} ${cx},${cy}"/><line class="s-m3 dash" x1="${cx}" x2="${cx}" y1="${cy}" y2="${by}"/>`;
+  const a=Math.round(Math.atan2(h,t)*180/Math.PI),b=Math.round(Math.atan2(h,gl-t)*180/Math.PI),c=180-a-b,ret=t==0||t==gl||t*(t-gl)+h*h==0,mx=Math.max(a,b,c);
+  g+=`<text class="t-m3" x="${cx+7}" y="${(cy+by)/2+5}" font-size="18" font-weight="700">h</text><text class="t-ink" x="${(ax+bx)/2}" y="${by+20}" text-anchor="middle" font-size="18" font-weight="700">g</text>`;
+  g+=`<text x="${ax-6}" y="${by+20}" text-anchor="end" font-size="17">${a}°</text><text x="${bx+6}" y="${by+20}" font-size="17">${b}°</text><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="17">${c}°</text>`;
+  return [g,`<p class="eq">A = ½ · ${gl} · ${h} = ${f(gl*h/2)}</p><p>Vinkelsum: ${a}° + ${b}° + ${c}° = 180°</p><p>Trekanten er ${ret?'retvinklet':mx>90?'stumpvinklet':'spidsvinklet'}.</p><p class="small">Vinklerne er afrundet til hele grader. Ét tern er 1 cm.</p>`]})},
+
+data(root){let mode=1,cnt=[];const reset=()=>{cnt=Array(mode==1?6:11).fill(0)};reset();
+  const go=mount(root,'0 0 460 260',`<div class="row"><button class="btn ghost" id="d-m1" aria-pressed="true">Én terning</button><button class="btn ghost" id="d-m2" aria-pressed="false">Summen af to terninger</button></div><div class="row"><button class="btn" data-n="1">Slå 1 gang</button><button class="btn" data-n="10">Slå 10</button><button class="btn" data-n="100">Slå 100</button><button class="btn" data-n="1000">Slå 1000</button><button class="btn ghost" id="d-r">Nulstil</button></div>`,()=>{
+    const k=cnt.length,n=cnt.reduce((a,b)=>a+b,0),ex=cnt.map((_,i)=>mode==1?1/6:(6-Math.abs(i-5))/36),sh=cnt.map(c=>n?c/n:0),top=Math.max(...sh,...ex)*1.25,slot=420/k;
+    let g=`<line class="ax" x1="15" x2="445" y1="215" y2="215"/>`;
+    for(let i=0;i<k;i++){const x=20+i*slot,hh=sh[i]/top*180,ye=215-ex[i]/top*180;
+      g+=`<rect class="f-ink" x="${x+slot*.2}" y="${215-hh}" width="${slot*.6}" height="${hh}"/><line class="s-m3 dash" x1="${x+slot*.05}" x2="${x+slot*.95}" y1="${ye}" y2="${ye}"/><text x="${x+slot/2}" y="236" text-anchor="middle" font-size="17" font-weight="700">${i+(mode==1?1:2)}</text>`;
+      if(n)g+=`<text class="mu" x="${x+slot/2}" y="252" text-anchor="middle" font-size="13">${Math.round(sh[i]*100)} %</text>`}
+    return [g,`<p class="eq">Antal slag: ${n}</p><p><b class="ci">Søjler:</b> dine slag. <b class="c3">Stiplede linjer:</b> det, du kan forvente.</p><p>${mode==1?'Hvert udfald har sandsynligheden 1/6. Det er cirka 16,7 %.':'Summen 7 kan slås på 6 måder ud af 36. Summen 2 kan kun slås på 1 måde.'}</p>`]});
+  const setm=m=>{mode=m;reset();$('d-m1').setAttribute('aria-pressed',m==1);$('d-m2').setAttribute('aria-pressed',m==2);go()};
+  $('d-m1').onclick=()=>setm(1);$('d-m2').onclick=()=>setm(2);$('d-r').onclick=()=>{reset();go()};
+  root.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{for(let i=0;i<+b.dataset.n;i++)cnt[mode==1?R(0,5):R(0,5)+R(0,5)]++;go()})},
+
+algebra(root){let a,b,c,o,steps;const eq=()=>`${a>1?a:''}x${b?` + ${b}`:''} = ${c}`;
+  const nyt=()=>{a=R(2,4);const x=R(1,6);b=R(1,8);c=a*x+b;o={a,b,c,x};steps=[]};nyt();
+  const go=mount(root,'0 0 460 225',`<div class="row"><button class="btn" id="a-s">Træk 1 fra på begge sider</button><button class="btn" id="a-d">Divider</button><button class="btn ghost" id="a-n">Ny ligning</button></div>`,()=>{
+    let g=`<line class="ax" stroke-width="5" x1="30" x2="430" y1="172" y2="172" style="stroke-width:5"/><polygon class="f-m2" points="230,175 207,216 253,216"/>`;
+    for(let i=0;i<a;i++)g+=`<rect class="f-soft" x="${40+i*40}" y="134" width="34" height="34" rx="3"/><rect class="s-ink" style="stroke-width:2" x="${40+i*40}" y="134" width="34" height="34" rx="3"/><text x="${57+i*40}" y="157" text-anchor="middle" font-size="17" font-weight="700">x</text>`;
+    for(let i=0;i<b;i++)g+=`<circle class="f-m3" cx="${50+i*20}" cy="120" r="8.5"/>`;
+    for(let i=0;i<c;i++)g+=`<circle class="f-m3" cx="${262+(i%8)*21}" cy="${160-Math.floor(i/8)*21}" r="8.5"/>`;
+    const done=a==1&&b==0;$('a-s').disabled=b==0;$('a-d').disabled=b>0||a==1;$('a-d').textContent=a>1?`Divider begge sider med ${a}`:'Divider';
+    return [g,`<p class="eq">${eq()}</p>${steps.length?`<ol class="plain">${steps.map(s=>`<li>${s}</li>`).join('')}</ol>`:''}${done?`<p class="fb" data-s="ok"><b>Løst!</b> x = ${c}. Tjek: ${o.a} · ${c} + ${o.b} = ${o.c}.</p>`:b>0?`<p class="small">Fjern først de løse 1'ere. Bagefter kan du dele.</p>`:`<p class="small">Nu er der kun x-kasser til venstre. Del lige over på begge sider.</p>`}`]});
+  $('a-s').onclick=()=>{b--;c--;steps.push(`Træk 1 fra på begge sider: ${eq()}`);go()};
+  $('a-d').onclick=()=>{const k=a;c/=a;a=1;steps.push(`Divider begge sider med ${k}: ${eq()}`);go()};
+  $('a-n').onclick=()=>{nyt();go()}},
+
+rum(root){let lh=0;mount(root,'0 0 460 300',sl('r1','Længde l',1,6,4)+sl('r2','Bredde b',1,6,3)+sl('r3','Højde h',1,5,2)+sl('r4','Vis antal lag',1,5,2),()=>{
+  const l=val('r1'),b=val('r2'),h=val('r3'),e=$('r4');e.max=h;if(lh!=h||+e.value>h){e.value=h;lh=h}const lag=+e.value;$('r4-o').textContent=lag;
+  const u=24,cw=u*.866,ox=230+(b-l)*cw/2,oy=150+(h*u-(l+b)*u/2)/2,P=(i,j,k)=>[ox+(i-j)*cw,oy+(i+j)*u/2-k*u];let g='';
+  for(let i=0;i<l;i++)for(let j=0;j<b;j++)for(let k=0;k<lag;k++){
+    g+=`<polygon class="cube c1" points="${pts([P(i,j,k+1),P(i+1,j,k+1),P(i+1,j+1,k+1),P(i,j+1,k+1)])}"/><polygon class="cube c2" points="${pts([P(i,j+1,k),P(i+1,j+1,k),P(i+1,j+1,k+1),P(i,j+1,k+1)])}"/><polygon class="cube c3" points="${pts([P(i+1,j,k),P(i+1,j+1,k),P(i+1,j+1,k+1),P(i+1,j,k+1)])}"/>`}
+  return [g,`<p>Ét lag: ${l} · ${b} = ${l*b} terninger</p><p>Antal lag: ${h}${lag<h?`. Du ser ${lag} lag med ${l*b*lag} terninger.`:''}</p><p class="eq">V = ${l} · ${b} · ${h} = ${l*b*h} cm³</p><p>Overflade af hele kassen: 2 · (${l*b} + ${l*h} + ${b*h}) = ${2*(l*b+l*h+b*h)} cm²</p>${lag<h?`<p class="small">Rumfang og overflade gælder hele kassen med ${h} lag, også når du kun ser ${lag}.</p>`:''}`]})},
+
+monstre(root){const M=[
+  {navn:'L-figur',cnt:n=>2*n+1,regel:'2 · n + 1',hv:'Hjørnebrikken er der altid. Hver arm har n brikker, og der er 2 arme.',cells:n=>{const c=[[0,0,0]];for(let i=1;i<=n;i++)c.push([0,-i,1],[i,0,1]);return c}},
+  {navn:'Kryds',cnt:n=>4*n+1,regel:'4 · n + 1',hv:'Midterbrikken er der altid. Der er 4 arme med n brikker i hver.',cells:n=>{const c=[[0,0,0]];for(let i=1;i<=n;i++)c.push([0,-i,1],[i,0,1],[0,i,1],[-i,0,1]);return c}},
+  {navn:'Ramme',cnt:n=>4*n+4,regel:'4 · n + 4',hv:'De 4 hjørner er der altid. Hver af de 4 sider har n brikker.',cells:n=>{const c=[[0,0,0],[n+1,0,0],[0,n+1,0],[n+1,n+1,0]];for(let i=1;i<=n;i++)c.push([i,0,1],[i,n+1,1],[0,i,1],[n+1,i,1]);return c}},
+  {navn:'Trappe',cnt:n=>n*(n+1)/2,regel:'n · (n + 1) : 2',hv:'To ens trapper kan sættes sammen til et rektangel med n rækker og n + 1 brikker i hver række. Trappen er halvdelen.',cells:n=>{const c=[];for(let r=1;r<=n;r++)for(let k=1;k<=r;k++)c.push([k,r,1]);return c}}];
+  mount(root,'0 0 460 280',`<label class="sl" for="m1"><span>Mønster</span><select id="m1">${M.map((m,i)=>`<option value="${i}">${m.navn}</option>`).join('')}</select></label>`+sl('m2','Figurnummer n',1,6,3),()=>{
+    const m=M[val('m1')],n=val('m2'),c=m.cells(n),xs=c.map(p=>p[0]),ys=c.map(p=>p[1]),x0=Math.min(...xs),y0=Math.min(...ys),w=Math.max(...xs)-x0+1,h=Math.max(...ys)-y0+1,s=Math.min(34,420/w,240/h),ox=230-w*s/2,oy=140-h*s/2;
+    const g=c.map(p=>`<rect class="${p[2]?'f-ink':'f-m3'}" stroke="var(--surface)" stroke-width="2" x="${ox+(p[0]-x0)*s}" y="${oy+(p[1]-y0)*s}" width="${s}" height="${s}"/>`).join('');
+    return [g,`<p class="eq">Figur ${n} har ${m.cnt(n)} brikker</p><p>${c.some(p=>!p[2])?'<b class="c3">■</b> Brikker, der altid er der. <b class="ci">■</b> Brikker, der vokser med n.':'Alle brikkerne vokser med n. Der kommer en ny række til hver gang.'}</p><div class="scroll"><table class="tb"><tr><th>n</th>${[1,2,3,4,5,6].map(i=>`<td${i==n?' class="now"':''}>${i}</td>`).join('')}</tr><tr><th>Brikker</th>${[1,2,3,4,5,6].map(i=>`<td${i==n?' class="now"':''}>${m.cnt(i)}</td>`).join('')}</tr></table></div><details><summary>Vis reglen</summary><p>Antal brikker = ${m.regel}</p><p>${m.hv}</p></details>`]})}
+};
+
+/* ---------- Øv dig ---------- */
+const LV=['Niveau 1','Niveau 2','Niveau 3','Problemer'];
+function practice(ch){let lv=0,task,tries,done;
+  const fb=(s,h)=>{const e=$('fb');e.hidden=false;e.dataset.s=s;e.innerHTML=h};
+  const dots=()=>{const n=got(ch.id,lv);$('dots').innerHTML=[0,1,2,3,4].map(i=>`<i${i<n?' class="on"':''}></i>`).join('')+`<span class="small">${n} af 5 rigtige i ${lv<3?'niveau '+(lv+1):'problemerne'}.${n==5?(lv<3?' Klaret. Prøv det næste.':' Problemerne er klaret.'):''}</span>`};
+  const ny=()=>{let t;do{t=pick(ch.tasks[lv])()}while(task&&t.q==task.q);task=t;tries=0;done=false;$('q').textContent=task.q;$('tip').hidden=lv!=3;$('ans').value='';$('unit').textContent=task.unit;$('fb').hidden=true;$('chk').disabled=false;dots()};
+  $('lvs').innerHTML=LV.map((t,i)=>`<button type="button" class="btn ghost" data-l="${i}" aria-pressed="${i==0}">${t}</button>`).join('');
+  $('lvs').querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=+b.dataset.l;$('lvs').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x==b));task=null;ny()});
+  $('pf').addEventListener('submit',e=>{e.preventDefault();if(done)return;const v=parse($('ans').value);
+    if(isNaN(v))return fb('hint','Skriv svaret som et tal, fx 12 eller 3,5.');
+    if(Math.abs(v-task.a)<=(task.tol||0)+0.011){done=true;$('chk').disabled=true;const p=prog[ch.id]=prog[ch.id]||[0,0,0,0];p[lv]=Math.min(5,(p[lv]||0)+1);save();dots();fb('ok',`<b>Rigtigt!</b> ${task.sol}`);$('nxt').focus()}
+    else{tries++;if(tries==1)fb('no','<b>Ikke helt.</b> Tjek din udregning, og prøv igen.');else if(tries==2)fb('hint',`<b>Hint:</b> ${task.hint}`);else{done=true;$('chk').disabled=true;fb('no',`<b>Svaret er ${(f(task.a)+' '+task.unit).trim()}.</b> ${task.sol} Prøv en ny opgave af samme slags.`)}}});
+  $('hnt').onclick=()=>fb('hint',`<b>Hint:</b> ${task.hint}`);$('nxt').onclick=()=>{ny();$('ans').focus()};ny()}
+
+/* ---------- Visninger ---------- */
+function nav(cur){$('nav').innerHTML=`<a class="chip" href="#hjem"${cur?'':' aria-current="page"'}>Forside</a>`+CH.map(c=>`<a class="chip" href="#${c.id}"${cur==c.id?' aria-current="page"':''}>${c.n}. ${c.t}</a>`).join('')}
+function home(){nav();$('app').innerHTML=`
+<section class="sheet"><h1>Matematikværksted</h1><p class="lead">Her kan du undersøge, øve dig og forklare matematikken fra 6. klasse. Vælg et kapitel, og start med modellen.</p></section>
+<div class="cards">${CH.map(c=>`<a class="card" href="#${c.id}"><span class="eyebrow">Kapitel ${c.n}</span><h3>${c.t}</h3><p>${c.d}</p><span class="bar"><i style="width:${total(c.id)/20*100}%"></i></span><span class="small">${total(c.id)} af 20 opgaver klaret</span></a>`).join('')}</div>
+<section class="sheet"><h2>Sådan arbejder du med et kapitel</h2><ol class="plain"><li><b>Undersøg.</b> Træk i skyderne, og se, hvad der sker i modellen.</li><li><b>Læs eksemplet.</b> Følg udregningen trin for trin.</li><li><b>Find fejlen.</b> Hvad har eleven gjort forkert?</li><li><b>Øv dig.</b> Regn i dit hæfte, og tjek svaret her. Brug et hint, hvis du sidder fast. Slut af med problemerne, hvor du selv skal finde ud af, hvad der skal regnes.</li><li><b>Forklar.</b> Fortæl din makker, hvad du har gjort, og hvorfor det virker.</li></ol></section>
+<section class="sheet"><h2>Når du skal forklare</h2><p class="text">Det vigtigste er, at du kan forklare, hvad du gør. Brug fagordene, og start fx sådan:</p><ul class="plain"><li>Først fandt jeg … fordi …</li><li>Jeg ved, at … Derfor …</li><li>Jeg tjekkede mit svar ved at …</li><li>Det kan ikke passe, fordi …</li><li>En anden måde at gøre det på er …</li></ul></section>
+<section class="sheet"><details><summary>Til læreren</summary><p>Kapitlerne følger rækkefølgen i KonteXt+ 6. Hvert kapitel har samme opbygning: læringsmål, fagord, en visuel model, et gennemregnet eksempel, en fejlanalyse, opgaver på tre niveauer og problemløsningsopgaver med hint og forklaring samt samtaleopgaver til makkerarbejde.</p><p>Opgaverne dannes tilfældigt, så eleverne kan øve sig igen og igen. Fem rigtige svar klarer et niveau eller problemerne. Elevens prikker gemmes kun i elevens egen browser og kan ikke ses af andre.</p></details></section>`}
+function chapter(c){nav(c.id);const i=c.n-1,pv=CH[i-1],nx=CH[i+1];$('app').innerHTML=`
+<section class="sheet"><span class="eyebrow">Kapitel ${c.n}</span><h1>${c.t}</h1><p class="lead">${c.d}</p><h2>Det skal du kunne</h2><ul class="plain maal">${c.maal.map(m=>`<li>${m}</li>`).join('')}</ul></section>
+<section class="sheet"><h2>Fagord</h2><dl class="ord">${c.ord.map(o=>`<div><dt>${o[0]}</dt><dd>${o[1]}</dd></div>`).join('')}</dl></section>
+<section class="sheet"><span class="eyebrow">Undersøg</span><h2>${c.model}</h2><div id="tool"></div><h3>Læg mærke til</h3><ul class="plain">${c.se.map(s=>`<li>${s}</li>`).join('')}</ul></section>
+<section class="sheet"><span class="eyebrow">Eksempel</span><h2>${c.eks[0]}</h2><ol class="plain">${c.eks[1].map(s=>`<li>${s}</li>`).join('')}</ol></section>
+<section class="sheet"><span class="eyebrow">Find fejlen</span><p class="fejl">${c.fejl[0]}</p><p class="text">Hvad er gået galt? Tal med din makker, før du åbner svaret.</p><details><summary>Vis forklaringen</summary><p>${c.fejl[1]}</p></details></section>
+<section class="sheet"><span class="eyebrow">Øv dig</span><div class="row" id="lvs"></div><p class="q" id="q"></p><p class="small" id="tip" hidden>Læs opgaven to gange. Hvad ved du? Hvad skal du finde? Lav en tegning eller en tabel i dit hæfte, og tjek til sidst, om svaret er rimeligt.</p><form class="row" id="pf" autocomplete="off"><label for="ans">Svar:</label><input class="ans" id="ans" inputmode="text" autocomplete="off"><span id="unit"></span><button class="btn" id="chk">Tjek svar</button></form><div class="row"><button type="button" class="btn ghost" id="hnt">Vis et hint</button><button type="button" class="btn ghost" id="nxt">Ny opgave</button></div><p class="fb" id="fb" role="status" hidden></p><div class="dots" id="dots"></div></section>
+<section class="sheet"><span class="eyebrow">Forklar til din makker</span><ul class="plain">${c.forklar.map(s=>`<li>${s}</li>`).join('')}</ul><p class="small">Start fx med: Først … Derfor … Jeg tjekkede det ved at …</p></section>
+<nav class="pn" aria-label="Forrige og næste kapitel">${pv?`<a class="chip" href="#${pv.id}">← ${pv.n}. ${pv.t}</a>`:'<span></span>'}${nx?`<a class="chip" href="#${nx.id}">${nx.n}. ${nx.t} →</a>`:'<a class="chip" href="#hjem">Til forsiden</a>'}</nav>`;
+  TOOLS[c.id]($('tool'));practice(c)}
+const route=()=>{const c=CH.find(c=>c.id==location.hash.slice(1));c?chapter(c):home();window.scrollTo(0,0)};
+window.addEventListener('hashchange',route);route();
+}
+</script>
+</body>
+</html>
