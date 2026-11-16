@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Interaktivt matematikværksted til 6. klasse: modeller, eksempler, opgaver og problemløsning.">
+<meta name="description" content="Interaktivt matematikværksted til 6. klasse: film, teori, modeller, eksempler, opgaver og problemløsning.">
 <title>Matematikværksted 6. klasse</title>
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -25,44 +25,43 @@ img{max-width:100%}
   --r:5px;
 }
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.6;padding-block:20px 90px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));font-variant-numeric:tabular-nums lining-nums}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.65;padding-block:28px 140px;padding-left:max(clamp(20px,4.5vw,56px),env(safe-area-inset-left,0px));padding-right:max(clamp(20px,4.5vw,56px),env(safe-area-inset-right,0px));font-variant-numeric:tabular-nums lining-nums}
 .wrap{max-width:1080px;margin:0 auto}
 h1,h2,.q,.no,.step,.fejl,.num{font-family:var(--display);font-optical-sizing:auto}
 h1,h2,h3{margin:0;text-wrap:balance}
 h1{font-weight:800;letter-spacing:-.03em;line-height:.95}
-h2{font-size:1.75rem;font-weight:700;letter-spacing:-.015em;line-height:1.15;margin-bottom:16px;display:flex;align-items:baseline;gap:.55em}
-h3{font-size:1.05rem;margin:24px 0 8px}
-p{margin:0 0 12px;max-width:60ch;text-wrap:pretty}
-ul,ol{margin:0 0 12px;padding-left:1.25em;max-width:60ch}
-li{margin-bottom:8px}
+h2{font-size:1.75rem;font-weight:700;letter-spacing:-.015em;line-height:1.15;margin-bottom:26px;display:flex;align-items:baseline;gap:.55em}
+h3{font-size:1.05rem;margin:38px 0 12px}
+p{margin:0 0 16px;max-width:60ch;text-wrap:pretty}
+ul,ol{margin:0 0 16px;padding-left:1.25em;max-width:60ch}
+li{margin-bottom:11px}
 a{color:var(--fg)}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 .small{font-size:.95rem;color:var(--muted)}
 .ic{width:1.05em;height:1.05em;flex:none;vertical-align:-.15em}
 .step{font-weight:800;color:var(--k)}
 
-.top{display:flex;justify-content:space-between;align-items:center;gap:8px 20px;flex-wrap:wrap;padding-bottom:18px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px 20px;flex-wrap:wrap;padding-bottom:30px}
 .brand{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.01em;color:var(--fg);text-decoration:none}
 #nav{color:var(--muted)}
 #nav a{display:inline-flex;align-items:center;gap:8px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--fg);padding-bottom:1px}
 
 /* forside */
-.hero h1{font-size:clamp(2.5rem,10.6vw,7.2rem);margin-top:14px}
+.hero h1{font-size:clamp(2.5rem,10.6vw,7.2rem);margin-top:44px}
 .intro{display:flex;flex-wrap:wrap;gap:22px 56px;justify-content:space-between;align-items:flex-end;margin-top:26px}
 .lead{font-size:1.3rem;line-height:1.45;max-width:34ch;margin:0}
 .stat{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
 .stat .num{font-weight:800;font-size:4rem;line-height:.9;letter-spacing:-.03em}
 .stat .lbl{font-size:1rem;line-height:1.3;color:var(--muted)}
-.block{margin-top:64px;padding-top:26px;border-top:2px solid var(--fg)}
-.shelf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 22px;list-style:none;padding:0;margin:8px 0 0;max-width:none}
+.block{margin-top:112px;padding-top:36px;border-top:2px solid var(--fg)}
+.shelf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:60px 30px;list-style:none;padding:0;margin:16px 0 0;max-width:none}
 .shelf li{margin:0}
-@media (max-width:900px){.shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 16px}}
-.cover{display:flex;flex-direction:column;gap:6px;color:var(--fg);text-decoration:none}
+@media (max-width:900px){.shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 18px}}
+.cover{display:flex;flex-direction:column;gap:8px;color:var(--fg);text-decoration:none}
 .art{position:relative;overflow:hidden;background:var(--c);color:var(--on)}
 .art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.art::after,.band::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .4 0 0 0 -.12'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url%28%23n%29'/%3E%3C/svg%3E");mix-blend-mode:multiply;pointer-events:none}
-.cover .art{aspect-ratio:1;border-radius:var(--r);margin-bottom:8px;transition:transform .18s ease}
-.cover:hover .art{transform:translateY(-4px)}
+.art::after,.band::after,.cont::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .4 0 0 0 -.12'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url%28%23n%29'/%3E%3C/svg%3E");mix-blend-mode:multiply;pointer-events:none}
+.cover .art{aspect-ratio:1;border-radius:var(--r);margin-bottom:12px;transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease}
 .cover .no{position:absolute;left:14px;top:8px;font-weight:800;font-size:2.6rem;line-height:1;z-index:1}
 .cover b{font-family:var(--display);font-size:1.3rem;font-weight:700;letter-spacing:-.01em;line-height:1.15}
 .cover .d{color:var(--muted);font-size:.95rem;line-height:1.4}
@@ -71,15 +70,15 @@ a{color:var(--fg)}
 .cover .cnt.all{color:var(--ok);font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .meter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;flex:1;max-width:240px}
 .meter i{height:7px;border-radius:1px;background:linear-gradient(to right,var(--mf,var(--k)) var(--p),var(--mt,var(--line)) 0)}
-.how{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;list-style:none;padding:0;margin:8px 0 22px;max-width:none;counter-reset:h}
+.how{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;list-style:none;padding:0;margin:16px 0 22px;max-width:none;counter-reset:h}
 .how li{counter-increment:h;margin:0;line-height:1.45}
 .how li::before{content:counter(h);display:block;font-family:var(--display);font-weight:800;font-size:2.8rem;line-height:1;margin-bottom:8px}
 @media (max-width:820px){.how{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:460px){.how{grid-template-columns:minmax(0,1fr);gap:18px}.how li{display:grid;grid-template-columns:2.2ch minmax(0,1fr);gap:12px;align-items:baseline}.how li::before{font-size:2rem;margin:0}}
 
 /* kapitel */
-.band{position:relative;overflow:hidden;background:var(--c);color:var(--on);border-radius:var(--r);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);min-height:300px;--mf:var(--on);--mt:color-mix(in srgb,var(--on) 28%,transparent)}
-.bt{position:relative;z-index:1;padding:30px 34px;display:flex;flex-direction:column;gap:12px}
+.band{position:relative;overflow:hidden;background:var(--c);color:var(--on);border-radius:var(--r);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);min-height:340px;--mf:var(--on);--mt:color-mix(in srgb,var(--on) 28%,transparent)}
+.bt{position:relative;z-index:1;padding:42px 46px;display:flex;flex-direction:column;gap:16px}
 .band .no{font-weight:800;font-size:1.5rem;margin:0 0 auto;letter-spacing:.01em}
 .band h1{font-size:clamp(2.5rem,7.4vw,4.8rem)}
 .band .lead{font-size:1.2rem;max-width:40ch}
@@ -88,39 +87,39 @@ a{color:var(--fg)}
 .band .art{background:none}
 .band .art::after{content:none}
 @media (max-width:700px){.band{grid-template-columns:minmax(0,1fr);min-height:0}.band .art{position:absolute;right:-26px;top:-26px;width:190px;height:190px}.bt{padding:150px 20px 22px}.band .no{margin:0}}
-.chap{display:grid;grid-template-columns:190px minmax(0,1fr);gap:56px;margin-top:44px}
+.chap{display:grid;grid-template-columns:190px minmax(0,1fr);gap:80px;margin-top:72px}
 .side{position:sticky;top:20px;align-self:start}
 .side ol{list-style:none;padding:0;margin:0;max-width:none}
 .side li{margin:0}
-.side button{display:flex;gap:12px;align-items:baseline;width:100%;text-align:left;font:inherit;font-size:1rem;background:none;border:0;border-top:1px solid var(--line);padding:9px 0;color:var(--muted);cursor:pointer}
+.side ol button{display:flex;gap:12px;align-items:baseline;width:100%;text-align:left;font:inherit;font-size:1rem;background:none;border:0;border-top:1px solid var(--line);padding:12px 0;color:var(--muted);cursor:pointer}
 .side li:last-child button{border-bottom:1px solid var(--line)}
-.side button span{font-family:var(--display);font-weight:800;min-width:1ch}
-.side button:hover{color:var(--fg)}
-.side button[aria-current="true"]{color:var(--fg);font-weight:700}
-.side button[aria-current="true"] span{color:var(--k)}
-.sideprog{margin-top:30px}
-.sideprog p{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 7px;font-size:.92rem;color:var(--muted)}
+.side ol button span{font-family:var(--display);font-weight:800;min-width:1ch}
+.side ol button:hover{color:var(--fg)}
+.side ol button[aria-current="true"]{color:var(--fg);font-weight:700}
+.side ol button[aria-current="true"] span{color:var(--k)}
+.sideprog{margin-top:44px}
+.sideprog p{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 11px;font-size:.92rem;color:var(--muted)}
 .sideprog .pips{color:var(--k)}
 .main{max-width:740px;min-width:0}
-.main section{margin-top:64px;padding-top:26px;border-top:2px solid var(--fg);scroll-margin-top:16px}
+.main section{margin-top:104px;padding-top:36px;border-top:2px solid var(--fg);scroll-margin-top:16px}
 .main section:first-child{margin-top:0}
-@media (max-width:940px){.chap{grid-template-columns:minmax(0,1fr);gap:30px;margin-top:22px}.side{position:static}.side ol{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}.side li{flex:none}.side button,.side li:last-child button{border:1.5px solid var(--line);border-radius:var(--r);background:var(--panel);padding:8px 13px;gap:8px;color:var(--fg)}.sideprog{display:none}}
+@media (max-width:940px){.chap{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:34px}.side{position:static}.side ol{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}.side li{flex:none}.side ol button,.side li:last-child button{border:1.5px solid var(--line);border-radius:var(--r);background:var(--panel);padding:8px 13px;gap:8px;color:var(--fg)}.sideprog{display:none}}
 
 dl.ord{display:grid;grid-template-columns:minmax(8em,auto) minmax(0,1fr);margin:0;border-bottom:1px solid var(--line)}
-dl.ord dt,dl.ord dd{margin:0;padding:11px 0;border-top:1px solid var(--line)}
+dl.ord dt,dl.ord dd{margin:0;padding:16px 0;border-top:1px solid var(--line)}
 dl.ord dt{font-weight:700;padding-right:26px}
 @media (max-width:560px){dl.ord{grid-template-columns:minmax(0,1fr)}dl.ord dd{border-top:0;padding-top:0}dl.ord dt{padding-bottom:2px}}
 
-.tool{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-top:6px}
+.tool{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:34px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px;margin-top:14px}
 @media (max-width:640px){.tool{grid-template-columns:minmax(0,1fr);padding:14px}}
 .fig svg{display:block;width:100%;height:auto;background:var(--bg);border-radius:3px}
-.ctl{display:flex;flex-direction:column;gap:14px;min-width:0}
-.ctls{display:flex;flex-direction:column;gap:12px}
+.ctl{display:flex;flex-direction:column;gap:22px;min-width:0}
+.ctls{display:flex;flex-direction:column;gap:18px}
 .row{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center}
 .sl{display:grid;gap:2px}
 .sl input{width:100%;height:30px;accent-color:var(--fg)}
 select{font:inherit;padding:8px 10px;border:2px solid var(--fg);border-radius:var(--r);background:var(--panel);color:var(--fg);max-width:100%}
-.read p{margin-bottom:6px}
+.read p{margin-bottom:10px}
 .eq{font-size:1.3rem;font-weight:700}
 .c2{color:var(--m2)} .c3{color:var(--m3)} .ci{color:var(--ink)}
 .sq{display:inline-block;width:.8em;height:.8em;border-radius:1px;margin-right:.25em;background:var(--ink)}
@@ -154,17 +153,17 @@ summary{cursor:pointer;display:inline-flex;align-items:center;min-height:46px;li
 summary::-webkit-details-marker{display:none}
 details>*:not(summary){margin-top:12px}
 
-.eks{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px 10px}
+.eks{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:30px 32px 10px}
 .eks .eq{font-family:var(--display);font-size:1.35rem;line-height:1.25;margin-bottom:14px}
 .eks ol{list-style:none;padding:0;margin:0;max-width:none;counter-reset:s}
-.eks li{counter-increment:s;display:grid;grid-template-columns:1.6ch minmax(0,1fr);gap:14px;padding:11px 0;margin:0;border-top:1px solid var(--line)}
+.eks li{counter-increment:s;display:grid;grid-template-columns:1.6ch minmax(0,1fr);gap:16px;padding:15px 0;margin:0;border-top:1px solid var(--line)}
 .eks li::before{content:counter(s);font-family:var(--display);font-weight:800;color:var(--k)}
-.fejl{font-size:1.5rem;line-height:1.3;font-weight:600;letter-spacing:-.01em;background:color-mix(in srgb,var(--c) 13%,var(--panel));border-radius:var(--r);padding:22px 24px;max-width:none;margin-bottom:18px}
+.fejl{font-size:1.5rem;line-height:1.3;font-weight:600;letter-spacing:-.01em;background:color-mix(in srgb,var(--c) 13%,var(--panel));border-radius:var(--r);padding:30px 32px;max-width:none;margin-bottom:28px}
 
-.work{background:var(--panel);border:2px solid var(--fg);border-radius:var(--r);padding:24px;margin-top:6px}
+.work{background:var(--panel);border:2px solid var(--fg);border-radius:var(--r);padding:36px;margin-top:20px}
 .work>:last-child{margin-bottom:0}
 @media (max-width:560px){.work{padding:16px}}
-.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:28px}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:40px}
 @media (max-width:560px){.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .tabs button{font:inherit;font-weight:600;text-align:left;background:var(--bg);border:2px solid transparent;border-radius:var(--r);padding:10px 12px 12px;color:var(--fg);cursor:pointer;display:flex;flex-direction:column;gap:7px}
 .tabs button:hover{border-color:var(--fg)}
@@ -172,37 +171,191 @@ details>*:not(summary){margin-top:12px}
 .pips{display:inline-flex;gap:3px}
 .pips i{width:10px;height:10px;border-radius:1px;background:currentColor;opacity:.2}
 .pips i.on{opacity:1}
-.q{font-size:1.7rem;line-height:1.25;font-weight:700;letter-spacing:-.012em;max-width:26em;margin-bottom:16px}
+.q{font-size:1.7rem;line-height:1.25;font-weight:700;letter-spacing:-.012em;max-width:26em;margin-bottom:26px}
 .ans{font:inherit;font-size:1.4rem;font-weight:600;padding:6px 12px;width:9.5rem;min-height:50px;border:2px solid var(--fg);border-radius:var(--r);background:var(--panel);color:var(--fg)}
-form.row{margin-bottom:12px}
+form.row{margin-bottom:18px}
 form.row label{font-weight:700}
 .fb{padding:14px 16px;border-radius:var(--r);margin-top:18px;max-width:none}
 .fb[data-s="ok"]{background:var(--ok-soft)}
 .fb[data-s="no"]{background:var(--bad-soft)}
 .fb[data-s="hint"]{background:var(--hint-soft)}
-#dots{margin-top:16px;font-size:1rem}
+#dots{margin-top:26px;font-size:1rem}
 .kan{list-style:none;padding:0;max-width:none;border-bottom:1px solid var(--line)}
 .kan li{margin:0}
-.kan label{display:flex;gap:16px;align-items:center;padding:13px 0;border-top:1px solid var(--line);cursor:pointer}
+.kan label{display:flex;gap:18px;align-items:center;padding:19px 0;border-top:1px solid var(--line);cursor:pointer}
 .kan input{flex:none;width:26px;height:26px;margin:0;accent-color:var(--k)}
-.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:80px}
+.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:128px}
 .pn a{position:relative;display:flex;flex-direction:column;gap:2px;background:var(--c);color:var(--on);border-radius:var(--r);padding:16px 20px;text-decoration:none;min-height:86px;justify-content:flex-end}
 .pn a:last-child{text-align:right;align-items:flex-end}
 .pn a span{font-size:.9rem;opacity:.85;display:inline-flex;align-items:center;gap:6px}
 .pn a b{font-family:var(--display);font-size:1.3rem;line-height:1.15;letter-spacing:-.01em}
-.foot{margin-top:56px;max-width:72ch}
+.foot{margin-top:96px;max-width:72ch}
 @media (prefers-reduced-motion:reduce){.cover .art{transition:none}}
+
+/* ---- levende udgave ---- */
+.hero .lead{max-width:44ch;margin-top:22px}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:30px;margin-top:64px}
+.cont{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,40%);background:var(--c);color:var(--on);border-radius:var(--r);text-decoration:none;min-height:220px;--mf:var(--on);--mt:color-mix(in srgb,var(--on) 28%,transparent)}
+.cont .ct{position:relative;z-index:1;padding:32px 34px;display:flex;flex-direction:column;gap:7px}
+.cont .lbl{font-weight:700;font-size:.95rem;margin-bottom:auto;display:inline-flex;gap:8px;align-items:center}
+.cont b{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.7rem);line-height:1;letter-spacing:-.025em}
+.cont .meter{flex:none;width:100%;max-width:220px;margin-top:8px}
+.cont .art{background:none}
+.cont .art::after{content:none}
+.daily{background:var(--panel);border:2px solid var(--fg);border-radius:var(--r);padding:32px 34px;min-width:0}
+.daily>:last-child{margin-bottom:0}
+.daily .lbl{display:flex;justify-content:space-between;gap:6px 14px;flex-wrap:wrap;font-weight:700;font-size:.95rem;margin-bottom:12px;max-width:none}
+.daily .lbl span:last-child{color:var(--muted);font-weight:400}
+.daily .lbl span:first-child::before{content:"";display:inline-block;width:.7em;height:.7em;background:var(--c);border-radius:50%;margin-right:.5em}
+.dq{font-family:var(--display);font-size:1.4rem;line-height:1.25;font-weight:700;letter-spacing:-.01em;margin-bottom:14px}
+.daily .fb{margin-top:8px}
+.bh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 24px;margin-bottom:30px}
+.bh h2{margin:0}
+.opts{display:flex;flex-wrap:wrap;gap:10px 16px}
+.seg{display:inline-flex;border:2px solid var(--fg);border-radius:var(--r);overflow:hidden}
+.seg button{font:inherit;font-size:.95rem;font-weight:600;background:transparent;border:0;padding:5px 13px;min-height:38px;color:var(--fg);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:#fff}
+.shelf.list{grid-template-columns:minmax(0,1fr);gap:0;border-bottom:1px solid var(--line)}
+.shelf.list .cover{display:grid;grid-template-columns:84px minmax(0,1fr) minmax(130px,230px);gap:2px 22px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.shelf.list .cover .art{grid-row:1/3;margin:0;width:84px;transform:none}
+.shelf.list .cover .no{font-size:1.5rem;left:8px;top:5px}
+.shelf.list .cover b{grid-column:2;align-self:end}
+.shelf.list .cover .d{grid-column:2;align-self:start}
+.shelf.list .cover .prog{grid-column:3;grid-row:1/3;margin:0}
+@media (max-width:600px){.shelf.list .cover .no{display:none}.shelf.list .cover{grid-template-columns:64px minmax(0,1fr)}.shelf.list .cover .art{width:64px;grid-row:1/4}.shelf.list .cover .prog{grid-column:2;grid-row:3}}
+.modes{margin-bottom:18px}
+.modes .seg{display:flex}
+.modes .seg button{flex:1;font-size:.9rem;padding:4px 6px;white-space:nowrap}
+@media (max-width:940px){.modes .seg{display:inline-flex}.modes .seg button{flex:none;padding:4px 12px}}
+.main.stepmode section{display:none;margin-top:0}
+.main.stepmode section.cur{display:block}
+.stepnav{display:none;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:72px}
+.main.stepmode .stepnav{display:flex}
+.main.stepmode .pn{margin-top:96px}
+.eksbar{display:flex;margin-top:14px}
+.pips i.new{animation:pop .55s ease}
+@keyframes pop{0%{transform:scale(.2)}55%{transform:scale(1.9)}100%{transform:none}}
+.flip{animation:flip .35s ease}
+@keyframes flip{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+.band{view-transition-name:hero}
+::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(hero),::view-transition-new(hero){width:100%;height:100%;object-fit:cover}
+@media (prefers-reduced-motion:no-preference){
+ .an-draw{stroke-dasharray:100;animation:an-draw 4.2s ease-in-out infinite}
+ .an-head{animation:an-head 4.2s ease-in-out infinite}
+ .an-spin{transform-origin:150px 152px;animation:an-spin 16s linear infinite}
+ .an-pulse{animation:an-pulse 2.6s ease-in-out infinite alternate}
+ .an-slide{animation:an-slide 5s ease-in-out infinite alternate}
+ .an-bob{animation:an-bob 4s ease-in-out infinite alternate}
+ .an-bar{transform-origin:0 224px;animation:an-bar 2.8s ease-in-out infinite alternate}
+ .an-rock{transform-origin:192px 60px;animation:an-rock 3.4s ease-in-out infinite alternate}
+ .an-turn{transform-origin:80px 142px;animation:an-turn 5s ease-in-out infinite}
+ .an-eq1{animation:an-eq 2.5s ease-in-out infinite alternate}
+ .an-eq2{animation:an-eq 2.5s ease-in-out infinite alternate-reverse}
+ .an-float{animation:an-float 3.6s ease-in-out infinite alternate}
+ .an-wave{animation:an-wave 4.8s ease-in-out infinite}
+}
+@keyframes an-draw{0%{stroke-dashoffset:100;opacity:1}45%,88%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes an-head{0%,40%{opacity:0}50%,88%{opacity:1}100%{opacity:0}}
+@keyframes an-spin{to{transform:rotate(360deg)}}
+@keyframes an-pulse{from{transform:scale(.9)}to{transform:scale(1.1)}}
+@keyframes an-slide{from{transform:translateX(-20px)}to{transform:translateX(8px)}}
+@keyframes an-bob{from{transform:translateY(-6px)}to{transform:translateY(8px)}}
+@keyframes an-bar{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+@keyframes an-rock{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+@keyframes an-turn{0%,35%{transform:rotate(0)}55%,100%{transform:rotate(180deg)}}
+@keyframes an-eq{from{transform:translateY(-4px)}to{transform:translateY(4px)}}
+@keyframes an-float{from{transform:translateY(5px)}to{transform:translateY(-9px)}}
+@keyframes an-wave{0%,60%,100%{opacity:var(--o)}78%{opacity:.08}}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.flip,.pips i.new{animation:none}}
+
+.stage{position:relative;background:var(--c);color:var(--on);border-radius:var(--r);overflow:hidden}
+.stage>svg{display:block;width:100%;height:auto}
+.stage>svg text{fill:currentColor;font-family:var(--display);font-weight:700}
+.fbig{position:absolute;right:14px;bottom:14px;width:56px;height:56px;border-radius:50%;border:0;background:var(--on);color:var(--c);cursor:pointer;display:grid;place-items:center;font-size:1.5rem;padding:0 0 0 3px}
+.stage>svg{cursor:pointer}
+.fcap{font-size:1.25rem;line-height:1.35;font-weight:600;margin:24px 0 16px;min-height:2.7em;max-width:none}
+.fctl{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap}
+.fctl input{flex:1;min-width:120px;height:30px;accent-color:var(--fg)}
+.fctl span{color:var(--muted);font-size:.95rem}
+.ordbar{margin-top:32px}
+.match{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.6fr);gap:12px 20px;margin:6px 0 12px}
+.match>div{display:flex;flex-direction:column;gap:8px}
+@media (max-width:560px){.match{grid-template-columns:minmax(0,1fr)}.match .mw{flex-direction:row;flex-wrap:wrap}}
+.mb{font:inherit;text-align:left;background:var(--panel);border:2px solid var(--line);border-radius:var(--r);padding:9px 13px;min-height:46px;cursor:pointer;color:var(--fg)}
+.mb.w{font-weight:700}
+.mb:hover{border-color:var(--fg)}
+.mb[aria-pressed="true"]{border-color:var(--fg);background:var(--fg);color:#fff}
+.mb.done{background:color-mix(in srgb,var(--c) 14%,var(--panel));border-color:transparent;cursor:default}
+.mb.nej{animation:nej .35s}
+@keyframes nej{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.eksbar{margin-top:24px}
+.eks{padding-bottom:30px}
+.eks ol:empty{display:none}
+.eks ol{margin-bottom:-12px}
+.fast{background:var(--panel);border:2px solid var(--fg);border-radius:var(--r);padding:36px;margin-top:20px}
+.fast>:last-child{margin-bottom:0}
+@media (max-width:560px){.fast{padding:16px}}
+.fbar{height:8px;background:var(--line);border-radius:2px;overflow:hidden;margin-bottom:16px}
+.fbar i{display:block;height:100%;width:100%;background:var(--k)}
+.frow{justify-content:space-between}
+.fopts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fopts button{font:inherit;font-size:1.25rem;font-weight:700;min-height:60px;border:2px solid var(--fg);border-radius:var(--r);background:var(--panel);color:var(--fg);cursor:pointer}
+.fopts button.ja{background:var(--ok-soft);border-color:var(--ok)}
+.fopts button.nej{background:var(--bad-soft);border-color:var(--m3)}
+.fscore{font-family:var(--display);font-weight:800;font-size:4rem;line-height:1;margin-bottom:6px}
+@media (prefers-reduced-motion:reduce){.mb.nej{animation:none}}
+
+.flist{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.flist button{font:inherit;font-size:.98rem;font-weight:600;background:var(--panel);border:2px solid var(--line);border-radius:var(--r);padding:7px 13px;min-height:42px;color:var(--fg);cursor:pointer}
+.flist button:hover{border-color:var(--fg)}
+.flist button[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--on)}
+.tfilm{margin-top:14px;padding-top:16px;border-top:1px solid var(--line)}
+.tfilm .fcap{font-size:1.1rem;min-height:0}
+
+.teori{margin-top:30px;border-bottom:1px solid var(--line)}
+.teori article{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 40px;padding:34px 0;border-top:1px solid var(--line)}
+.teori h3{font-family:var(--display);font-size:1.3rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0}
+.teori p:last-child{margin-bottom:0}
+.formel{font-family:var(--display);font-size:1.55rem;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:var(--k);margin-bottom:14px}
+.fx{color:var(--muted)}
+.fx span{font-weight:700;color:var(--k);margin-right:.7em}
+@media (max-width:640px){.teori article{grid-template-columns:minmax(0,1fr);gap:10px;padding:28px 0}}
+.husk{margin:6px 0 4px}
+.husk ul{list-style:none;padding:20px 24px;margin:14px 0 0;max-width:none;background:color-mix(in srgb,var(--c) 10%,var(--panel));border-radius:var(--r)}
+.husk li:last-child{margin-bottom:0}
+@media (max-width:560px){.work,.fast{padding:20px}.tool{padding:16px}.bt{padding:150px 22px 26px}.daily{padding:22px}.cont .ct{padding:22px}.eks{padding:22px 20px 22px}.fejl{padding:22px}.main section{margin-top:80px}.block{margin-top:84px}}
+
+.teori .fkw{margin-top:18px}
+.fkw .btn.fkb{min-height:42px;padding:6px 16px;font-weight:600}
+.teori .tfilm,.eksbar+.fkw .tfilm,details .tfilm{border-top:0;padding-top:4px;margin-top:10px}
+.eksbar+.fkw{margin-top:14px}
+details .fkw{margin-top:18px}
+
+.trin5{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;padding:0;margin:0 0 24px;max-width:none;counter-reset:t;font-size:.95rem;color:var(--muted)}
+.trin5 li{margin:0;counter-increment:t}
+.trin5 li::before{content:counter(t);font-family:var(--display);font-weight:800;color:var(--k);margin-right:.45em}
+.tjek{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.tjek .sv{margin-left:.3em}
+.fst{width:42px;height:42px;flex:none;border:2px solid var(--fg);border-radius:var(--r);background:transparent;color:var(--fg);display:grid;place-items:center;cursor:pointer;padding:0}
+.fctl{gap:8px 10px}
+.fctl input{margin-left:6px}
+.side .grp{font-size:.82rem;font-weight:700;color:var(--muted);margin:26px 0 8px}
+.side .grp:first-child{margin-top:0}
+.side ol button .chk{margin-left:auto;display:none;color:var(--ok)}
+.side ol button.set .chk{display:inline-flex}
+.stepnav{align-items:center}
+@media (max-width:940px){.side .grp{display:none}.side ol button .chk{margin-left:2px}}
 </style>
 </head>
 <body>
-
 <div class="wrap">
   <header class="top"><a class="brand" href="#hjem">Matematikværksted</a><span id="nav"></span></header>
   <main id="app"></main>
 </div>
 
 <script>
-const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+let rnd=Math.random;const R=(a,b)=>Math.floor(rnd()*(b-a+1))+a;
 const pick=a=>a[R(0,a.length-1)];
 const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
 const f=n=>{n=Math.round(n*100)/100;return (n<0?'−':'')+Math.abs(n).toLocaleString('da-DK',{maximumFractionDigits:2,useGrouping:false})};
@@ -541,79 +694,499 @@ const LV=['Niveau 1','Niveau 2','Niveau 3','Problemer'];
 const META={tal:{c:'#2447d6',on:'#ffffff',k:'#2447d6'},cirkler:{c:'#e5432d',on:'#ffffff',k:'#cf3620'},handel:{c:'#1f8a4c',on:'#ffffff',k:'#1b7a43'},figurer:{c:'#f6c21c',on:'#15171c',k:'#8a6500'},data:{c:'#f58220',on:'#15171c',k:'#b45309'},algebra:{c:'#6a3fd1',on:'#ffffff',k:'#6a3fd1'},rum:{c:'#0f7f86',on:'#ffffff',k:'#0d7279'},monstre:{c:'#f27aa9',on:'#15171c',k:'#bf2f6c'}};
 const hue=id=>{const m=META[id];return `--c:${m.c};--on:${m.on};--k:${m.k}`};
 const svgI=d=>`<svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const IC={r:svgI('M3.5 10h12M10.5 5l5 5-5 5'),l:svgI('M16.5 10h-12M9.5 5l-5 5 5 5'),ok:svgI('M4 10.5l4 4 8-9')};
+const IC={r:svgI('M3.5 10h12M10.5 5l5 5-5 5'),l:svgI('M16.5 10h-12M9.5 5l-5 5 5 5'),ok:svgI('M4 10.5l4 4 8-9'),sp:svgI('M3.5 8v4h3l4 3.5v-11L6.5 8zM13.5 7.5a3.5 3.5 0 0 1 0 5M15.6 5.2a6.5 6.5 0 0 1 0 9.6'),ny:svgI('M15.5 6.5A6.3 6.3 0 1 0 16.3 11M16 3v4h-4'),pl:svgI('M6.5 4.5v11l9.5-5.5z'),pa:svgI('M7 4.5v11M13 4.5v11')};
 const A=b=>`<svg viewBox="0 0 240 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="currentColor" stroke="none">${b}</g></svg>`;
 const L='fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"',SH='fill="#000" opacity=".15"';
+const bars=[R(40,80),R(80,125),150,R(70,120),R(40,90)];
 const ART={
- tal:A(`<circle ${SH} cx="180" cy="76" r="80"/><path ${L} d="M-10 172H250"/>${[18,52,86,154,188,222].map(x=>`<path ${L} d="M${x} 160v24"/>`).join('')}<path ${L} d="M120 150v44"/><path ${L} d="M188 150Q120 36 52 150"/><path ${L} d="M52 150l5-24M52 150l23-7"/><circle cx="188" cy="172" r="11"/><circle cx="52" cy="172" r="10" fill="var(--c)" stroke="currentColor" stroke-width="6"/>`),
- cirkler:A(`<circle ${SH} cx="150" cy="152" r="104"/><circle ${L} cx="150" cy="152" r="104"/><path opacity=".5" d="M150 152L182 114A50 50 0 0 1 200 152Z"/><path ${L} d="M150 152L217 72"/><path ${L} stroke-dasharray="1 15" d="M46 152H134"/><circle cx="150" cy="152" r="11"/>`),
- handel:A(`<circle ${SH} cx="52" cy="200" r="92"/><circle ${L} style="stroke-width:17" cx="92" cy="96" r="30"/><circle ${L} style="stroke-width:17" cx="178" cy="176" r="30"/><path ${L} style="stroke-width:17" d="M194 62L76 212"/>`),
- figurer:A(`<path ${SH} d="M70 122L96 38H190L216 122Z"/><path opacity=".5" d="M96 178L128 98H250L218 178Z"/><path d="M14 224L96 86L150 224Z"/>`),
- data:A(`<rect opacity=".5" x="22" y="172" width="32" height="52"/><rect opacity=".5" x="66" y="120" width="32" height="104"/><rect x="110" y="74" width="32" height="150"/><rect opacity=".5" x="154" y="128" width="32" height="96"/><rect opacity=".5" x="198" y="164" width="32" height="60"/><g transform="rotate(14 192 60)"><rect ${SH} x="152" y="20" width="80" height="80" rx="13"/>${[[172,40],[212,40],[192,60],[172,80],[212,80]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="7.5"/>`).join('')}</g>`),
- algebra:A(`<circle ${SH} cx="196" cy="196" r="88"/><path ${L} style="stroke-width:25;stroke-linecap:butt" d="M38 86L122 198M122 86L38 198"/><rect x="150" y="114" width="72" height="23"/><rect x="150" y="158" width="72" height="23"/>`),
- rum:A(`<path d="M120 46L194 88L120 130L46 88Z"/><path opacity=".5" d="M46 88L120 130V216L46 174Z"/><path ${SH} d="M194 88L120 130V216L194 174Z"/>`),
- monstre:A([0,1,2,3,4,5].map(i=>[...Array(i+1)].map((_,j)=>`<rect${j==i?'':' opacity=".45"'} x="${14+36*i}" y="${196-36*j}" width="30" height="30"/>`).join('')).join(''))};
+ tal:A(`<circle ${SH} cx="180" cy="76" r="80"/><path ${L} d="M-10 172H250"/>${[18,52,86,154,188,222].map(x=>`<path ${L} d="M${x} 160v24"/>`).join('')}<path ${L} d="M120 150v44"/><path ${L} class="an-draw" pathLength="100" d="M188 150Q120 36 52 150"/><path ${L} class="an-head" d="M52 150l5-24M52 150l23-7"/><circle cx="188" cy="172" r="11"/><circle cx="52" cy="172" r="10" fill="var(--c)" stroke="currentColor" stroke-width="6"/>`),
+ cirkler:A(`<circle ${SH} cx="150" cy="152" r="104"/><circle ${L} cx="150" cy="152" r="104"/><path ${L} stroke-dasharray="1 15" d="M46 152H134"/><g class="an-spin"><path opacity=".5" d="M150 152L182 114A50 50 0 0 1 200 152Z"/><path ${L} d="M150 152L217 72"/></g><circle cx="150" cy="152" r="11"/>`),
+ handel:A(`<circle ${SH} cx="52" cy="200" r="92"/><circle ${L} class="an-pulse" style="stroke-width:17;transform-origin:92px 96px" cx="92" cy="96" r="30"/><circle ${L} class="an-pulse" style="stroke-width:17;transform-origin:178px 176px;animation-delay:-1.3s" cx="178" cy="176" r="30"/><path ${L} style="stroke-width:17" d="M194 62L76 212"/>`),
+ figurer:A(`<path ${SH} class="an-bob" d="M70 122L96 38H190L216 122Z"/><path opacity=".5" class="an-slide" d="M96 178L128 98H250L218 178Z"/><path d="M14 224L96 86L150 224Z"/>`),
+ data:A(bars.map((h,n)=>`<rect class="an-bar" style="animation-duration:${2.2+n*.45}s;animation-delay:-${n*.7}s"${n==2?'':' opacity=".5"'} x="${22+44*n}" y="${224-h}" width="32" height="${h}"/>`).join('')+`<g transform="rotate(14 192 60)"><g class="an-rock"><rect ${SH} x="152" y="20" width="80" height="80" rx="13"/>${[[172,40],[212,40],[192,60],[172,80],[212,80]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="7.5"/>`).join('')}</g></g>`),
+ algebra:A(`<circle ${SH} cx="196" cy="196" r="88"/><path ${L} class="an-turn" style="stroke-width:25;stroke-linecap:butt" d="M38 86L122 198M122 86L38 198"/><rect class="an-eq1" x="150" y="114" width="72" height="23"/><rect class="an-eq2" x="150" y="158" width="72" height="23"/>`),
+ rum:A(`<g class="an-float"><path d="M120 46L194 88L120 130L46 88Z"/><path opacity=".5" d="M46 88L120 130V216L46 174Z"/><path ${SH} d="M194 88L120 130V216L194 174Z"/></g>`),
+ monstre:A([0,1,2,3,4,5].map(i=>[...Array(i+1)].map((_,j)=>`<rect class="an-wave" style="--o:${j==i?1:.45};opacity:${j==i?1:.45};animation-delay:${(i*.28).toFixed(2)}s" x="${14+36*i}" y="${196-36*j}" width="30" height="30"/>`).join('')).join(''))};
 const pip=(id,l)=>`<span class="pips">${[0,1,2,3,4].map(i=>`<i${i<got(id,l)?' class="on"':''}></i>`).join('')}</span>`;
 const meter=id=>`<span class="meter">${[0,1,2,3].map(l=>`<i style="--p:${got(id,l)*20}%"></i>`).join('')}</span>`;
-function practice(ch){let lv=0,task,tries,done,streak=0;
+
+/* ---------- Nye eksempler med nye tal ---------- */
+const EKS={
+ tal(){const b=R(2,4),c=R(2,6),d=R(2,6),m=b*(c+d),a=m+R(1,12);return [`Udregn ${a} − ${b} · (${c} + ${d})`,[`Parentesen først: ${c} + ${d} = ${c+d}.`,`Så gange: ${b} · ${c+d} = ${m}.`,`Til sidst minus: ${a} − ${m} = ${a-m}.`,`Husk rækkefølgen: parentes, gange, og til sidst plus og minus.`]]},
+ cirkler(){const r=pick([2,3,4,6,7,8,9,10]);return [`Find omkreds og areal af en cirkel med radius ${r} cm`,[`Find diameteren: d = 2 · ${r} = ${2*r} cm.`,`Omkreds: O = π · d ≈ 3,14 · ${2*r} = ${f(6.28*r)} cm.`,`Areal: A = π · r · r ≈ 3,14 · ${r} · ${r} = ${f(3.14*r*r)} cm².`,`Husk enhederne: cm for længder og cm² for arealer.`]]},
+ handel(){const [p,k,ord]=pick([[10,10,'en tiendedel'],[20,5,'en femtedel'],[25,4,'en fjerdedel'],[50,2,'halvdelen']]),N=20*R(5,40),ting=pick(['En rygsæk','En fodbold','En hættetrøje','En cykellygte','En drikkedunk']),ra=N/k;return [`${ting} koster ${N} kr. Der er ${p} % rabat. Hvad koster den nu?`,[`Hele prisen er 100 %. Det er ${N} kr.`,`Find ${p} %: det er ${ord}, og ${N} : ${k} = ${f(ra)} kr.`,`Træk rabatten fra: ${N} − ${f(ra)} = ${f(N-ra)} kr.`,`Tjek: du betaler ${100-p} % af prisen.`]]},
+ figurer(){const g=2*R(2,7),h=R(3,9);return [`Find arealet af en trekant med grundlinje ${g} cm og højde ${h} cm`,[`Skriv formlen: A = ½ · g · h.`,`Sæt tallene ind: A = ½ · ${g} · ${h}.`,`Regn ud: ${g} · ${h} = ${g*h}, og halvdelen er ${g*h/2} cm².`,`Tænk efter: trekanten er halvdelen af et rektangel på ${g} cm gange ${h} cm.`]]},
+ data(){let l;do{l=shuf([1,2,3,4,5,6,7,8,9,10,11,12]).slice(0,5)}while(l.reduce((a,b)=>a+b)%5);const s=[...l].sort((a,b)=>a-b),sum=s.reduce((a,b)=>a+b);return [`Tallene er ${l.join(', ')}. Find median og middeltal`,[`Stil tallene i rækkefølge: ${s.join(', ')}.`,`Medianen er det midterste tal: ${s[2]}.`,`Læg tallene sammen: ${s.join(' + ')} = ${sum}.`,`Divider med antallet: ${sum} : 5 = ${sum/5}. Middeltallet er ${sum/5}.`]]},
+ algebra(){const a=R(2,5),x=R(2,9),b=R(1,9),c=a*x+b;return [`Løs ligningen ${a}x + ${b} = ${c}`,[`Træk ${b} fra på begge sider: ${a}x = ${c-b}.`,`Divider begge sider med ${a}: x = ${x}.`,`Tjek løsningen: ${a} · ${x} + ${b} = ${c}. Det passer.`]]},
+ rum(){const l=R(3,6),b=R(2,5),h=R(2,5);return [`En kasse er ${l} cm lang, ${b} cm bred og ${h} cm høj. Find rumfanget`,[`Find grundfladen: ${l} · ${b} = ${l*b} cm². Der er plads til ${l*b} terninger i ét lag.`,`Der er ${h} lag: ${l*b} · ${h} = ${l*b*h}.`,`Rumfanget er ${l*b*h} cm³.`,`Som formel: V = l · b · h.`]]},
+ monstre(){const k=R(2,5),c=R(1,4),N=pick([10,12,20,50]);return [`Figur 1 har ${k+c} brikker, figur 2 har ${2*k+c}, og figur 3 har ${3*k+c}. Hvor mange har figur ${N}?`,[`Find tilvæksten: der kommer ${k} brikker til hver gang.`,`Reglen indeholder derfor ${k} · n.`,`Tjek med figur 1: ${k} · 1 = ${k}, men der er ${k+c} brikker. Der mangler ${c}. Reglen er ${k} · n + ${c}.`,`Figur ${N}: ${k} · ${N} + ${c} = ${k*N+c} brikker.`]]}
+};
+const eksHTML=e=>`<p class="eq">${e[0]}</p><ol>${e[1].map(s=>`<li><span>${s}</span></li>`).join('')}</ol>`;
+
+const diag=(v,a)=>{const er=(x,y)=>Math.abs(x-y)<=Math.abs(y)*1e-6+.011;if(a){if(er(v,-a))return 'Tallet passer, men fortegnet er forkert. Skal svaret være over eller under nul?';if(er(v,2*a))return 'Dit svar er dobbelt så stort som det rigtige. Har du glemt at halvere?';if(er(v,a/2))return 'Dit svar er halvt så stort som det rigtige. Har du halveret en gang for meget, eller glemt at gange med 2?';for(const k of [10,100,1000]){if(er(v,a*k))return `Dit svar er ${k} gange for stort. Tjek kommaet og enheden.`;if(er(v,a/k))return `Dit svar er ${k} gange for lille. Tjek kommaet og enheden.`}if(Math.abs(v-a)<=Math.abs(a)*.03)return 'Du er meget tæt på. Tjek afrundingen og den sidste udregning.'}return 'Ikke helt endnu. Kig din udregning igennem, og prøv igen.'};
+const foerste=t=>{const m=t.sol.match(/^(.*?\.)\s+[A-ZÆØÅ]/);if(!m)return null;const A=f(Math.abs(t.a)).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return new RegExp('(^|[^\\d,])'+A+'($|[^\\d,])').test(m[1])?null:m[1]};
+function practice(ch){let lv=[0,1,2,3].find(l=>got(ch.id,l)<5)||0,task,tries,done,streak=0,fi=-1,help=0,trin=null;
+  const hh=()=>help?`<b>Hint:</b> ${task.hint}`+(help>1?`<br><b>Første trin:</b> ${trin}`:''):'';
+  const hjaelp=pre=>{if(help==0)help=1;else if(help==1&&trin)help=2;else return false;fb('hint',(pre||'')+hh());const mere=help==1&&trin;$('hnt').hidden=!mere;if(mere)$('hnt').textContent='Vis første trin';return true};
   const fb=(s,h)=>{const e=$('fb');e.hidden=false;e.dataset.s=s;e.innerHTML=h};
   const navn=l=>l<3?'niveau '+(l+1):'problemerne';
-  const dots=()=>{const n=got(ch.id,lv),t=total(ch.id);
-    $('lvs').querySelectorAll('button').forEach((b,i)=>{b.setAttribute('aria-pressed',i==lv);b.querySelector('.pp').innerHTML=pip(ch.id,i)});
+  const dots=nyt=>{const n=got(ch.id,lv),t=total(ch.id);
+    $('lvs').querySelectorAll('button').forEach((b,i)=>{b.setAttribute('aria-pressed',i==lv);b.querySelector('.pp').innerHTML=pip(ch.id,i);if(nyt&&i==lv){const on=b.querySelectorAll('i.on');if(on.length)on[on.length-1].classList.add('new')}});
     $('chprog').innerHTML=meter(ch.id)+`<span>${t==20?'Hele kapitlet er klaret':t+' af 20 opgaver klaret'}</span>`;
     $('sideprog').innerHTML=LV.map((t,i)=>`<p><span>${t}</span>${pip(ch.id,i)}</p>`).join('');
     const up=[0,1,2,3].find(l=>l>lv&&got(ch.id,l)<5);
     $('dots').innerHTML=n<5?`${n} af 5 rigtige ${lv<3?'på':'i'} ${navn(lv)}. Fem rigtige klarer ${lv<3?'niveauet':'problemerne'}.`:`<b>Så er ${navn(lv)} klaret.</b> ${t==20?'Du har klaret hele kapitlet!':up!=null?`<button type="button" class="link" id="up">Gå videre til ${navn(up)}</button>`:''}`;
     const u=$('up');if(u)u.onclick=()=>{lv=up;task=null;ny();$('ans').focus()}};
-  const ny=()=>{let t;do{t=pick(ch.tasks[lv])()}while(task&&t.q==task.q);task=t;tries=0;done=false;$('q').textContent=task.q;$('tip').hidden=lv!=3;$('ans').value='';$('unit').textContent=task.unit;$('fb').hidden=true;$('chk').disabled=false;$('hnt').hidden=false;$('nxt').className='btn ghost';$('nxt').textContent='Ny opgave';dots()};
+  const ny=()=>{let t,gi;do{gi=R(0,ch.tasks[lv].length-1);t=ch.tasks[lv][gi]()}while(task&&t.q==task.q);task=t;tries=0;done=false;help=0;trin=foerste(t);$('hnt').textContent='Hint';fi=FILMS[ch.id].findIndex(F=>F.op.includes(lv+'.'+gi));stopFilm();$('tfilm').hidden=true;$('tfilm').innerHTML='';$('tfb').hidden=fi<0;$('tfg').hidden=lv!=3;if(fi>=0){$('tfb').dataset.fi=fi;$('tfb').innerHTML=IC.pl+'Film: '+fnavn(ch.id,fi)}$('q').textContent=task.q;$('q').classList.remove('flip');void $('q').offsetWidth;$('q').classList.add('flip');$('tip').hidden=lv!=3;$('ans').value='';$('unit').textContent=task.unit;$('fb').hidden=true;$('chk').disabled=false;$('hnt').hidden=false;$('nxt').className='btn ghost';$('nxt').textContent='Ny opgave';dots()};
   const slut=()=>{done=true;$('chk').disabled=true;$('hnt').hidden=true;$('nxt').className='btn';$('nxt').textContent='Næste opgave';$('nxt').focus()};
   $('lvs').innerHTML=LV.map((t,i)=>`<button type="button" data-l="${i}">${t}<span class="pp"></span></button>`).join('');
   $('lvs').querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=+b.dataset.l;task=null;ny()});
   $('pf').addEventListener('submit',e=>{e.preventDefault();if(done)return;const v=parse($('ans').value);
     if(isNaN(v))return fb('hint','Skriv svaret som et tal, fx 12 eller 3,5.');
-    if(Math.abs(v-task.a)<=(task.tol||0)+0.011){slut();streak++;const p=prog[ch.id]=prog[ch.id]||[0,0,0,0];p[lv]=Math.min(5,(p[lv]||0)+1);save();dots();fb('ok',`<b>Rigtigt.${streak>=3?` ${streak} i træk!`:''}</b> ${task.sol}`)}
-    else{tries++;streak=0;if(tries==1)fb('no','Ikke helt endnu. Kig din udregning igennem, og prøv igen.');else if(tries==2)fb('hint',`<b>Hint:</b> ${task.hint}`);else{slut();fb('no',`<b>Svaret er ${(f(task.a)+' '+task.unit).trim()}.</b> ${task.sol} Tag en ny af samme slags, så sidder den.`)}}});
-  $('hnt').onclick=()=>fb('hint',`<b>Hint:</b> ${task.hint}`);$('nxt').onclick=()=>{ny();$('ans').focus()};ny()}
+    if(Math.abs(v-task.a)<=(task.tol||0)+0.011){slut();streak++;const p=prog[ch.id]=prog[ch.id]||[0,0,0,0],før=p[lv]||0;p[lv]=Math.min(5,før+1);save();dots(p[lv]>før);fb('ok',`<b>Rigtigt.${streak>=3?` ${streak} i træk!`:''}</b> ${task.sol}`)}
+    else{tries++;streak=0;if(tries==1)fb('no',diag(v,task.a)+(help?'<br>'+hh():''));else if(!hjaelp('Ikke endnu. Her er lidt hjælp.<br>')){slut();fb('no',`<b>Svaret er ${(f(task.a)+' '+task.unit).trim()}.</b> ${task.sol} Se filmen eller huskesedlen, og tag så en ny af samme slags.`)}}});
+  $('hnt').onclick=()=>hjaelp();$('nxt').onclick=()=>{ny();$('ans').focus()};
+  ny()}
+
+/* ---------- Dagens opgave: samme opgave for alle den samme dag ---------- */
+const seeded=(seed,fn)=>{let a=seed>>>0;const o=rnd;rnd=()=>{a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};try{return fn()}finally{rnd=o}};
+const dkey=d=>d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+const daily=()=>seeded(dkey(new Date())*7919+13,()=>{const c=CH[R(0,7)],t=pick(c.tasks[R(0,1)])();return {c,t}});
+let day={};try{day=JSON.parse(localStorage.getItem('mv6day')||'{}')||{}}catch(e){}
+function dagens(){const D=daily(),i=dkey(new Date()),ig=dkey(new Date(Date.now()-864e5));let tries=0;
+  const fb=(s,h)=>{const e=$('dfb');e.hidden=false;e.dataset.s=s;e.innerHTML=h};
+  const gem=o=>{day=o;try{localStorage.setItem('mv6day',JSON.stringify(day))}catch(e){}vis()};
+  const vis=()=>{const færdig=day.d==i;$('df').hidden=færdig;
+    if(færdig)fb(day.ok?'ok':'no',day.ok?`<b>Klaret i dag.</b> ${D.t.sol}`:`<b>Svaret var ${(f(D.t.a)+' '+D.t.unit).trim()}.</b> ${D.t.sol}`);
+    $('dst').textContent=færdig?(day.ok&&day.s>1?`Du har klaret dagens opgave ${day.s} dage i træk. Der kommer en ny i morgen.`:'Der kommer en ny opgave i morgen.'):'Alle får den samme opgave i dag.'};
+  $('dq').textContent=D.t.q;$('dunit').textContent=D.t.unit;
+  $('df').addEventListener('submit',e=>{e.preventDefault();const v=parse($('dans').value);
+    if(isNaN(v))return fb('hint','Skriv svaret som et tal, fx 12 eller 3,5.');
+    if(Math.abs(v-D.t.a)<=(D.t.tol||0)+0.011)gem({d:i,ok:true,s:day.d==ig&&day.ok?(day.s||1)+1:1});
+    else{tries++;if(tries==1)fb('no','Ikke helt endnu. Prøv igen.');else if(tries==2)fb('hint',`<b>Hint:</b> ${D.t.hint}`);else gem({d:i,ok:false,s:0})}});
+  vis();return D}
 
 /* ---------- Sider ---------- */
 const HOW={tal:'Træk i de to skydere, og se, hvor du lander på tallinjen.',cirkler:'Træk i skyderen, og se, hvad der sker med omkredsen.',handel:'Træk i skyderne, og find ud af, hvad procenten svarer til i kroner.',figurer:'Træk i skyderne, og hold øje med arealet og vinklerne.',data:'Tryk på knapperne for at slå med terningerne.',algebra:'Tryk på knapperne, til x står alene på vægten.',rum:'Træk i skyderne, og byg kassen lag for lag.',monstre:'Vælg et mønster, og træk i skyderen for at se figuren vokse.'};
-const STEPS=[['s-prov','Prøv selv'],['s-ord','Ord, du skal kende'],['s-eks','Eksempel'],['s-fejl','Find fejlen'],['s-opg','Opgaver'],['s-fork','Forklar til din makker'],['s-kan','Kan du nu?']];
-let kan={},spy;try{kan=JSON.parse(localStorage.getItem('mv6kan')||'{}')||{}}catch(e){}
+const STEPS=[['s-film','Se filmen'],['s-prov','Prøv selv'],['s-teori','Teori og regler'],['s-ord','Ord, du skal kende'],['s-eks','Eksempel'],['s-fejl','Find fejlen'],['s-opg','Opgaver'],['s-fart','Hurtigregning'],['s-fork','Forklar til din makker'],['s-kan','Kan du nu?']];
+const TEORI={
+ tal:[['Regnehierarkiet','parentes, potens, gange og dividere, plus og minus','Når der er flere regnearter i samme stykke, regner du i en bestemt rækkefølge. Er der kun plus og minus tilbage, regner du fra venstre mod højre.','5 + 3 · 4 = 5 + 12 = 17'],
+  ['Negative tal','','Tal under nul er negative. På tallinjen står de til venstre for 0. Når du lægger til, hopper du mod højre. Når du trækker fra, hopper du mod venstre.','2 − 6 = −4 og −3 + 5 = 2'],
+  ['Potenser','2³ = 2 · 2 · 2','En potens er gentagen gange. Det lille tal fortæller, hvor mange gange tallet skal ganges med sig selv.','5² = 5 · 5 = 25'],
+  ['Forhold','1:4','Et forhold sammenligner to mængder. 1:4 betyder 1 del af det ene for hver 4 dele af det andet. Ganger du begge tal med det samme, er forholdet det samme.','1:4 = 2:8 = 3:12']],
+ cirkler:[['Radius og diameter','d = 2 · r','Radius går fra centrum ud til kanten. Diameteren går tværs over cirklen gennem centrum. Diameteren er altid dobbelt så lang som radius.','r = 4 cm giver d = 8 cm'],
+  ['Omkreds','O = π · d','Omkredsen er lidt mere end 3 gange diameteren. Det præcise tal hedder π og er cirka 3,14.','d = 10 cm giver O ≈ 3,14 · 10 = 31,4 cm'],
+  ['Areal','A = π · r · r','Arealet finder du ved at gange π med radius to gange. Husk at bruge radius og ikke diameter.','r = 5 cm giver A ≈ 3,14 · 5 · 5 = 78,5 cm²'],
+  ['Fra omkreds til diameter','d = O : π','Kender du omkredsen, finder du diameteren ved at dividere med π.','O = 31,4 cm giver d ≈ 31,4 : 3,14 = 10 cm']],
+ handel:[['Procent','1 % = 1/100','Procent betyder hundrededele. Det hele er altid 100 %.','25 % er 25 ud af 100'],
+  ['Find en procentdel','','Find først 10 % ved at dividere med 10, eller 1 % ved at dividere med 100. Byg så det op, du skal bruge.','15 % af 200 kr.: 10 % er 20 kr., og 5 % er 10 kr. I alt 30 kr.'],
+  ['Brøk, decimaltal og procent','1/4 = 0,25 = 25 %','Det samme tal kan skrives på tre måder. Forlæng brøken, så nævneren bliver 100, så har du procenten.','1/2 = 50 %, 1/5 = 20 %, 1/10 = 10 %'],
+  ['Rabat og moms','','Rabat trækkes fra prisen. Moms lægges oven i prisen. I Danmark er momsen 25 %.','400 kr. med 25 % rabat: 400 − 100 = 300 kr.']],
+ figurer:[['Rektangel','A = l · b','Arealet er længde gange bredde.','6 cm · 4 cm = 24 cm²'],
+  ['Trekant','A = ½ · g · h','En trekant fylder halvdelen af rektanglet uden om. Højden skal stå vinkelret på grundlinjen.','g = 8 cm og h = 5 cm giver ½ · 8 · 5 = 20 cm²'],
+  ['Parallelogram og trapez','A = g · h','Et parallelogram kan klippes om til et rektangel. For et trapez lægger du de to parallelle sider sammen, halverer og ganger med højden: A = ½ · (a + b) · h.','Trapez med a = 4, b = 6 og h = 3: ½ · 10 · 3 = 15 cm²'],
+  ['Vinkelsum','180° i en trekant','Vinklerne i en trekant giver tilsammen 180°. I en firkant giver de 360°, fordi en firkant kan deles i to trekanter.','To vinkler er 60° og 70°. Den tredje er 180 − 60 − 70 = 50°.']],
+ data:[['Middeltal','sum : antal','Læg alle tallene sammen, og divider med, hvor mange tal der er. Middeltal kaldes også gennemsnit.','2, 4 og 9: (2 + 4 + 9) : 3 = 5'],
+  ['Median','det midterste tal','Stil tallene i rækkefølge. Medianen er det tal, der står i midten. Er der to tal i midten, ligger medianen midt imellem dem.','3, 5, 8, 10: medianen er 6,5'],
+  ['Typetal og variationsbredde','','Typetallet er det tal, der er flest af. Variationsbredden er det største tal minus det mindste.','2, 3, 3, 9: typetallet er 3, og variationsbredden er 9 − 2 = 7'],
+  ['Sandsynlighed','gunstige : mulige','Tæl, hvor mange udfald der giver det, du håber på. Divider med, hvor mange udfald der er i alt.','En terning har 6 sider. Sandsynligheden for en firer er 1/6.']],
+ algebra:[['Variabel','3a = 3 · a','Et bogstav står for et tal, vi ikke kender endnu. Står der et tal foran bogstavet, skal de ganges.','Hvis a = 4, er 3a = 12'],
+  ['Sæt et tal ind','','Når du kender bogstavets værdi, sætter du tallet ind og regner som normalt. Husk regnehierarkiet.','a = 4 giver 3a + 2 = 3 · 4 + 2 = 14'],
+  ['Reducere','2a + 3a = 5a','Led med samme bogstav kan lægges sammen. Et tal uden bogstav er en anden slags led.','3a + 4 kan ikke blive kortere'],
+  ['Ligninger','gør det samme på begge sider','En ligning er en vægt i balance. Fjern lige meget på begge sider, til x står alene. Tjek til sidst ved at sætte løsningen ind.','2x + 3 = 11 giver 2x = 8, og så er x = 4']],
+ rum:[['Rumfang','V = l · b · h','Rumfang fortæller, hvor meget der kan være i en figur. Find grundfladen, og gang med højden.','4 · 3 · 2 = 24 cm³'],
+  ['Overfladeareal','O = 2 · (l · b + l · h + b · h)','En kasse har 6 flader, som er ens to og to. Find de tre forskellige flader, læg dem sammen, og gang med 2.','4, 3 og 2 cm: 2 · (12 + 8 + 6) = 52 cm²'],
+  ['Liter','1 liter = 1000 cm³','En terning på 10 cm på hver led rummer præcis 1 liter. Divider antal cm³ med 1000 for at få liter.','24 000 cm³ = 24 liter'],
+  ['Målestok','1:100','1 cm på tegningen er 100 cm i virkeligheden. Gang for at finde virkeligheden. Divider for at finde målet på tegningen.','3 cm på tegningen er 300 cm = 3 m']],
+ monstre:[['Talfølger','','En talfølge er tal, der følger en regel. Find først springet mellem tallene.','4, 7, 10, 13: springet er +3'],
+  ['Figurfølger','','Se efter, hvad der er ens i alle figurerne, og hvad der kommer til, når figuren vokser.','Et hjørne, der altid er der, og to arme, der vokser'],
+  ['Regel med n','antal = spring · n + start','Springet fortæller, hvad n skal ganges med. Tjek så med figur 1, hvad der skal lægges til.','5, 8, 11: springet er 3, og 3 · 1 + 2 = 5. Reglen er 3 · n + 2.'],
+  ['Baglæns','','Kender du antallet, finder du figurnummeret ved at regne baglæns: træk først fra, og divider så.','3 · n + 2 = 62 giver 3 · n = 60 og n = 20']]
+};
+const TJEK={tal:[['Hvad er 2 + 3 · 4?','14'],['Hvad er 1 − 5?','−4'],['Hvad er 3²?','9'],['Forholdet er 1:3. Du har 2 dele af det første. Hvor mange dele skal du have af det andet?','6 dele']],
+ cirkler:[['Radius er 6 cm. Hvad er diameteren?','12 cm'],['Diameteren er 2 cm. Hvad er omkredsen cirka?','Cirka 6,28 cm'],['Radius er 1 cm. Hvad er arealet cirka?','Cirka 3,14 cm²'],['Omkredsen er 6,28 cm. Hvad er diameteren?','2 cm']],
+ handel:[['Hvor mange procent er halvdelen af noget?','50 %'],['Hvad er 10 % af 150 kr.?','15 kr.'],['Skriv 3/4 som procent.','75 %'],['En vare til 200 kr. får 10 % rabat. Hvad koster den så?','180 kr.']],
+ figurer:[['Et rektangel er 5 cm langt og 3 cm bredt. Hvad er arealet?','15 cm²'],['En trekant har g = 6 cm og h = 4 cm. Hvad er arealet?','12 cm²'],['Et parallelogram har g = 7 cm og h = 2 cm. Hvad er arealet?','14 cm²'],['To vinkler i en trekant er 90° og 30°. Hvor stor er den tredje?','60°']],
+ data:[['Hvad er middeltallet af 1, 2 og 6?','3'],['Hvad er medianen af 7, 1 og 4?','4'],['Hvad er typetallet i 5, 2, 5, 8?','5'],['Du slår med en terning. Hvad er sandsynligheden for et lige tal?','3/6, altså 1/2']],
+ algebra:[['Hvad er 5a, når a = 2?','10'],['a = 3. Hvad er 2a + 1?','7'],['Reducer 4a + a.','5a'],['Løs ligningen x + 5 = 12.','x = 7']],
+ rum:[['En kasse er 2 cm, 3 cm og 5 cm på de tre led. Hvad er rumfanget?','30 cm³'],['En terning har siden 1 cm. Hvad er overfladearealet?','6 cm²'],['Hvor mange liter er 3000 cm³?','3 liter'],['Målestokken er 1:100. Hvor langt er 2 cm på tegningen i virkeligheden?','200 cm, altså 2 m']],
+ monstre:[['Hvad er det næste tal i 3, 6, 9, 12?','15'],['Figur 1 har 2 brikker, figur 2 har 4, og figur 3 har 6. Hvor mange har figur 4?','8'],['Reglen er 2 · n + 1. Hvor mange brikker har figur 5?','11'],['Reglen er 2 · n + 1. Hvilken figur har 21 brikker?','Figur 10']]};
+const GRP={0:'Forstå',4:'Øv',8:'Afslut'};
+const FAST=60;let stopFilm=()=>{},stopFast=()=>{};
+const kort=t=>t.split(',')[0].replace(' til din makker','');
+const ls=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let seen=ls('mv6seen',{}),sted=ls('mv6step',{}),kan=ls('mv6kan',{}),view=ls('mv6view',{sort:'bog',vis:'gitter'}),mode=ls('mv6mode','trin'),spy,cur=null,heroEl=null;
+const rolig=()=>{try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){return true}};
+const vt=fn=>{if(document.startViewTransition&&!rolig()){try{const t=document.startViewTransition(fn),n=()=>{};t.ready.catch(n);t.updateCallbackDone.catch(n);t.finished.catch(n);return t}catch(e){}}fn();return null};
+const seg=(id,opts,val)=>`<span class="seg" id="${id}">${opts.map(([v,t])=>`<button type="button" data-v="${v}" aria-pressed="${v==val}">${t}</button>`).join('')}</span>`;
 function nav(c){$('nav').innerHTML=c?`<a href="#hjem">${IC.l}Alle kapitler</a>`:'6. klasse'}
-function home(){nav();const app=$('app');app.style.cssText='';const all=CH.reduce((a,c)=>a+total(c.id),0);let last;try{last=CH.find(c=>c.id==localStorage.getItem('mv6last'))}catch(e){}
-const go=last&&total(last.id)<20?last:CH.find(c=>total(c.id)<20);
+function shelf(fra){const el=$('shelf'),l=view.sort=='mindst'?[...CH].sort((a,b)=>total(a.id)-total(b.id)||a.n-b.n):CH;el.className='shelf'+(view.vis=='liste'?' list':'');
+  el.innerHTML=l.map(c=>{const t=total(c.id);return `<li style="view-transition-name:c-${c.id}"><a class="cover" data-ch style="${hue(c.id)}" href="#${c.id}"><span class="art"${fra==c.id?' style="view-transition-name:hero"':''}><span class="no">${c.n}</span>${ART[c.id]}</span><b>${c.t}</b><span class="d">${c.d}</span><span class="prog">${meter(c.id)}<span class="cnt${t==20?' all':''}">${t==20?IC.ok+'klaret':t+' af 20'}</span></span></a></li>`}).join('')}
+function home(fra){nav();const app=$('app');app.style.cssText='';const all=CH.reduce((a,c)=>a+total(c.id),0),t=new Date().getHours(),hils=t<10?'Godmorgen':t<18?'Goddag':'Godaften';let last=CH.find(c=>c.id==ls('mv6last',null));
+const go=last&&total(last.id)<20?last:all?CH.find(c=>total(c.id)<20):null,nl=go?[0,1,2,3].find(l=>got(go.id,l)<5):0,D0=daily();
 app.innerHTML=`
 <div class="hero"><h1>Matematik&shy;værksted</h1>
-<div class="intro"><p class="lead">${all?'Godt i gang. Fortsæt, hvor du slap, eller vælg et andet kapitel.':'Her øver du det, vi arbejder med i matematik i 6. klasse. Vælg et kapitel.'}</p>
-${all?`<div class="stat"><span class="num">${all}</span><span class="lbl">af 160 opgaver<br>${all==160?'Alle er klaret!':'er klaret'}</span>${go?`<a class="btn" href="#${go.id}">Fortsæt med ${go.t}${IC.r}</a>`:''}</div>`:''}</div></div>
-<section class="block"><h2>Kapitler</h2>
-<ol class="shelf">${CH.map(c=>{const t=total(c.id);return `<li><a class="cover" style="${hue(c.id)}" href="#${c.id}"><span class="art"><span class="no">${c.n}</span>${ART[c.id]}</span><b>${c.t}</b><span class="d">${c.d}</span><span class="prog">${meter(c.id)}<span class="cnt${t==20?' all':''}">${t==20?IC.ok+'klaret':t+' af 20'}</span></span></a></li>`}).join('')}</ol></section>
+<p class="lead">${hils}. ${all?`Du har klaret <b>${all}</b> af 160 opgaver${all==160?'. Det er dem alle sammen!':'.'}`:'Her øver du det, vi arbejder med i matematik i 6. klasse.'}</p></div>
+<div class="duo">${go?`<a class="cont" data-ch style="${hue(go.id)}" href="#${go.id}"><span class="ct"><span class="lbl">Fortsæt her${IC.r}</span><b>${go.t}</b><span>Næste: ${nl<3?'niveau '+(nl+1):'problemerne'}, ${got(go.id,nl)} af 5</span>${meter(go.id)}</span><span class="art">${ART[go.id]}</span></a>`:''}
+<div class="daily" style="${hue(D0.c.id)}"><p class="lbl"><span>Dagens opgave</span><span>${new Date().toLocaleDateString('da-DK',{weekday:'long',day:'numeric',month:'long'})}</span></p><p class="dq" id="dq"></p><form class="row" id="df" autocomplete="off"><label for="dans">Svar</label><input class="ans" id="dans" inputmode="text" autocomplete="off"><span id="dunit"></span><button class="btn" id="dchk">Tjek svar</button></form><p class="fb" id="dfb" role="status" hidden></p><p class="small" id="dst"></p><p class="small">Fra kapitlet <a href="#${D0.c.id}">${D0.c.t}</a>.</p></div></div>
+<section class="block"><div class="bh"><h2>Kapitler</h2><div class="opts">${seg('o-sort',[['bog','Bogens rækkefølge'],['mindst','Mindst klaret først']],view.sort)}${seg('o-vis',[['gitter','Gitter'],['liste','Liste']],view.vis)}</div></div>
+<ol id="shelf"></ol></section>
 <section class="block"><h2>Sådan gør du</h2>
-<ol class="how"><li>Prøv figuren, og læs eksemplet.</li><li>Regn opgaven i dit hæfte.</li><li>Skriv svaret, og tryk på Tjek svar. Brug et hint, hvis du sidder fast.</li><li>Fem rigtige klarer et niveau. Fire niveauer, og kapitlet er klaret.</li></ol></section>
-<p class="small foot">Der kommer nye tal i hver opgave, så du kan altid prøve igen. Siden husker, hvad du har klaret, men kun på den computer, du sidder ved. Kapitlerne følger bogen, KonteXt+ 6.</p>`}
-function chapter(c){nav(c);try{localStorage.setItem('mv6last',c.id)}catch(e){}const i=c.n-1,pv=CH[i-1],nx=CH[i+1],app=$('app'),k=kan[c.id]||[];app.style.cssText=hue(c.id);
-const H=n=>`<h2><span class="step">${n}</span>${STEPS[n-1][1]}</h2>`;
+<ol class="how"><li>Forstå: se filmen, prøv figuren, og læs reglerne.</li><li>Øv: følg eksemplet, og regn opgaverne i dit hæfte.</li><li>Sidder du fast? Brug hint, film og huskeseddel.</li><li>Fem rigtige klarer et niveau. Fire niveauer, og kapitlet er klaret.</li></ol></section>
+<p class="small foot">Der kommer nye tal i hver opgave, så du kan altid prøve igen. Siden husker, hvad du har klaret, men kun på den computer, du sidder ved. Kapitlerne følger bogen, KonteXt+ 6.</p>`;
+  shelf(fra);dagens();
+  [['o-sort','sort'],['o-vis','vis']].forEach(([id,k])=>$(id).querySelectorAll('button').forEach(b=>b.onclick=()=>{if(view[k]==b.dataset.v)return;view[k]=b.dataset.v;put('mv6view',view);$(id).querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x==b));vt(()=>shelf())}))}
+/* ---------- Små film: tegnes direkte på siden ---------- */
+const ez=t=>{t=t<0?0:t>1?1:t;return t*t*(3-2*t)},sg=(t,a,b)=>ez((t-a)/(b-a)),lp=(a,b,t)=>a+(b-a)*t,r1=v=>Math.round(v*10)/10,o2=v=>(v<0?0:v>1?1:v).toFixed(2);
+const LN='fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"';
+const ft=(x,y,z,txt,o,st)=>`<text x="${r1(x)}" y="${r1(y)}" font-size="${r1(z)}" text-anchor="middle"${o!=null?` opacity="${o2(o)}"`:''}${st?` style="${st}"`:''}>${txt}</text>`;
+const BASE={
+ tal:{cap:['Start på 3.','Hop 7 til venstre.','Du lander på −4. Altså er 3 − 7 = −4.'],dur:[3,6,4],draw(i,t){
+  const x=v=>240+v*26,y=178;let g=`<path ${LN} stroke-width="4" d="M40 ${y}H440"/>`;
+  for(let v=-7;v<=7;v++)g+=`<path ${LN} stroke-width="${v?3:4}" d="M${x(v)} ${y-(v?7:12)}v${v?14:24}"/>`+ft(x(v),y+36,v?14:18,f(v),v?.75:1);
+  const p=i==0?0:i==1?t*7:7,k=i==1?Math.min(6,Math.floor(p)):p,fr=i==1?ez(p-k):0;
+  for(let h=0;h<k;h++)g+=`<path ${LN} stroke-width="3" opacity=".55" d="M${x(3-h)} ${y-14}Q${x(2.5-h)} ${y-46} ${x(2-h)} ${y-14}"/>`;
+  const dx=x(3-k-fr),dy=y-14-Math.sin(Math.PI*fr)*24;
+  if(i==2){const q=(t*2)%1;g+=`<circle cx="${r1(dx)}" cy="${dy}" r="${r1(10+16*q)}" ${LN} stroke-width="3" opacity="${o2(1-q)}"/>`+ft(240,70,42,'3 − 7 = −4',sg(t,0,.35))}
+  if(i==1)g+=ft(240,64,28,(k+(fr>.5?1:0))+' hop');
+  if(i==0)g+=ft(240,64,28,'Start: 3',sg(t,.3,.7));
+  return g+`<circle cx="${r1(dx)}" cy="${r1(dy)}" r="${r1(i==0?10*sg(t,0,.4):10)}" fill="currentColor"/>`}},
+ cirkler:{cap:['En cirkel med diameteren d.','Rul cirklen én omgang. Sporet er lige så langt som omkredsen.','Læg diametre langs sporet. Der er plads til 3 og lidt mere.','Det tal hedder π. Omkredsen er π gange diameteren.'],dur:[3,6,6,4],draw(i,t){
+  const r=40,gy=188,x0=78,O=2*Math.PI*r,e=i==0?0:i==1?ez(t):1,cx=x0+O*e,cy=gy-r,a=e*2*Math.PI,u=i==2?t:i==3?1:0,co=i==0?sg(t,0,.5):i==2?lp(1,.35,sg(t,0,.25)):i==3?.35:1;
+  let g=`<path ${LN} stroke-width="3" opacity=".5" d="M30 ${gy}H450"/>`;
+  if(e>0)g+=`<path ${LN} stroke-width="7" d="M${x0} ${gy}H${r1(cx)}"/>`;
+  g+=`<g opacity="${o2(co)}"><circle cx="${r1(cx)}" cy="${cy}" r="${r}" fill="#000" fill-opacity=".15" stroke="currentColor" stroke-width="5"/><path ${LN} stroke-width="5" d="M${r1(cx-r*Math.cos(a))} ${r1(cy-r*Math.sin(a))}L${r1(cx+r*Math.cos(a))} ${r1(cy+r*Math.sin(a))}"/></g>`;
+  if(i==0)g+=ft(cx,cy-r-14,24,'d',sg(t,.4,.8));
+  for(let k=0;k<3;k++){const q=sg(u,k*.2,k*.2+.2);if(q)g+=`<rect x="${x0+2*r*k+2}" y="${gy+16}" width="${2*r-4}" height="14" fill="currentColor" opacity="${o2(q)}"/>`+ft(x0+2*r*k+r,gy+54,19,'d',q)}
+  const q=sg(u,.68,.92);if(q)g+=`<rect x="${x0+6*r+1}" y="${gy+16}" width="${r1(O-6*r-1)}" height="14" style="fill:var(--c);stroke:currentColor;stroke-width:2" opacity="${o2(q)}"/>`+ft(x0+O+46,gy+29,15,'lidt mere',q);
+  if(i==3)g+=ft(240,58,40,'O = π · d',sg(t,0,.4))+ft(240,92,22,'π ≈ 3,14',sg(t,.3,.7));
+  return g}},
+ handel:{cap:['Hele prisen er 100 %. Det er 400 kr.','25 % er en fjerdedel. Del prisen i 4 lige store dele.','400 : 4 = 100. Hver del er 100 kr.','Træk rabatten fra: 400 − 100 = 300 kr.'],dur:[3,4,4,5],draw(i,t){
+  const x0=60,w=360,y=92,h=56,pw=w/4,grow=i==0?sg(t,0,.6):1,split=i==0?0:i==1?sg(t,0,.5):1,lab=i<2?0:i==2?sg(t,0,.5):1,gone=i==3?sg(t,0,.5):0;let g='';
+  for(let k=0;k<4;k++){const gap=split*3,px=x0+k*pw+gap,pv=Math.min(pw-2*gap,w*grow-k*pw-gap);if(pv<=0)continue;
+   g+=`<g transform="translate(0 ${r1(k==0?gone*74:0)})" opacity="${o2(k==0?1-gone*.4:1)}"><rect x="${r1(px)}" y="${y}" width="${r1(pv)}" height="${h}" fill="currentColor"/>${lab?ft(x0+k*pw+pw/2,y+h/2+7,20,'100 kr.',lab,'fill:var(--c)'):''}</g>`;
+   if(split)g+=ft(x0+k*pw+pw/2,y-14,17,'25 %',split*(k==0?1-gone:1))}
+  if(i==0)g+=ft(x0+w/2,y-16,22,'100 %',sg(t,.4,.8))+ft(x0+w/2,y+h+40,28,'400 kr.',sg(t,.5,.9));
+  if(i==1)g+=ft(x0+w/2,y+h+40,28,'400 kr.',1);
+  if(i==2)g+=ft(x0+w/2,y+h+40,28,'400 : 4 = 100',sg(t,0,.4));
+  if(i==3){const q=sg(t,.45,.85);g+=`<path ${LN} stroke-width="3" opacity="${o2(q)}" d="M${x0+pw+3} ${y+h+12}v9H${x0+w-3}v-9"/>`+ft(x0+2.5*pw,y+h+58,30,'300 kr.',q)+ft(x0+pw/2,y+h+74+26,17,'rabat',gone)}
+  return g}},
+ figurer:{cap:['En trekant med grundlinjen 8 cm og højden 5 cm.','Tegn et rektangel uden om. Det er 8 · 5 = 40 cm².','Drej de to stykker udenfor. De dækker trekanten præcist.','Trekanten er halvdelen af rektanglet: 40 : 2 = 20 cm².'],dur:[3,4,7,5],draw(i,t){
+  const rp=i==0?0:i==1?sg(t,0,.6):1,p1=i<2?0:i==2?sg(t,.15,.5):1,p2=i<2?0:i==2?sg(t,.55,.9):1,sh=i<2?0:i==2?sg(t,0,.15):1;
+  let g=`<path d="M120 215H360L210 65Z" fill="currentColor" opacity="${o2(i==0?sg(t,0,.5):1)}"/>`+ft(240,246,18,'8 cm',i==0?sg(t,.4,.8):1);
+  if(rp)g+=`<rect x="120" y="65" width="240" height="150" ${LN} stroke-width="4" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${r1(100-100*rp)}"/><path ${LN} stroke-width="3" stroke-dasharray="2 8" opacity="${o2(rp)}" d="M210 65V215"/>`+ft(392,146,18,'5 cm',i==1?sg(t,.3,.7):1);
+  if(sh)g+=`<path d="M120 215V65H210Z" fill="#000" opacity="${o2(sh*.3)}" transform="rotate(${r1(180*p1)} 165 140)"/><path d="M360 215V65H210Z" fill="#000" opacity="${o2(sh*.3)}" transform="rotate(${r1(-180*p2)} 285 140)"/>`;
+  if(i==3)g+=ft(240,44,28,'A = ½ · 8 · 5 = 20 cm²',sg(t,0,.4));
+  return g}},
+ data:{cap:['Fem tal: 4, 9, 2, 7 og 3.','Stil tallene i rækkefølge.','Det midterste tal er medianen: 4.','Jævn søjlerne ud, så de bliver lige høje. Middeltallet er 25 : 5 = 5.'],dur:[3,5,4,6],draw(i,t){
+  const v=[4,9,2,7,3],slot=[2,4,0,3,1],X=k=>86+66*k,by=226,u=16,ev=i==3?sg(t,.1,.7):0;let g=`<path ${LN} stroke-width="3" opacity=".5" d="M60 ${by}H420"/>`;
+  v.forEach((n,k)=>{const mv=i==0?0:i==1?sg(t,k*.08,k*.08+.6):1,x=lp(X(k),X(slot[k]),mv),gr=i==0?sg(t,k*.1,k*.1+.5):1,h=lp(n,5,ev)*u*gr,op=i==2&&n!=4?lp(1,.4,sg(t,0,.3)):1;
+   g+=`<g opacity="${o2(op)}"><rect x="${r1(x)}" y="${r1(by-h)}" width="44" height="${r1(h)}" fill="currentColor"/>${ft(x+22,by-h-10,20,ev>.97?'5':f(n),gr)}</g>`});
+  if(i==2)g+=ft(X(2)+22,by-4*u-42,20,'median',sg(t,.2,.6));
+  if(i==3)g+=`<path ${LN} stroke-width="3" stroke-dasharray="2 9" opacity="${o2(ev)}" d="M70 ${by-5*u}H410"/>`+ft(240,46,28,'25 : 5 = 5',sg(t,.65,1));
+  return g}},
+ algebra:{cap:['2x + 3 = 11. Vægten er i balance.','Fjern 3 fra begge sider. Vægten er stadig i balance.','Der er to x’er. Del begge sider i to lige store dele.','Én x vejer det samme som 4. Altså er x = 4.'],dur:[3,5,5,4],draw(i,t){
+  const by=186,ap=i==0?sg(t,0,.5):1,rm=i==1?sg(t,.15,.7):i>1?1:0,sp=i==2?sg(t,.1,.7):i>2?1:0,hl=i==3?sg(t,0,.4):0,dot=(x,y,o)=>`<circle cx="${r1(x)}" cy="${r1(y)}" r="9" fill="currentColor" opacity="${o2(o)}"/>`;
+  let g=`<path ${LN} stroke-width="6" d="M50 ${by}H430"/><path d="M240 ${by+4}L214 ${by+48}H266Z" fill="currentColor"/>`;
+  [0,1].forEach(k=>{const x=lp(82+50*k,k?152:70,sp);g+=`<g opacity="${o2(ap*(k?1-hl*.6:1))}"><rect x="${r1(x)}" y="${by-47}" width="42" height="42" rx="3" fill="currentColor"/>${ft(x+21,by-17,24,'x',1,'fill:var(--c)')}</g>`});
+  [[190,14],[212,14],[201,34]].forEach(q=>{g+=dot(q[0],by-q[1]-rm*40,ap*(1-rm))});
+  for(let k=0;k<11;k++){const row=k<6?0:1,c=k<6?k:k-6;let x=268+22*c,y=by-14-22*row,o=ap;
+   if(k>=8){y-=rm*40;o*=1-rm}else if(k>=2&&k<6){x=lp(x,350+22*((k-2)%2),sp);y=lp(y,by-14-22*(k>=4?1:0),sp);o*=1-hl*.6}
+   g+=dot(x,y,o)}
+  g+=i==0?ft(240,66,40,'2x + 3 = 11',ap):i==1?ft(240,66,40,'2x + 3 = 11',1-sg(t,.55,.75))+ft(240,66,40,'2x = 8',sg(t,.75,.95)):i==2?ft(240,66,40,'2x = 8',1):ft(240,66,40,'2x = 8',1-hl)+ft(240,66,46,'x = 4',hl);
+  return g}},
+ rum:{cap:['Ét lag: 4 · 3 = 12 terninger.','Læg lagene oven på hinanden. Her er der 3 lag.','3 lag med 12 terninger. Rumfanget er 12 · 3 = 36 cm³.'],dur:[5,6,4],draw(i,t){
+  const u=24,cw=u*.866,ox=205,oy=128,P=(a,b,k,dy)=>r1(ox+(a-b)*cw)+','+r1(oy+(a+b)*u/2-k*u+dy);let g='',lag=1;
+  const cube=(a,b,k,dy,op)=>{const q=(...p)=>p.map(x=>P(x[0],x[1],x[2],dy)).join(' ');return `<g opacity="${o2(op)}" style="stroke:var(--c);stroke-width:1"><polygon style="fill:var(--on)" points="${q([a,b,k+1],[a+1,b,k+1],[a+1,b+1,k+1],[a,b+1,k+1])}"/><polygon style="fill:color-mix(in srgb,var(--on) 62%,var(--c))" points="${q([a,b+1,k],[a+1,b+1,k],[a+1,b+1,k+1],[a,b+1,k+1])}"/><polygon style="fill:color-mix(in srgb,var(--on) 32%,var(--c))" points="${q([a+1,b,k],[a+1,b+1,k],[a+1,b+1,k+1],[a+1,b,k+1])}"/></g>`};
+  const n0=i==0?Math.max(1,Math.ceil(sg(t,0,.85)*12)):12;
+  for(let k=0;k<3;k++){const q=k==0?1:i==0?0:i==1?sg(t,(k-1)*.45+.05,(k-1)*.45+.45):1;if(!q)continue;if(q>.6)lag=k+1;
+   for(let a=0;a<4;a++)for(let b=0;b<3;b++){if(k==0&&a*3+b>=n0)continue;g+=cube(a,b,k,(q-1)*70,q*1.5)}}
+  g+=i==0?ft(400,104,52,n0)+ft(400,130,16,'terninger'):i==1?ft(400,104,52,lag)+ft(400,130,16,'lag'):ft(400,98,34,'36 cm³',sg(t,0,.4))+ft(400,128,18,'12 · 3',sg(t,0,.4));
+  return g}},
+ monstre:{cap:['Figur 1 har 3 brikker.','Hver gang kommer der 2 brikker til.','Hjørnet er der altid. Hver arm har n brikker.','Reglen er 2 · n + 1. Figur 10 har 2 · 10 + 1 = 21 brikker.'],dur:[3,6,5,5],draw(i,t){
+  const cx=110,cy=198,s=26,pt=30,m=i==1&&t<1?2+Math.floor(t*3):0,n=i==0?1:i==1?(m?m-1:4):4,fr=m?sg((t*3)%1,0,.45):0,hl=i<2?0:i==2?sg(t,0,.4):1,ap=i==0?sg(t,0,.4):1;
+  const til=(x,y,k,st)=>`<rect x="${r1(x+s*(1-k)/2)}" y="${r1(y+s*(1-k)/2)}" width="${r1(s*k)}" height="${r1(s*k)}" opacity="${o2(ap)}" style="fill:${st||'currentColor'}"/>`;
+  let g=til(cx,cy,1,hl?`color-mix(in srgb,var(--on) ${Math.round(100-55*hl)}%,var(--c))`:'');
+  for(let j=1;j<=n;j++)g+=til(cx,cy-pt*j,1)+til(cx+pt*j,cy,1);
+  if(m)g+=til(cx,cy-pt*m,fr)+til(cx+pt*m,cy,fr);
+  if(i<3){g+=ft(372,128,68,2*n+1)+ft(372,156,17,'brikker');if(m)g+=ft(372,58,28,'+2',1-Math.abs((t*3)%1-.35)*2.4)}
+  if(hl)g+=ft(cx-20,cy-pt*2.5+s/2+7,22,'n',hl)+ft(cx+pt*2.5+s/2,cy+s+26,22,'n',hl);
+  if(i==2)g+=ft(372,200,22,'n + n + 1',sg(t,.4,.8));
+  if(i==3)g+=ft(366,122,38,'2 · n + 1',sg(t,0,.4))+ft(366,160,18,'Figur 10: 21 brikker',sg(t,.4,.8));
+  return g}}
+};
+const lin=(i,t,L)=>L.map((l,k)=>k>i?'':ft(l[3]||240,l[0],l[1],l[2],k<i?1:sg(t,0,.4))).join('');
+const TONE=['var(--on)','color-mix(in srgb,var(--on) 62%,var(--c))','color-mix(in srgb,var(--on) 32%,var(--c))'];
+const card=(n,titel,t)=>ft(240,86,20,'Kapitel '+n,sg(t,0,.3))+ft(240,162,titel.length>14?40:titel.length>10?52:66,titel,sg(t,.1,.5))+`<path ${LN} stroke-width="6" d="M${r1(240-110*sg(t,.3,.8))} 198H${r1(240+110*sg(t,.3,.8))}"/>`;
+const intro=(n,titel,sub,teaser,op,F)=>({t:'Intro: '+sub,sub,op,cap:[teaser,...F.cap],dur:[3,...F.dur],draw:(i,t)=>i==0?card(n,titel,t):F.draw(i-1,t)});
+const wedge=(x,y,a0,a1,R,op)=>{const q=a=>r1(x+R*Math.cos(a*Math.PI/180))+' '+r1(y-R*Math.sin(a*Math.PI/180));return `<path d="M${r1(x)} ${r1(y)}L${q(a0)}A${R} ${R} 0 0 0 ${q(a1)}Z" fill="currentColor" opacity="${o2(op)}"/>`};
+const FILMS={
+ tal:[intro(1,'Tal på tal','Under nul','Kan man trække 7 fra 3? Ja, hvis man går ned under nul.',['0.1','1.1','1.2','3.0'],BASE.tal),
+ {t:'Hvad regner man først?',op:['0.0','0.2','0.3','1.0','2.2','3.1'],cap:['Hvad giver 4 + 6 · 2?','Gange kommer før plus. Regn 6 · 2 først.','Nu er der kun plus tilbage: 4 + 12 = 16.','Lægger du sammen først, får du 20. Det er forkert.'],dur:[3,4,4,5],draw(i,t){
+  const a=i==1?sg(t,0,.4):i>1?1:0,m=i==2?sg(t,0,.5):i>2?1:0,e=i==2?sg(t,.5,.9):i>2?1:0,w=i==3?sg(t,0,.4):0;
+  let g=`<g transform="translate(0 ${r1(-44*w)})">`+ft(150,132,54,'4')+ft(198,132,54,'+')+ft(290,132,54,'6 · 2',1-m)+`<rect x="226" y="84" width="128" height="66" rx="4" ${LN} stroke-width="3" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${r1(100-100*a)}" opacity="${o2(1-m)}"/>`+ft(lp(290,264,m),lp(206,132,m),lp(44,54,m),'12',a)+ft(366,132,54,'= 16',e)+'</g>';
+  if(w)g+=ft(240,180,28,'4 + 6 = 10 og 10 · 2 = 20',w*.9)+`<path ${LN} stroke-width="4" d="M70 171H${r1(70+340*sg(t,.4,.8))}"/>`+ft(240,226,20,'forkert',sg(t,.6,1));
+  return g}},
+ {t:'Forhold',op:['2.0','2.1','3.2'],cap:['Saft blandes i forholdet 1:4.','For hver del saft skal der 4 dele vand til.','Bruger du 3 dele saft, skal du bruge 3 · 4 = 12 dele vand.'],dur:[4,4,6],draw(i,t){
+  let g=ft(115,50,16,'saft')+ft(238,50,16,'vand');const e=i==2?sg(t,.7,1):0;
+  for(let r=0;r<3;r++){const o=r==0?(i==0?sg(t,0,.4):1):i<2?0:sg(t,.1+.3*(r-1),.4+.3*(r-1));if(!o)continue;
+   g+=`<g opacity="${o2(o)}"><rect x="100" y="${62+44*r}" width="30" height="30" fill="currentColor"/>${[0,1,2,3].map(k=>`<rect x="${166+38*k}" y="${62+44*r}" width="30" height="30" ${LN} stroke-width="3"/>`).join('')}</g>`}
+  if(i==1)g+=ft(115,116,15,'1 del',sg(t,0,.4))+ft(238,116,15,'4 dele',sg(t,.2,.6));
+  g+=ft(400,104,44,'1 : 4',(i==0?sg(t,.3,.7):1)*(1-e))+ft(400,104,44,'3 : 12',e);
+  if(i==2)g+=ft(240,236,18,'3 · 1 = 3 dele saft og 3 · 4 = 12 dele vand',e);
+  return g}}],
+ cirkler:[intro(2,'Cirkler','Omkreds og π','Hvor langt er der hele vejen rundt om en cirkel?',['0.2','1.0','2.1','3.0'],BASE.cirkler),
+ {t:'Arealet af en cirkel',op:['1.1','1.2','2.2','3.1'],cap:['En cirkel med radius r.','Skær cirklen i 12 lige store stykker.','Læg stykkerne ved siden af hinanden, skiftevis op og ned.','Det ligner et rektangel. Højden er r, og længden er en halv omkreds. Arealet er π · r · r.'],dur:[3,3,6,6],draw(i,t){
+  const n=12,r=56,cx=120,cy=148,cw=2*Math.PI*r/n,x0=258,yb=178,s=Math.sin(Math.PI/n)*r,c=Math.cos(Math.PI/n)*r,u=i<2?0:i==2?t:1,ct=i==0?0:i==1?sg(t,0,.6):1,lb=i==3?sg(t,0,.4):0;let g='';
+  for(let k=0;k<n;k++){const q=sg(u,k*.035,k*.035+.55),odd=k%2,d=(((odd?180:0)-k*30)%360+540)%360-180;
+   g+=`<path d="M0 0L${r1(-s)} ${r1(-c)}A${r} ${r} 0 0 1 ${r1(s)} ${r1(-c)}Z" transform="translate(${r1(lp(cx,odd?x0+(k+1)/2*cw:x0+k/2*cw+cw/2,q))} ${r1(lp(cy,odd?yb-c:yb,q))}) rotate(${r1(k*30+d*q)})" fill="currentColor" opacity="${o2(odd?lp(1,.62,ct):1)}" style="stroke:var(--c);stroke-width:${r1(1.6*ct)}"/>`}
+  if(i<2)g+=`<path d="M${cx} ${cy}H${cx+r}" style="fill:none;stroke:var(--c);stroke-width:3"/>`+ft(cx+r/2,cy-8,18,'r',1,'fill:var(--c)');
+  if(lb)g+=ft(x0-16,yb-c/2+6,20,'r',lb)+`<path ${LN} stroke-width="3" opacity="${o2(lb)}" d="M${x0} ${yb+12}v8H${r1(x0+6.5*cw)}v-8"/>`+ft(x0+3.25*cw,yb+46,17,'halv omkreds = π · r',lb)+ft(354,66,34,'A = π · r · r',sg(t,.4,.8));
+  return g}},
+ {t:'Fra omkreds til diameter',op:['2.0','3.2'],cap:['Du kender formlen: O = π · d.','En cirkel har omkredsen 31,4 cm. Sæt tallene ind.','Du skal finde d. Gør det modsatte af at gange: divider med 3,14.','31,4 : 3,14 = 10. Diameteren er 10 cm.'],dur:[3,4,5,4],draw:(i,t)=>lin(i,t,[[64,40,'O = π · d'],[122,36,'31,4 = 3,14 · d'],[180,36,'d = 31,4 : 3,14'],[242,42,'d = 10 cm']])}],
+ handel:[intro(3,'Tal og handel','Rabat i procent','Hvad koster en vare, når der er 25 % rabat?',['0.0','1.0','3.0','3.1'],BASE.handel),
+ {t:'Brøk, decimaltal og procent',op:['0.1','0.2','2.2'],cap:['En fjerdedel af kvadratet er farvet: 1/4.','Kvadratet har 100 små felter. 25 af dem er farvet: 25/100.','25 hundrededele skrives 0,25 som decimaltal.','Procent betyder hundrededele. Altså er det 25 %.'],dur:[4,4,4,4],draw(i,t){
+  let g='';const fl=i==0?Math.ceil(sg(t,.1,.8)*25):25;
+  for(let r=0;r<10;r++)for(let c=0;c<10;c++)g+=`<rect x="${44+17*c}" y="${50+17*r}" width="15" height="15" fill="currentColor" opacity="${r<5&&c<5&&r*5+c<fl?1:.22}"/>`;
+  return g+lin(i,t,[[98,48,'1/4',350],[142,30,'= 25/100',350],[182,30,'= 0,25',350],[230,40,'= 25 %',350]])}},
+ {t:'Byg med 10 %',op:['1.1','2.0','3.2'],cap:['Hvad er 35 % af 200 kr.?','Find først 10 %. Det er en tiendedel: 200 : 10 = 20 kr.','30 % er tre gange så meget: 60 kr. 5 % er halvdelen af 10 %: 10 kr.','Læg sammen: 60 + 10 = 70 kr.'],dur:[3,4,6,4],draw(i,t){
+  const x0=60,pw=36,y=84,h=44;let g=ft(240,54,26,'35 % af 200 kr.');
+  for(let k=0;k<10;k++){const f1=k==0?(i==0?0:i==1?sg(t,0,.4):1):k<3?(i<2?0:i==2?sg(t,.05+.12*(k-1),.3+.12*(k-1)):1):0;g+=`<rect x="${x0+pw*k+2}" y="${y}" width="${pw-4}" height="${h}" fill="currentColor" opacity="${o2(.22+.78*f1)}"/>`}
+  g+=`<rect x="${x0+pw*3+2}" y="${y}" width="${(pw-4)/2}" height="${h}" fill="currentColor" opacity="${o2(i<2?0:i==2?sg(t,.5,.75):1)}"/>`;
+  if(i==1)g+=ft(x0+pw/2,y+h+26,17,'20 kr.',sg(t,.3,.7))+ft(240,y+h+74,26,'200 : 10 = 20',sg(t,.3,.7));
+  if(i>=2){const a=i==2?sg(t,.3,.55):1,b=i==2?sg(t,.7,.95):1;g+=`<path ${LN} stroke-width="3" opacity="${o2(a)}" d="M${x0+2} ${y+h+8}v7H${x0+3*pw-2}v-7"/>`+ft(x0+1.5*pw,y+h+38,17,'30 % = 60 kr.',a)+`<path ${LN} stroke-width="3" opacity="${o2(b)}" d="M${x0+3*pw+2} ${y+h+8}v7h${(pw-4)/2}v-7"/>`+ft(x0+3.25*pw+62,y+h+62,17,'5 % = 10 kr.',b)}
+  if(i==3)g+=ft(240,238,34,'60 + 10 = 70 kr.',sg(t,0,.4));
+  return g}}],
+ figurer:[intro(4,'Kantede figurer','Trekantens areal','Hvor meget fylder en trekant?',['0.1','2.2','3.1'],BASE.figurer),
+ {t:'Vinkelsum',op:['0.2','1.2','2.1'],cap:['En trekant har tre vinkler.','Flyt de tre vinkler hen på en lige linje.','De fylder præcis en halv omgang. Vinkelsummen er 180°.','Kender du to af vinklerne, kan du regne den tredje ud: 180 − 59 − 45 = 76.'],dur:[3,7,4,5],draw(i,t){
+  const A=[50,210],B=[230,210],C=[117.5,97.5],P=[350,186],R=38,u=i==0?0:i==1?t:1,qa=sg(u,0,.3),qc=sg(u,.33,.66),qb=sg(u,.68,.98),ap=i==0?sg(t,0,.5):1;
+  let g=`<path ${LN} stroke-width="4" opacity="${o2(ap)}" d="M${A}L${B}L${C}Z"/><path ${LN} stroke-width="3" opacity=".6" d="M270 ${P[1]}H430"/>`+wedge(A[0],A[1],0,59.04,R,.25*ap)+wedge(B[0],B[1],135,180,R,.25*ap)+wedge(C[0],C[1],239.04,315,R,.25*ap);
+  g+=wedge(lp(A[0],P[0],qa),lp(A[1],P[1],qa),0,59.04,R,ap)+wedge(lp(C[0],P[0],qc),lp(C[1],P[1],qc),239.04-180*qc,315-180*qc,R,.62*ap)+wedge(lp(B[0],P[0],qb),lp(B[1],P[1],qb),135,180,R,.36*ap);
+  g+=ft(50,238,16,'59°',ap)+ft(230,238,16,'45°',ap)+ft(117.5,84,16,'76°',ap);
+  if(i>=2)g+=ft(P[0],P[1]+30,18,'180°',i==2?sg(t,.2,.6):1);
+  if(i==2)g+=ft(240,46,26,'59° + 45° + 76° = 180°',sg(t,0,.4));
+  if(i==3)g+=ft(240,46,26,'180 − 59 − 45 = 76',sg(t,0,.4));
+  return g}},
+ {t:'Parallelogrammets areal',op:['1.0'],cap:['Et parallelogram med grundlinjen g og højden h.','Klip trekanten af i den ene side.','Flyt den over i den anden side. Nu er det et rektangel.','Arealet er det samme. Derfor er A = g · h.'],dur:[3,3,5,4],draw(i,t){
+  const ct=i==0?0:i==1?sg(t,0,.5):1,mv=i<2?0:i==2?sg(t,.1,.7):1,ap=i==0?sg(t,0,.5):1;
+  return `<path d="M170 205H330L370 95H170Z" fill="currentColor" opacity="${o2(ap)}"/><path d="M130 205H170V95Z" fill="currentColor" opacity="${o2(ap*lp(1,.7,ct))}" transform="translate(${r1(200*mv)} 0)"/><path d="M170 95V205" style="fill:none;stroke:var(--c);stroke-width:3;stroke-dasharray:3 7" opacity="${o2(i==0?sg(t,.4,.8):1)}"/>`+ft(186,158,20,'h',i==0?sg(t,.4,.8):1,'fill:var(--c)')+ft(lp(230,270,mv),238,20,'g',ap)+(i==3?ft(240,60,36,'A = g · h',sg(t,0,.4)):'')}}],
+ data:[intro(5,'Data og chance','Median og middeltal','Hvilket tal fortæller mest om en bunke tal?',['0.0','1.0','1.1','2.0','3.0','3.2'],BASE.data),
+ {t:'Sandsynlighed',op:['1.2','2.2','3.1'],cap:['I en pose er der 3 sorte og 5 hvide kugler.','Du trækker én kugle uden at kigge. Hvor mange af kuglerne er sorte? 3.','Hvor mange kugler er der i alt? 8.','Sandsynligheden for sort er 3 ud af 8. Det er 3/8 = 37,5 %.'],dur:[3,4,4,5],draw(i,t){
+  const ap=i==0?sg(t,0,.5):1,a=i==1?sg(t,.2,.6):1,b=i==2?sg(t,.1,.5):1;let g='';
+  for(let k=0;k<8;k++){const so=k==1||k==4||k==6;g+=`<circle cx="${110+48*(k%4)}" cy="${110+50*(k>3)}" r="18" style="fill:${so?'var(--on)':'#fff'};stroke:var(--on);stroke-width:3" opacity="${o2(ap*(i==1&&!so?lp(1,.35,sg(t,0,.3)):1))}"/>`}
+  if(i>=1)g+=ft(392,118,54,'3',a)+ft(392,142,15,'sorte',a);
+  if(i>=2)g+=`<path ${LN} stroke-width="4" opacity="${o2(b)}" d="M356 156H428"/>`+ft(392,208,54,'8',b)+ft(392,232,15,'i alt',b);
+  if(i==3)g+=ft(205,238,26,'3/8 = 37,5 %',sg(t,0,.4));
+  return g}},
+ {t:'To terninger',op:['2.1'],cap:['To terninger kan lande på 6 · 6 = 36 måder. Tallet i hvert felt er summen.','Summen 7 kan slås på 6 måder.','Summen 2 kan kun slås på 1 måde.','Derfor er 7 meget mere almindelig end 2.'],dur:[5,4,4,5],draw(i,t){
+  let g='';const X=c=>150+28*c,Y=r=>66+28*r;
+  for(let k=0;k<6;k++)g+=ft(X(k)+13,56,14,k+1,.7)+ft(134,Y(k)+18,14,k+1,.7);
+  for(let r=0;r<6;r++)for(let c=0;c<6;c++){const sm=r+c+2,ap=i==0?sg(t,r*.1,r*.1+.3):1,h=sm==7?(i==1?sg(t,0,.4):i==2?1-.6*sg(t,0,.3):i==3?lp(.4,1,sg(t,0,.3)):0):sm==2?(i==2?sg(t,.1,.5):i==3?1:0):0;
+   g+=`<rect x="${X(c)}" y="${Y(r)}" width="26" height="26" fill="currentColor" opacity="${o2(ap*(.18+.82*h))}"/>`+ft(X(c)+13,Y(r)+18,13,sm,ap,h>.5?'fill:var(--c)':'')}
+  if(i==1||i==2)g+=ft(400,132,54,i==1?'6':'1',sg(t,.2,.6))+ft(400,156,15,'ud af 36',sg(t,.2,.6));
+  if(i==3)g+=ft(400,120,22,'sum 7: 6/36',sg(t,0,.4))+ft(400,158,22,'sum 2: 1/36',sg(t,.2,.6));
+  return g}}],
+ algebra:[intro(6,'Tal og bogstaver','Ligningen som en vægt','Hvordan finder man et tal, man ikke kender?',['0.1','0.2','1.0','1.2','2.1','3.1'],BASE.algebra),
+ {t:'Sæt et tal ind',op:['0.0'],cap:['Et udtryk: 3 · a + 2. Bogstavet a står for et tal.','Nu får du at vide, at a = 4. Sæt 4 ind på a’s plads.','Gange først: 3 · 4 = 12.','Så plus: 12 + 2 = 14.'],dur:[3,4,3,3],draw(i,t){
+  const s=i==1?sg(t,.3,.8):i>1?1:0;
+  return ft(166,128,52,'3 ·')+ft(330,128,52,'+ 2')+`<rect x="222" y="80" width="56" height="64" rx="4" ${LN} stroke-width="3"/>`+ft(250,128-36*s,52,'a',1-s)+ft(250,128+36*(1-s),52,'4',s)+(i>=1?ft(240,52,26,'a = 4',i==1?sg(t,0,.3):1):'')+lin(i-2,t,[[198,40,'12 + 2'],[248,44,'= 14']])}},
+ {t:'Saml ens led',op:['1.1'],cap:['2a + 3a + a. Hvert a er en kasse af samme slags.','Tæl kasserne sammen: 2 + 3 + 1 = 6.','Altså er 2a + 3a + a = 6a.','Men 3a + 4 kan ikke samles. Kasser og løse 1’ere er ikke samme slags.'],dur:[4,4,3,5],draw(i,t){
+  const m=i==0?0:i==1?sg(t,.1,.7):1,ud=i==3?sg(t,0,.3):0,ind=i==3?sg(t,.3,.7):0,bx=(x,o)=>`<g opacity="${o2(o)}"><rect x="${r1(x)}" y="130" width="30" height="30" rx="2" fill="currentColor"/>${ft(x+15,152,19,'a',1,'fill:var(--c)')}</g>`;
+  let g=ft(240,58,34,i<2?'2a + 3a + a':'2a + 3a + a = 6a',1-ud)+ft(152,154,30,'+',(1-m)*(1-ud))+ft(288,154,30,'+',(1-m)*(1-ud));
+  [70,104,170,204,238,306].forEach((x,k)=>{g+=bx(lp(x,138+34*k,m),1-ud)});
+  if(i==1)g+=ft(240,218,26,'2 + 3 + 1 = 6',sg(t,.5,.9));
+  if(i==2)g+=ft(240,222,40,'6a',sg(t,0,.4));
+  if(i==3){g+=ft(240,58,34,'3a + 4',ind);[0,1,2].forEach(k=>{g+=bx(132+34*k,ind)});[0,1,2,3].forEach(k=>{g+=`<circle cx="${272+24*k}" cy="145" r="10" fill="currentColor" opacity="${o2(ind)}"/>`});g+=ft(240,218,20,'kan ikke samles',sg(t,.6,1))}
+  return g}},
+ {t:'x på begge sider',op:['2.0'],cap:['4x + 1 = 2x + 7. Der er x’er på begge sider.','Fjern 2 x’er fra begge sider. Så står x kun på den ene side.','Fjern 1 fra begge sider.','Del begge sider i to. Én x vejer det samme som 3. Altså er x = 3.'],dur:[4,5,4,5],draw(i,t){
+  const by=186,p1=i==1?sg(t,.15,.6):i>1?1:0,p2=i==2?sg(t,.15,.6):i>2?1:0,p3=i==3?sg(t,.05,.5):0,hl=i==3?sg(t,.6,.95):0,ap=i==0?sg(t,0,.5):1;
+  const bx=(x,o,dy)=>`<g opacity="${o2(o)}" transform="translate(0 ${r1(dy)})"><rect x="${r1(x)}" y="${by-41}" width="36" height="36" rx="3" fill="currentColor"/>${ft(x+18,by-15,22,'x',1,'fill:var(--c)')}</g>`,dot=(x,y,o)=>`<circle cx="${r1(x)}" cy="${r1(y)}" r="8" fill="currentColor" opacity="${o2(o)}"/>`;
+  let g=`<path ${LN} stroke-width="6" d="M40 ${by}H440"/><path d="M240 ${by+4}L214 ${by+48}H266Z" fill="currentColor"/>`;
+  [58,98,138,178].forEach((x,k)=>{g+=k<2?bx(lp(x,k?142:62,p3),ap*(k?1-hl*.6:1),0):bx(x,ap*(1-p1),-40*p1)});
+  [262,302].forEach(x=>{g+=bx(x,ap*(1-p1),-40*p1)});
+  g+=dot(76,by-54-40*p2,ap*(1-p2));
+  const T=[[290,13],[310,13],[370,13],[390,13],[300,31],[380,31]];
+  for(let k=0;k<7;k++){let x=354+20*(k<4?k:k-4),y=by-(k<4?13:32),o=ap;if(k==6){y-=40*p2;o*=1-p2}else{x=lp(x,T[k][0],p3);y=lp(y,by-T[k][1],p3);if(k==2||k==3||k==5)o*=1-hl*.6}g+=dot(x,y,o)}
+  const E=['4x + 1 = 2x + 7','2x + 1 = 7','2x = 6','x = 3'],sw=i==0?0:sg([0,p1,p2,hl][i],.7,1);
+  return g+(i==0?ft(240,66,38,E[0],ap):ft(240,66,38,E[i-1],1-sw)+ft(240,66,i==3?46:38,E[i],sw))}}],
+ rum:[intro(7,'Rum og tegning','Rumfang i lag','Hvor meget kan der være i en kasse?',['0.0','0.1','0.2','1.1','2.2'],BASE.rum),
+ {t:'Overfladeareal',op:['1.0'],cap:['En kasse har 6 flader. Den er 4 cm lang, 3 cm bred og 2 cm høj.','Fold kassen ud. Fladerne er ens to og to.','Læg de tre forskellige flader sammen: 12 + 8 + 6 = 26.','Der er to af hver. Overfladen er 2 · 26 = 52 cm².'],dur:[4,6,4,4],draw(i,t){
+  const u=20,cw=u*.866,ox=111,oy=112,P=(a,b,k)=>r1(ox+(a-b)*cw)+','+r1(oy+(a+b)*u/2-k*u),pg=(k,q)=>`<polygon points="${q.join(' ')}" style="fill:${TONE[k]};stroke:var(--c);stroke-width:1.5"/>`;
+  let g=`<g opacity="${o2(i==0?sg(t,0,.5):1)}">`+pg(0,[P(0,0,2),P(4,0,2),P(4,3,2),P(0,3,2)])+pg(1,[P(0,3,0),P(4,3,0),P(4,3,2),P(0,3,2)])+pg(2,[P(4,0,0),P(4,3,0),P(4,3,2),P(4,0,2)])+'</g>';
+  [[290,35,80,60,0,'12'],[290,135,80,60,0,'12'],[290,95,80,40,1,'8'],[290,195,80,40,1,'8'],[250,135,40,60,2,'6'],[370,135,40,60,2,'6']].forEach(q=>{const o=i==0?0:i==1?sg(t,.05+.28*q[4],.3+.28*q[4]):1;if(o)g+=`<g opacity="${o2(o)}"><rect x="${q[0]}" y="${q[1]}" width="${q[2]}" height="${q[3]}" style="fill:${TONE[q[4]]};stroke:var(--c);stroke-width:1.5"/>${ft(q[0]+q[2]/2,q[1]+q[3]/2+7,19,q[5],1,q[4]<2?'fill:var(--c)':'')}</g>`});
+  return g+lin(i-2,t,[[222,21,'12 + 8 + 6 = 26',122],[254,23,'2 · 26 = 52 cm²',122]])}},
+ {t:'Liter og cm³',op:['1.2','2.0','3.1'],cap:['En terning, der er 10 cm på hver led.','Rumfanget er 10 · 10 · 10 = 1000 cm³.','1000 cm³ er det samme som 1 liter.','Et akvarium på 24 000 cm³ rummer derfor 24 000 : 1000 = 24 liter.'],dur:[3,4,4,5],draw(i,t){
+  const ap=i==0?sg(t,0,.5):1,pg=(k,q)=>`<polygon points="${q}" style="fill:${TONE[k]};stroke:var(--c);stroke-width:1.5"/>`;
+  return `<g opacity="${o2(ap)}">`+pg(0,'130,30 199,70 130,110 61,70')+pg(1,'61,70 130,110 130,190 61,150')+pg(2,'199,70 130,110 130,190 199,150')+'</g>'+ft(82,198,16,'10 cm',ap)+ft(182,198,16,'10 cm',ap)+ft(232,116,16,'10 cm',ap)
+   +(i>=1?ft(356,92,26,'10 · 10 · 10',i==1?sg(t,0,.4):1)+ft(356,128,28,'= 1000 cm³',i==1?sg(t,.3,.7):1):'')+(i>=2?ft(356,176,38,'= 1 liter',i==2?sg(t,0,.4):1):'')+(i==3?ft(332,240,20,'24 000 : 1000 = 24 liter',sg(t,0,.4)):'')}},
+ {t:'Målestok',op:['2.1','3.2'],cap:['På en tegning i målestok 1:100 er en væg 3 cm lang.','1:100 betyder, at 1 cm på tegningen er 100 cm i virkeligheden.','Gang med 100: 3 · 100 = 300 cm.','300 cm er 3 meter. Væggen er 3 m lang.'],dur:[4,4,4,4],draw(i,t){
+  const ap=i==0?sg(t,0,.5):1,gr=i<2?0:i==2?sg(t,0,.7):1;
+  return ft(300,64,26,'Målestok 1:100',ap)+`<path ${LN} stroke-width="8" opacity="${o2(ap)}" d="M64 100H96"/>`+ft(80,84,17,'3 cm',ap)+(i>=1?ft(240,138,17,'1 cm på tegningen = 100 cm i virkeligheden',i==1?sg(t,0,.4):1):'')
+   +(gr?`<path ${LN} stroke-width="12" d="M64 178H${r1(64+352*gr)}"/>`:'')+(i>=2?ft(240,222,26,'3 · 100 = 300 cm',i==2?sg(t,.5,.9):1):'')+(i==3?ft(240,256,26,'300 cm = 3 m',sg(t,0,.4)):'')}}],
+ monstre:[intro(8,'Mønstre og figurer','Figurer, der vokser','Kan man vide, hvordan figur 10 ser ud, uden at tegne den?',['0.1','1.1'],BASE.monstre),
+ {t:'Talfølger',op:['0.0','0.2','1.0','3.2'],cap:['En talfølge: 5, 8, 11, 14.','Find springet. Der lægges 3 til hver gang.','Hvad er tal nummer 10? Fra det første tal er der 9 spring.','9 spring på 3 er 27. Tal nummer 10 er 5 + 27 = 32.'],dur:[3,4,5,5],draw(i,t){
+  const X=k=>80+72*k,a=i==1?t:i>1?1:0,q=i==2?sg(t,0,.5):i>2?1:0,e=i==3?sg(t,.4,.8):0;let g='';
+  [5,8,11,14].forEach((n,k)=>{g+=ft(X(k),162,42,n,i==0?sg(t,k*.15,k*.15+.4):1);const d=k<3?sg(a,k*.25,k*.25+.4):0;if(d)g+=`<path ${LN} stroke-width="3" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${r1(100-100*d)}" d="M${X(k)+8} 120Q${X(k)+36} 88 ${X(k)+64} 120"/>`+ft(X(k)+36,86,18,'+3',d)});
+  if(q)g+=ft(354,162,42,'…',q)+ft(420,162,42,'?',q*(1-e))+ft(420,162,42,'32',e)+ft(420,192,15,'nr. 10',q)+ft(X(0),192,15,'nr. 1',q)+ft(240,50,24,'9 spring',i==2?sg(t,.4,.8):1);
+  if(i==3)g+=ft(240,242,28,'5 + 9 · 3 = 32',sg(t,0,.4));
+  return g}},
+ {t:'Baglæns fra antal til nummer',op:['2.0','3.1'],cap:['Reglen er 3 · n + 2. En figur har 62 brikker. Hvilket nummer har den?','Reglen ganger først med 3 og lægger så 2 til.','Gå baglæns. Træk først 2 fra: 62 − 2 = 60.','Divider så med 3: 60 : 3 = 20. Det er figur 20.'],dur:[5,4,4,4],draw(i,t){
+  const ap=i==0?sg(t,0,.5):1,hot=i==1&&Math.sin(Math.PI*t)>.6,bx=(x,y,s,o,h)=>`<g opacity="${o2(o)}"><rect x="${x-34}" y="${y-28}" width="68" height="42" rx="4" ${h?'fill="currentColor"':LN+' stroke-width="3"'}/>${ft(x,y+1,22,s,1,h?'fill:var(--c)':'')}</g>`,
+   pil=(x1,x2,y,o,v)=>`<path ${LN} stroke-width="3" opacity="${o2(o*.7)}" d="M${x1} ${y-7}H${x2}${v?`M${x1+6} ${y-12}l-6 5 6 5`:`M${x2-6} ${y-12}l6 5-6 5`}"/>`,S=[[86,112],[188,206],[274,292],[368,394]];
+  let g=ft(60,108,30,'n',ap)+bx(150,100,'· 3',ap,hot)+ft(240,108,24,'3 · n',ap)+bx(330,100,'+ 2',ap,hot)+ft(420,108,30,'62',ap)+S.map(q=>pil(q[0],q[1],100,ap,0)).join('');
+  if(i>=2){const o=k=>i==2?sg(t,k*.25,k*.25+.3):1;g+=ft(420,208,30,'62',o(0))+pil(368,394,200,o(0),1)+bx(330,200,'− 2',o(1))+pil(274,292,200,o(1),1)+ft(240,208,30,'60',o(2))}
+  if(i==3)g+=pil(188,206,200,sg(t,0,.3),1)+bx(150,200,': 3',sg(t,0,.3))+pil(86,112,200,sg(t,.3,.6),1)+ft(60,208,30,'20',sg(t,.3,.6))+ft(60,60,20,'n = 20',sg(t,.6,1));
+  return g}}]
+};
+FILMS.tal.push({t:'Potenser',op:['1.3'],cap:['2³ læses 2 i tredje. Det betyder 2 ganget med sig selv 3 gange.','Start med 2.','Gang med 2. Nu er der 4.','Gang med 2 igen. Nu er der 8. Altså er 2³ = 8.','Pas på: 2³ er ikke det samme som 2 · 3. 2 · 3 er kun 6.'],dur:[4,3,3,4,5],draw(i,t){
+  const cols=i<2?1:i==2?2:4,old=i<3?1:2,pop=i==2||i==3?sg(t,0,.4):1;let g=ft(240,58,34,'2³ = 2 · 2 · 2');
+  if(i>=1)for(let c=0;c<cols;c++)for(let r=0;r<2;r++){const k=i==1?sg(t,0,.4):c<old||i==4?1:pop;g+=`<rect x="${r1(84+36*c+15*(1-k))}" y="${r1(128+36*r+15*(1-k))}" width="${r1(30*k)}" height="${r1(30*k)}" fill="currentColor"/>`}
+  if(i>=1&&i<4)g+=ft(360,180,64,2*cols);
+  if(i==4)g+=ft(360,150,34,'2³ = 8')+ft(360,200,34,'2 · 3 = 6',sg(t,.2,.6)*.75);
+  return g}});
+FILMS.cirkler.push({t:'Radius og diameter',op:['0.0','0.1'],cap:['Centrum er punktet midt i cirklen.','Radius går fra centrum ud til kanten.','Diameteren går tværs over cirklen gennem centrum.','Diameteren er to radier lagt i forlængelse: d = 2 · r.'],dur:[3,4,4,5],draw(i,t){
+  const cx=170,cy=140,r=86,a=i==0?0:i==1?sg(t,0,.6):1,b=i<2?0:i==2?sg(t,0,.6):1;
+  let g=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#000" fill-opacity=".15" stroke="currentColor" stroke-width="5"/>`+(a?`<path ${LN} stroke-width="5" d="M${cx} ${cy}H${r1(cx+r*a)}"/>`:'')+(b?`<path ${LN} stroke-width="5" d="M${cx} ${cy}H${r1(cx-r*b)}"/>`:'')+`<circle cx="${cx}" cy="${cy}" r="8" fill="currentColor"/>`;
+  if(i==0)g+=ft(cx,cy-20,17,'centrum',sg(t,.3,.7));
+  if(i==1)g+=ft(cx+r/2,cy-12,22,'r',sg(t,.5,.9));
+  if(i==2)g+=ft(cx+r/2,cy-12,22,'r')+ft(cx,cy+32,22,'d',sg(t,.5,.9));
+  if(i==3)g+=ft(cx+r/2,cy-12,22,'r')+ft(cx-r/2,cy-12,22,'r',sg(t,0,.4))+ft(cx,cy+32,22,'d')+ft(372,130,36,'d = 2 · r',sg(t,.2,.6))+ft(372,166,16,'r = 4 cm giver d = 8 cm',sg(t,.5,.9));
+  return g}});
+FILMS.handel.push({t:'Fra del til det hele',op:['2.1'],cap:['En jakke koster 300 kr. efter 25 % rabat. Hvad kostede den før?','Du har betalt 75 % af prisen. De 300 kr. er altså tre fjerdedele.','Del 300 i 3. Hver fjerdedel er 100 kr.','Hele prisen er fire fjerdedele: 4 · 100 = 400 kr.'],dur:[5,5,4,5],draw(i,t){
+  const x0=60,pw=90,y=92,h=56,sp=i<2?0:i==2?sg(t,0,.5):1,f4=i==3?sg(t,0,.5):0;let g='';
+  for(let k=0;k<3;k++)g+=`<rect x="${r1(x0+pw*k+3*sp)}" y="${y}" width="${r1(pw-6*sp+(sp?0:.5))}" height="${h}" fill="currentColor"/>`+ft(x0+pw*k+pw/2,y+h/2+7,19,'100 kr.',sp,'fill:var(--c)');
+  g+=`<rect x="${x0+3*pw+3}" y="${y}" width="${pw-6}" height="${h}" fill="currentColor" opacity="${o2(f4)}"/><rect x="${x0+3*pw+3}" y="${y}" width="${pw-6}" height="${h}" ${LN} stroke-width="3" stroke-dasharray="6 6"/>`+ft(x0+3.5*pw,y+h/2+9,26,'?',1-f4)+ft(x0+3.5*pw,y+h/2+7,19,'100 kr.',f4,'fill:var(--c)');
+  g+=ft(x0+1.5*pw,y-14,18,'75 %',i==0?0:i==1?sg(t,0,.4):1)+ft(x0+3.5*pw,y-14,18,'25 %')+`<path ${LN} stroke-width="3" d="M${x0+3} ${y+h+10}v8H${x0+3*pw-3}v-8"/>`+ft(x0+1.5*pw,y+h+44,24,i==2?'300 : 3 = 100':'300 kr.');
+  if(i==3)g+=ft(240,246,32,'4 · 100 = 400 kr.',sg(t,.3,.7));
+  return g}});
+FILMS.figurer.push({t:'Arealet af et rektangel',op:['0.0','1.3','3.0','3.2'],cap:['Et rektangel, der er 6 cm langt og 4 cm bredt.','Læg kvadrater på 1 cm² i en række. Der er plads til 6.','Der er plads til 4 rækker.','4 rækker med 6 i hver. Arealet er 6 · 4 = 24 cm².'],dur:[3,4,4,5],draw(i,t){
+  const x0=70,y0=56,q=40,n=i==0?0:i==1?Math.ceil(sg(t,0,.9)*6):i==2?6+6*Math.ceil(sg(t,0,.9)*3):24;let g=`<rect x="${x0}" y="${y0}" width="240" height="160" ${LN} stroke-width="4"/>`+ft(190,244,17,'6 cm')+ft(40,142,17,'4 cm');
+  for(let k=0;k<n;k++)g+=`<rect x="${x0+q*(k%6)+3}" y="${y0+160-q*(Math.floor(k/6)+1)+3}" width="${q-6}" height="${q-6}" fill="currentColor" opacity="${k<6?1:.7}"/>`;
+  if(i==1)g+=ft(395,134,54,Math.max(1,Math.min(n,6)))+ft(395,160,15,'i en række');
+  if(i==2)g+=ft(395,134,54,n/6)+ft(395,160,15,'rækker');
+  if(i==3)g+=ft(395,128,26,'6 · 4 = 24',sg(t,0,.4))+ft(395,164,20,'A = 24 cm²',sg(t,.3,.7));
+  return g}},
+ {t:'Trapezets areal',op:['2.0'],cap:['Et trapez har to parallelle sider, a og b, og en højde h.','Lav en kopi, og drej den en halv omgang.','De to trapezer bliver til et parallelogram med grundlinjen a + b.','Trapezet er halvdelen af det: A = ½ · (a + b) · h.'],dur:[4,5,5,5],draw(i,t){
+  const ap=i==0?sg(t,0,.5):1,cp=i==0?0:i==1?sg(t,0,.2):1,rot=i==0?0:i==1?sg(t,.2,.9):1,d='M60 200H220L180 110H100Z';
+  let g=`<path d="${d}" fill="currentColor" opacity="${o2(ap)}"/>`+(cp?`<path d="${d}" fill="currentColor" opacity="${o2(.55*cp)}" transform="rotate(${r1(180*rot)} 200 155)"/>`:'')+`<path d="M120 110V200" style="fill:none;stroke:var(--c);stroke-width:3;stroke-dasharray:3 7"/>`+ft(134,162,18,'h',1,'fill:var(--c)')+ft(140,98,18,'a',ap);
+  g+=i<2?ft(140,226,18,'b',ap):`<path ${LN} stroke-width="3" d="M60 212v8H300v-8"/>`+ft(180,248,18,'a + b',i==2?sg(t,.2,.6):1);
+  if(i==3)g+=ft(240,56,28,'A = ½ · (a + b) · h',sg(t,0,.4));
+  return g}},
+ {t:'Firkanter og mangekanter',op:['1.1','2.1'],cap:['En firkant kan deles i to trekanter med en diagonal.','Hver trekant har vinkelsummen 180°. Firkanten har derfor 2 · 180 = 360°.','En femkant kan deles i tre trekanter: 3 · 180 = 540°.','En figur med n kanter kan deles i n − 2 trekanter.'],dur:[4,5,5,4],draw(i,t){
+  const Q=[[50,200],[200,210],[190,90],[80,70]],V=[0,1,2,3,4].map(k=>[350+78*Math.cos((72*k-90)*Math.PI/180),150+78*Math.sin((72*k-90)*Math.PI/180)]),P=a=>a.map(q=>r1(q[0])+' '+r1(q[1])).join('L'),
+   tri=(a,b,c,op,lo,st)=>`<path d="M${P([a,b,c])}Z" fill="currentColor" opacity="${o2(op)}"/>`+ft((a[0]+b[0]+c[0])/3,(a[1]+b[1]+c[1])/3+5,14,'180°',lo,st),f1=i==0?0:i==1?sg(t,0,.4):1,f2=i<2?0:i==2?sg(t,.2,.6):1;
+  let g='';
+  if(f1)g+=tri(Q[0],Q[1],Q[2],.9*f1,f1,'fill:var(--c)')+tri(Q[0],Q[2],Q[3],.5*f1,f1,'fill:var(--c)')+ft(125,252,19,'2 · 180° = 360°',f1);
+  if(f2)g+=tri(V[0],V[1],V[2],.9*f2,f2,'fill:var(--c)')+tri(V[0],V[2],V[3],.55*f2,f2,'fill:var(--c)')+tri(V[0],V[3],V[4],.28*f2,f2,'')+ft(350,252,19,'3 · 180° = 540°',f2);
+  g+=`<path ${LN} stroke-width="4" d="M${P(Q)}Z"/><path ${LN} stroke-width="4" opacity="${i<2?.35:1}" d="M${P(V)}Z"/>`;
+  if(!f1)g+=`<path ${LN} stroke-width="3" stroke-dasharray="3 7" opacity="${o2(sg(t,.3,.8))}" d="M50 200L190 90"/>`;
+  if(i==3)g+=ft(240,42,22,'n kanter: (n − 2) · 180°',sg(t,0,.4));
+  return g}});
+FILMS.data.push({t:'Typetal og variationsbredde',op:['0.1','0.2'],cap:['Otte elever har talt deres søskende: 2, 1, 0, 2, 3, 2, 1 og 5.','Sæt en prik for hver elev over det rigtige tal.','Den højeste stak viser typetallet. Her er det 2.','Variationsbredden er afstanden fra det mindste til det største tal: 5 − 0 = 5.'],dur:[5,5,4,5],draw(i,t){
+  const D=[2,1,0,2,3,2,1,5],X=v=>110+52*v,by=190,cnt={};let g=`<path ${LN} stroke-width="3" d="M84 ${by}H396"/>`+ft(240,50,22,'2, 1, 0, 2, 3, 2, 1, 5',i<2?1:.5);
+  for(let v=0;v<=5;v++)g+=`<path ${LN} stroke-width="3" d="M${X(v)} ${by-5}v10"/>`+ft(X(v),by+26,17,v);
+  D.forEach((v,k)=>{const n=cnt[v]=(cnt[v]||0)+1,q=i==0?0:i==1?sg(t,k*.1,k*.1+.2):1;if(q)g+=`<circle cx="${X(v)}" cy="${r1(by-16-24*(n-1)-40*(1-q))}" r="10" fill="currentColor" opacity="${o2(q*(i==2&&v!=2?lp(1,.35,sg(t,0,.3)):1))}"/>`});
+  if(i==2)g+=ft(X(2),by-86,18,'typetal',sg(t,.2,.6));
+  if(i==3){const q=sg(t,.1,.5);g+=`<path ${LN} stroke-width="3" opacity="${o2(q)}" d="M${X(0)} ${by+36}v7H${X(5)}v-7"/>`+ft(240,by+66,19,'5 − 0 = 5',q)}
+  return g}});
+FILMS.algebra.push({t:'Fra tekst til ligning',op:['2.1','2.2','3.0','3.1','3.2'],cap:['Jeg tænker på et tal. Jeg ganger det med 3 og lægger 4 til. Resultatet er 19.','Kald det ukendte tal for x.','Ganger med 3 bliver til 3x. Lægger 4 til bliver til 3x + 4.','Resultatet er 19. Så har du ligningen 3x + 4 = 19.','Løs den: 3x = 15, og x = 5. Tjek: 3 · 5 + 4 = 19.'],dur:[5,3,5,4,5],draw(i,t){
+  const Y=k=>64+44*k,vis=k=>k==0?(i<1?0:i==1?sg(t,0,.4):1):k==1?(i<2?0:i==2?sg(t,0,.3):1):k==2?(i<2?0:i==2?sg(t,.5,.8):1):i<3?0:i==3?sg(t,0,.4):1;
+  return ['et tal','ganger med 3','lægger 4 til','resultatet er 19'].map((x,k)=>ft(130,Y(k),20,x,i==0?sg(t,k*.2,k*.2+.3):1)).join('')+['x','3x','3x + 4','3x + 4 = 19'].map((x,k)=>ft(350,Y(k)+3,28,x,vis(k))).join('')+(i==4?ft(130,246,18,'3x = 15',sg(t,0,.4))+ft(350,248,34,'x = 5',sg(t,.2,.6)):'')}});
+FILMS.monstre.push({t:'Kvadrattal',op:['1.2','2.1','2.2'],cap:['Figur 1 er ét kvadrat. Figur 2 har 2 · 2 = 4 brikker.','Figur 3 har 3 · 3 = 9, og figur 4 har 4 · 4 = 16.','Tallene kaldes kvadrattal. Figur n har n · n brikker.','Se også på tilvæksten: +3, +5, +7. Der kommer et nyt hjørne på hver gang.'],dur:[4,5,4,5],draw(i,t){
+  const h=t<.5,n=i==0?(h?1:2):i==1?(h?3:4):4,pop=i<2?(h?sg(t,0,.25):sg(t,.5,.75)):1,hl=i==3?sg(t,0,.4):0;let g='';
+  for(let a=0;a<n;a++)for(let b=0;b<n;b++){const k=Math.max(a,b),sc=k==n-1?pop:1;g+=`<rect x="${r1(70+30*a+13*(1-sc))}" y="${r1(190-30*b+13*(1-sc))}" width="${r1(26*sc)}" height="${r1(26*sc)}" fill="currentColor" opacity="${o2(lp(1,k%2?.5:1,hl))}"/>`}
+  if(i<3)g+=ft(360,128,60,n*n)+ft(360,158,18,n+' · '+n);
+  if(i==2)g+=ft(360,208,26,'n · n',sg(t,0,.4));
+  if(i==3)g+=ft(360,118,30,'1, 4, 9, 16',sg(t,0,.4))+ft(360,156,22,'+3, +5, +7',sg(t,.3,.7));
+  return g}});
+FILMS.figurer[1].op=['0.2','1.2'];FILMS.algebra[0].op=['0.1','0.2','1.0','1.2','1.3'];FILMS.rum[0].op.push('3.0');FILMS.monstre[0].op.push('3.0');
+const GEN={t:'Sådan griber du en problemopgave an',sub:'Problemopgaver',op:[],cap:['Læs opgaven to gange. Hvad handler den om?','Find det, du ved: 24 elever, 70 kr. for en billet og en kupon på 100 kr.','Find det, du skal svare på: Hvad skal klassen betale?','Skriv et regnestykke: 24 · 70 − 100.','Regn, og tjek, om svaret er rimeligt: 1680 − 100 = 1580 kr.'],dur:[4,5,4,4,5],draw(i,t){
+  let g=['24 elever skal i biografen.','En billet koster 70 kr.','Klassen har en kupon på 100 kr.','Hvad skal klassen betale?'].map((x,k)=>ft(240,50+28*k,19,x,(i==0?sg(t,k*.15,k*.15+.3):1)*(i==2&&k<3?.4:1))).join('');
+  if(i>=1)['24 elever','70 kr.','100 kr.'].forEach((x,k)=>{g+=`<g opacity="${o2(i==1?sg(t,.1+k*.2,.4+k*.2):1)}"><rect x="${58+130*k}" y="166" width="104" height="36" rx="4" fill="currentColor"/>${ft(110+130*k,190,17,x,1,'fill:var(--c)')}</g>`});
+  if(i==3)g+=ft(240,246,30,'24 · 70 − 100',sg(t,0,.4));
+  if(i==4)g+=ft(240,246,26,'24 · 70 − 100 = 1580 kr.');
+  return g}};
+const TF={tal:[[1],[0],[3],[2]],cirkler:[[3],[0],[1],[2]],handel:[[],[2],[1],[0,3]],figurer:[[3],[0],[2,4],[1,5]],data:[[],[0],[3],[1,2]],algebra:[[],[1],[2],[0,3]],rum:[[0],[1],[2],[3]],monstre:[[1],[0],[],[2]]},EKSF={tal:1},FEJLF={tal:1,algebra:2,monstre:1};
+const fnavn=(id,fi)=>{const F=fi<0?GEN:FILMS[id][fi];return F.sub||F.t},fk=(id,l)=>l.length?`<div class="fkw"><p class="row">${l.map(fi=>`<button type="button" class="btn ghost fkb" data-fi="${fi}">${IC.pl}Film: ${fnavn(id,fi)}</button>`).join('')}</p><div class="film tfilm" hidden></div></div>`:'';
+let players=[];
+function player(root,F,lbl){const D=F.dur.map((d,i)=>Math.max(d,1.6+F.cap[i].split(' ').length*.42)),tot=D.reduce((a,b)=>a+b,0),uid='fs'+(players.length+1)+Math.floor(performance.now());let t=0,on=false,last=0;
+  root.innerHTML=`<div class="stage"><svg viewBox="0 0 480 270" role="img" aria-label="Lille film: ${lbl}. Teksten under filmen fortæller, hvad der sker."></svg><button type="button" class="fbig" aria-label="Afspil filmen">${IC.pl}</button></div><p class="fcap" aria-live="polite"></p><div class="fctl"><button type="button" class="btn ghost fpp"></button><button type="button" class="fst" data-sc="-1" aria-label="Forrige scene">${IC.l}</button><button type="button" class="fst" data-sc="1" aria-label="Næste scene">${IC.r}</button><input type="range" class="fsc" id="${uid}" min="0" max="1000" value="0" aria-label="Spol i filmen"><span class="ftime"></span></div>`;
+  const q=x=>root.querySelector(x),svg=q('svg'),cap=q('.fcap'),sc=q('.fsc'),pp=q('.fpp'),big=q('.fbig'),tm=q('.ftime'),tid=v=>Math.floor(v/60)+':'+String(Math.floor(v%60)).padStart(2,'0'),at=()=>{let i=0,a=0;while(i<D.length-1&&t>=a+D[i]){a+=D[i];i++}return [i,a]};
+  const paint=()=>{const [i,a]=at();svg.innerHTML=!on&&t==0?F.draw(0,1):F.draw(i,Math.min(1,(t-a)/F.dur[i]));if(cap.textContent!=F.cap[i])cap.textContent=F.cap[i];sc.value=Math.round(t/tot*1000);tm.textContent=`Scene ${i+1} af ${D.length} · ${tid(t)} / ${tid(tot)}`};
+  const ui=()=>{pp.innerHTML=on?IC.pa+'Pause':t>=tot?IC.ny+'Se igen':IC.pl+'Afspil';big.hidden=on||t>0};
+  const tick=now=>{if(!on||!svg.isConnected){on=false;return}t+=Math.min(.1,(now-last)/1000);last=now;if(t>=tot){t=tot;on=false;ui()}paint();if(on)requestAnimationFrame(tick)};
+  const play=()=>{stopFilm();if(t>=tot)t=0;on=true;last=performance.now();ui();requestAnimationFrame(tick)};
+  pp.onclick=()=>{if(on){on=false;ui()}else play()};big.onclick=e=>{e.stopPropagation();play()};svg.onclick=pp.onclick;sc.oninput=()=>{on=false;t=sc.value/1000*tot;paint();ui()};
+  root.querySelectorAll('.fst').forEach(b=>b.onclick=()=>{const [i,a]=at();if(+b.dataset.sc>0)t=i>=D.length-1?tot:a+D[i]+.001;else t=t-a>1.2||i==0?a:a-D[i-1];if(t<tot)play();else{on=false;paint();ui()}});
+  const api={play,stop(){if(on){on=false;if(pp.isConnected)ui()}}};players.push(api);paint();ui();return api}
+stopFilm=()=>players.forEach(x=>x.stop());
+function film(c){const L=FILMS[c.id],vaelg=n=>{stopFilm();$('flist').querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',j==n));player($('film'),L[n],L[n].t)};
+  $('flist').innerHTML=L.map((F,n)=>`<button type="button" data-f="${n}">${n+1}. ${F.t}</button>`).join('');
+  $('flist').querySelectorAll('button').forEach((b,n)=>b.onclick=()=>vaelg(n));vaelg(0)}
+
+/* ---------- Ordspil og hurtigregning ---------- */
+function ordspil(c){const el=$('ordspil');let valgt=null,rest=c.ord.length;const ix=c.ord.map((o,i)=>i);
+  el.hidden=false;el.innerHTML=`<p>Tryk på et ord, og tryk så på den forklaring, der passer.</p><div class="match"><div class="mw">${shuf(ix).map(i=>`<button type="button" class="mb w" data-w="${i}" aria-pressed="false">${c.ord[i][0]}</button>`).join('')}</div><div class="md">${shuf(ix).map(i=>`<button type="button" class="mb" data-d="${i}">${c.ord[i][1]}</button>`).join('')}</div></div><p class="small" id="ordst" role="status">${rest} ord tilbage.</p>`;
+  const ws=[...el.querySelectorAll('[data-w]')];
+  ws.forEach(b=>b.onclick=()=>{valgt=b.dataset.w;ws.forEach(x=>x.setAttribute('aria-pressed',x==b))});
+  el.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{if(b.classList.contains('done'))return;if(valgt==null){$('ordst').textContent='Vælg først et ord.';return}
+    if(b.dataset.d==valgt){b.classList.add('done');b.innerHTML=`<b>${c.ord[valgt][0]}:</b> ${c.ord[valgt][1]}`;ws.find(x=>x.dataset.w==valgt).hidden=true;valgt=null;rest--;$('ordst').textContent=rest?`Rigtigt. ${rest} ord tilbage.`:'Alle ord er på plads. Tryk på Øv ordene for at prøve igen.'}
+    else{b.classList.remove('nej');void b.offsetWidth;b.classList.add('nej');$('ordst').textContent='Den passer ikke. Prøv en anden forklaring.'}})}
+const alts=a=>{const A=Math.round(a*100)/100,dec=Math.abs(A-Math.round(A))>1e-9,st=dec?[.1,.5,1,-.1,-.5,-1,10,-10]:[1,-1,2,-2,10,-10,5,-5];
+  const c=[...new Set([...st.map(d=>A+d),A*2,A*10,dec?A/10:A%2==0?A/2:A+3].map(v=>Math.round(v*100)/100))].filter(v=>v!=A&&(A<0||v>=0));return shuf([A,...shuf(c).slice(0,3)])};
+function hurtig(c){const el=$('fast'),rek=ls('mv6fast',{});let n=0,tid=0,iv=0,task=null,opts=[],laas=false;
+  const er=i=>Math.abs(opts[i]-task.a)<.006;
+  const start=()=>{el.innerHTML=`<p>Din rekord: <b>${rek[c.id]||0}</b> rigtige.</p><button type="button" class="btn" id="fgo">Start</button>`;$('fgo').onclick=run};
+  const slut=()=>{clearInterval(iv);iv=0;const ny=n>(rek[c.id]||0);if(ny){rek[c.id]=n;put('mv6fast',rek)}el.innerHTML=`<p class="fscore">${n}</p><p><b>Tiden er gået.</b> Du fik ${n} rigtige.${ny?' Det er ny rekord!':''}</p><button type="button" class="btn" id="fgo">Prøv igen</button>`;$('fgo').onclick=run};
+  const spm=()=>{let t;do{t=pick(c.tasks[0])()}while(task&&t.q==task.q);task=t;opts=alts(t.a);laas=false;$('fq').textContent=t.q;$('fo').innerHTML=opts.map((v,i)=>`<button type="button" data-i="${i}">${(f(v)+' '+t.unit).trim()}</button>`).join('');$('fo').querySelectorAll('button').forEach(b=>b.onclick=()=>svar(b))};
+  const svar=b=>{if(laas||!iv)return;laas=true;const ok=er(b.dataset.i);if(ok){n++;$('fn').textContent=n;b.classList.add('ja')}else{b.classList.add('nej');$('fo').querySelectorAll('button').forEach(x=>{if(er(x.dataset.i))x.classList.add('ja')})}setTimeout(()=>{if(iv&&$('fo'))spm()},ok?350:1200)};
+  const run=()=>{n=0;tid=FAST;task=null;el.innerHTML=`<div class="fbar"><i id="fbi"></i></div><p class="row frow"><span>Rigtige: <b id="fn">0</b></span><span id="ft">${FAST} sek.</span></p><p class="q" id="fq"></p><div class="fopts" id="fo"></div>`;spm();clearInterval(iv);
+    iv=setInterval(()=>{const e=$('fbi');if(!e){clearInterval(iv);iv=0;return}tid-=.1;if(tid<=0){slut();return}e.style.width=tid/FAST*100+'%';$('ft').textContent=Math.ceil(tid)+' sek.'},100)};
+  stopFast=()=>{if(iv){clearInterval(iv);iv=0;if($('fast'))start()}};start()}
+
+function chapter(c){players=[];nav(c);put('mv6last',c.id);const i=c.n-1,pv=CH[i-1],nx=CH[i+1],app=$('app'),k=kan[c.id]||[],N=STEPS.length;app.style.cssText=hue(c.id);let st=Math.min(N-1,sted[c.id]||0),ek=c.eks,vist=0;
+const H=d=>{const n=STEPS.findIndex(s=>s[0]==d);return `<h2><span class="step">${n+1}</span>${STEPS[n][1]}</h2>`};
 app.innerHTML=`
 <header class="band"><div class="bt"><p class="no">Kapitel ${c.n}</p><h1>${c.t}</h1><p class="lead">${INTRO[c.id]}</p><p class="chprog" id="chprog"></p></div><div class="art">${ART[c.id]}</div></header>
 <div class="chap">
-<aside class="side"><ol>${STEPS.map(([d,t],n)=>`<li><button type="button" data-go="${d}"><span>${n+1}</span>${t.split(',')[0].replace(' til din makker','')}</button></li>`).join('')}</ol><div class="sideprog" id="sideprog"></div></aside>
-<div class="main">
-<section id="s-prov">${H(1)}<p>${HOW[c.id]}</p><div id="tool"></div><h3>Læg mærke til</h3><ul>${c.se.map(s=>`<li>${s}</li>`).join('')}</ul></section>
-<section id="s-ord">${H(2)}<dl class="ord">${c.ord.map(o=>`<dt>${o[0]}</dt><dd>${o[1]}</dd>`).join('')}</dl></section>
-<section id="s-eks">${H(3)}<div class="eks"><p class="eq">${c.eks[0]}</p><ol>${c.eks[1].map(s=>`<li><span>${s}</span></li>`).join('')}</ol></div></section>
-<section id="s-fejl">${H(4)}<p class="fejl">${c.fejl[0]}</p><p>Hvad er gået galt? Snak med din makker, før du kigger.</p><details><summary>Se forklaringen</summary><p>${c.fejl[1]}</p></details></section>
-<section id="s-opg">${H(5)}<p>Regn i dit hæfte, og skriv svaret her.</p><div class="work"><div class="tabs" id="lvs"></div><p class="q" id="q"></p><p class="small" id="tip" hidden>Tegn eller skriv op, hvad du ved, før du regner.</p><form class="row" id="pf" autocomplete="off"><label for="ans">Svar</label><input class="ans" id="ans" inputmode="text" autocomplete="off"><span id="unit"></span><button class="btn" id="chk">Tjek svar</button></form><p class="row"><button type="button" class="btn ghost" id="hnt">Hint</button><button type="button" class="btn ghost" id="nxt">Ny opgave</button></p><p class="fb" id="fb" role="status" hidden></p><p class="small" id="dots"></p></div></section>
-<section id="s-fork">${H(6)}<ul>${c.forklar.map(s=>`<li>${s}</li>`).join('')}</ul><p class="small">Du kan starte sådan: Først fandt jeg … fordi … Jeg tjekkede det ved at …</p></section>
-<section id="s-kan">${H(7)}<p>Sæt et hak, når du synes, du kan det.</p><ul class="kan">${c.maal.map((m,n)=>`<li><label for="k${n}"><input type="checkbox" id="k${n}"${k[n]?' checked':''}><span>${m}</span></label></li>`).join('')}</ul></section>
-<nav class="pn" aria-label="Forrige og næste kapitel">${pv?`<a style="${hue(pv.id)}" href="#${pv.id}"><span>${IC.l}Forrige</span><b>${pv.t}</b></a>`:`<a href="#hjem"><span>${IC.l}Tilbage</span><b>Alle kapitler</b></a>`}${nx?`<a style="${hue(nx.id)}" href="#${nx.id}"><span>Næste${IC.r}</span><b>${nx.t}</b></a>`:`<a style="--c:var(--fg);--on:#fff" href="#hjem"><span>Færdig${IC.r}</span><b>Alle kapitler</b></a>`}</nav>
+<aside class="side"><div class="modes">${seg('o-mode',[['trin','Trin for trin'],['alt','Hele siden']],mode)}</div><ol>${STEPS.map(([d,t],n)=>`${GRP[n]?`<li class="grp">${GRP[n]}</li>`:''}<li><button type="button" data-go="${d}"><span>${n+1}</span>${kort(t)}<i class="chk">${IC.ok}</i></button></li>`).join('')}</ol><div class="sideprog" id="sideprog"></div></aside>
+<div class="main" id="main">
+<section id="s-film">${H('s-film')}<div class="flist" id="flist"></div><div class="film" id="film"></div></section>
+<section id="s-prov">${H('s-prov')}<p>${HOW[c.id]}</p><div id="tool"></div><h3>Læg mærke til</h3><ul>${c.se.map(s=>`<li>${s}</li>`).join('')}</ul></section>
+<section id="s-teori">${H('s-teori')}<p>Her står det vigtigste samlet. Læs det én gang nu, og kom tilbage, når du er i tvivl.</p><div class="teori">${TEORI[c.id].map((x,n)=>`<article><h3>${x[0]}</h3><div>${x[1]?`<p class="formel">${x[1]}</p>`:''}<p>${x[2]}</p><p class="fx"><span>Fx</span>${x[3]}</p>${fk(c.id,TF[c.id][n])}<p class="tjek"><b>Tjek dig selv:</b> ${TJEK[c.id][n][0]} <button type="button" class="link sv">Vis svar</button><b hidden>${TJEK[c.id][n][1]}</b></p></div></article>`).join('')}</div></section>
+<section id="s-ord">${H('s-ord')}<dl class="ord">${c.ord.map(o=>`<dt>${o[0]}</dt><dd>${o[1]}</dd>`).join('')}</dl><p class="row ordbar"><button type="button" class="btn ghost" id="ordstart">Øv ordene</button></p><div id="ordspil" hidden></div></section>
+<section id="s-eks">${H('s-eks')}<div class="eks" id="eks"></div><p class="row eksbar"><button type="button" class="btn" id="eksn">Vis næste trin</button><button type="button" class="link" id="eksa">Vis alle trin</button><button type="button" class="btn ghost" id="nyeks">${IC.ny}Nyt eksempel med andre tal</button></p>${fk(c.id,[EKSF[c.id]||0])}</section>
+<section id="s-fejl">${H('s-fejl')}<p class="fejl">${c.fejl[0]}</p><p>Hvad er gået galt? Snak med din makker, før du kigger.</p><details><summary>Se forklaringen</summary><p>${c.fejl[1]}</p>${fk(c.id,[FEJLF[c.id]||0])}</details></section>
+<section id="s-opg">${H('s-opg')}<p>Regn i dit hæfte, og skriv svaret her.</p><details class="husk"><summary>Huskeseddel</summary><ul>${TEORI[c.id].map(x=>`<li><b>${x[0]}:</b> ${x[1]?x[1]+'. ':''}Fx ${x[3]}</li>`).join('')}</ul></details><div class="work"><div class="tabs" id="lvs"></div><p class="q" id="q"></p><ol class="trin5" id="tip" hidden><li>Læs opgaven to gange.</li><li>Hvad ved du?</li><li>Hvad skal du finde?</li><li>Skriv et regnestykke.</li><li>Regn, og tjek svaret.</li></ol><form class="row" id="pf" autocomplete="off"><label for="ans">Svar</label><input class="ans" id="ans" inputmode="text" autocomplete="off"><span id="unit"></span><button class="btn" id="chk">Tjek svar</button></form><div class="fkw"><p class="row"><button type="button" class="btn ghost" id="hnt">Hint</button><button type="button" class="btn ghost" id="nxt">Ny opgave</button><button type="button" class="btn ghost fkb" id="tfb" data-fi="0" hidden></button><button type="button" class="btn ghost fkb" id="tfg" data-fi="-1" hidden>${IC.pl}Film: Problemopgaver</button></p><div class="film tfilm" id="tfilm" hidden></div></div><p class="fb" id="fb" role="status" hidden></p><p class="small" id="dots"></p></div></section>
+<section id="s-fart">${H('s-fart')}<p>Du har ${FAST} sekunder. Vælg det rigtige svar så hurtigt, du kan. Det er en leg og tæller ikke med i dine 20 opgaver.</p><div class="fast" id="fast"></div></section>
+<section id="s-fork">${H('s-fork')}<ul>${c.forklar.map(s=>`<li>${s}</li>`).join('')}</ul><p class="small">Du kan starte sådan: Først fandt jeg … fordi … Jeg tjekkede det ved at …</p><p class="small">Er du alene, så skriv din forklaring i hæftet.</p></section>
+<section id="s-kan">${H('s-kan')}<p>Sæt et hak, når du synes, du kan det.</p><ul class="kan">${c.maal.map((m,n)=>`<li><label for="k${n}"><input type="checkbox" id="k${n}"${k[n]?' checked':''}><span>${m}</span></label></li>`).join('')}</ul></section>
+<div class="stepnav"><button type="button" class="btn ghost" id="sprev"></button><span class="small" id="spos"></span><button type="button" class="btn" id="snext"></button></div>
+<nav class="pn" aria-label="Forrige og næste kapitel">${pv?`<a data-ch style="${hue(pv.id)}" href="#${pv.id}"><span>${IC.l}Forrige</span><b>${pv.t}</b></a>`:`<a href="#hjem"><span>${IC.l}Tilbage</span><b>Alle kapitler</b></a>`}${nx?`<a data-ch style="${hue(nx.id)}" href="#${nx.id}"><span>Næste${IC.r}</span><b>${nx.t}</b></a>`:`<a style="--c:var(--fg);--on:#fff" href="#hjem"><span>Færdig${IC.r}</span><b>Alle kapitler</b></a>`}</nav>
 </div></div>`;
-  const sb=[...app.querySelectorAll('[data-go]')];
-  sb.forEach(b=>b.onclick=()=>$(b.dataset.go).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
-  if(spy)spy.disconnect();
-  if('IntersectionObserver' in window){spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)sb.forEach(b=>b.setAttribute('aria-current',b.dataset.go==e.target.id))}),{rootMargin:'-15% 0px -70% 0px'});STEPS.forEach(([d])=>spy.observe($(d)))}
-  app.querySelectorAll('.kan input').forEach((b,n)=>b.onchange=()=>{(kan[c.id]=kan[c.id]||[])[n]=b.checked;try{localStorage.setItem('mv6kan',JSON.stringify(kan))}catch(e){}});
-  TOOLS[c.id]($('tool'));practice(c)}
-const route=()=>{const c=CH.find(c=>c.id==location.hash.slice(1));c?chapter(c):home();window.scrollTo(0,0)};
+  app.querySelectorAll('.fkw').forEach(w=>{const box=w.querySelector('.tfilm');let pl=null,cur=null;w.querySelectorAll('.fkb').forEach(b=>b.onclick=()=>{const fi=+b.dataset.fi;if(!box.hidden&&cur==fi){if(pl)pl.stop();box.hidden=true;return}if(pl)pl.stop();box.hidden=false;const F=fi<0?GEN:FILMS[c.id][fi];pl=player(box,F,F.t);cur=fi;pl.play()})});
+  const sb=[...app.querySelectorAll('[data-go]')],secs=STEPS.map(([d])=>$(d)),main=$('main');
+  const mark=n=>sb.forEach((b,j)=>b.setAttribute('aria-current',j==n));
+  const vis=()=>{main.classList.toggle('stepmode',mode=='trin');secs.forEach((s,j)=>s.classList.toggle('cur',j==st));mark(st);(seen[c.id]=seen[c.id]||[])[st]=1;put('mv6seen',seen);sted[c.id]=st;put('mv6step',sted);sb.forEach((b,j)=>b.classList.toggle('set',!!seen[c.id][j]&&j!=st));$('spos').textContent=`Trin ${st+1} af ${N}`;
+    $('sprev').hidden=st==0;$('snext').hidden=st==N-1;if(st>0)$('sprev').innerHTML=IC.l+kort(STEPS[st-1][1]);if(st<N-1)$('snext').innerHTML='Næste: '+kort(STEPS[st+1][1])+IC.r;
+    if(spy)spy.disconnect();
+    if(mode=='alt'&&'IntersectionObserver' in window){spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){st=secs.indexOf(e.target);mark(st)}}),{rootMargin:'-15% 0px -70% 0px'});secs.forEach(s=>spy.observe(s))}};
+  const til=n=>{st=n;if(mode=='trin'){stopFilm();stopFast();vt(vis);const y=main.getBoundingClientRect().top;if(y<0)main.scrollIntoView({block:'start'})}else{mark(n);secs[n].scrollIntoView({behavior:rolig()?'auto':'smooth',block:'start'})}};
+  sb.forEach((b,n)=>b.onclick=()=>til(n));$('sprev').onclick=()=>til(st-1);$('snext').onclick=()=>til(st+1);
+  $('o-mode').querySelectorAll('button').forEach(b=>b.onclick=()=>{if(mode==b.dataset.v)return;mode=b.dataset.v;put('mv6mode',mode);$('o-mode').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x==b));vt(vis)});
+  const eksVis=ny=>{const e=$('eks'),alle=vist>=ek[1].length;e.innerHTML=`<p class="eq">${ek[0]}</p>${vist?'':'<p class="small">Hvad ville du gøre først? Tænk efter, før du ser næste trin.</p>'}<ol>${ek[1].slice(0,vist).map(s=>`<li><span>${s}</span></li>`).join('')}</ol>`;$('eksn').hidden=alle;$('eksa').hidden=alle;const x=ny?e:e.querySelector('li:last-child');if(x){x.classList.remove('flip');void x.offsetWidth;x.classList.add('flip')}};
+  $('eksn').onclick=()=>{vist++;eksVis()};$('eksa').onclick=()=>{vist=ek[1].length;eksVis()};$('nyeks').onclick=()=>{ek=EKS[c.id]();vist=0;eksVis(1)};
+  $('ordstart').onclick=()=>ordspil(c);
+  app.querySelectorAll('.sv').forEach(b=>b.onclick=()=>{b.nextElementSibling.hidden=false;b.hidden=true});
+  app.querySelectorAll('.kan input').forEach((b,n)=>b.onchange=()=>{(kan[c.id]=kan[c.id]||[])[n]=b.checked;put('mv6kan',kan)});
+  TOOLS[c.id]($('tool'));practice(c);film(c);hurtig(c);eksVis();vis()}
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[data-ch]');heroEl=a?a.querySelector('.art'):null},true);
+document.addEventListener('pointermove',e=>{if(e.pointerType!='mouse'||rolig())return;const a=e.target.closest&&e.target.closest('.shelf:not(.list) .cover .art');document.querySelectorAll('.cover .art').forEach(x=>{if(x!=a){x.style.removeProperty('--rx');x.style.removeProperty('--ry')}});if(!a)return;const r=a.getBoundingClientRect();a.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*14+'deg');a.style.setProperty('--rx',(.5-(e.clientY-r.top)/r.height)*14+'deg')});
+const route=()=>{stopFilm();stopFast();const c=CH.find(c=>c.id==location.hash.slice(1)),fra=cur;cur=c?c.id:null;
+  if(c&&heroEl&&heroEl.isConnected)heroEl.style.viewTransitionName='hero';heroEl=null;
+  const t=vt(()=>{c?chapter(c):home(fra);window.scrollTo(0,0)}),ryd=()=>document.querySelectorAll('.cover .art').forEach(x=>x.style.viewTransitionName='');
+  if(t&&t.finished)t.finished.then(ryd,ryd);else ryd()};
 window.addEventListener('hashchange',route);route();
 }
 </script>
